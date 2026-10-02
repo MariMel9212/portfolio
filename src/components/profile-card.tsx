@@ -1,3 +1,4 @@
+import { asset } from "@/lib/asset"
 import { MailIcon } from "@/components/mail-icon";
 import { site } from "@/content/site";
 
@@ -33,7 +34,7 @@ export function ProfileCard() {
                 <img
                   alt="Мария Мельничук"
                   className="absolute left-0 top-[0.06%] h-[99.91%] w-full max-w-none"
-                  src="/figma/portrait.webp"
+                  src={asset("/figma/portrait.webp")}
                 />
               </div>
               <div className="absolute inset-0 rounded-[inherit] shadow-[inset_0px_0.73px_0px_0px_rgba(255,255,255,0.7)]" />
@@ -44,7 +45,7 @@ export function ProfileCard() {
             <div className="relative size-[18px] shrink-0 overflow-clip">
               <div className="absolute left-[3px] top-[3px] size-[13.136px]">
                 <div className="absolute inset-[-22.22%]">
-                  <img alt="" className="block size-full max-w-none" src="/figma/arrow-up-right.svg" />
+                  <img alt="" className="block size-full max-w-none" src={asset("/figma/arrow-up-right.svg")} />
                 </div>
               </div>
             </div>
@@ -90,11 +91,11 @@ export function ProfileCard() {
               aria-label="Написать в Telegram"
               className="relative size-[50px] shrink-0 overflow-clip rounded-full transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#338ff5]"
             >
-              <img alt="" className="absolute inset-0 block size-full max-w-none" src="/figma/telegram.svg" />
+              <img alt="" className="absolute inset-0 block size-full max-w-none" src={asset("/figma/telegram.svg")} />
             </a>
           </div>
           <div aria-hidden className="absolute left-[350px] top-[68px] hidden h-[347.242px] w-[336.75px] lg:block">
-            <img alt="" className="absolute inset-0 block size-full max-w-none" src="/figma/pattern.svg" />
+            <img alt="" className="absolute inset-0 block size-full max-w-none" src={asset("/figma/pattern.svg")} />
           </div>
         </div>
         <div className="flex items-center justify-end gap-[14.595px] drop-shadow-[0px_0px_0.73px_rgba(255,255,255,0.6)]">
@@ -102,7 +103,7 @@ export function ProfileCard() {
             {"ID / 0426   •   VALID   •   DESIGN DEPT"}
           </p>
           <div className="relative size-[17.514px] shrink-0">
-            <img alt="" className="absolute inset-0 block size-full max-w-none" src="/figma/globe.svg" />
+            <img alt="" className="absolute inset-0 block size-full max-w-none" src={asset("/figma/globe.svg")} />
           </div>
         </div>
       </div>

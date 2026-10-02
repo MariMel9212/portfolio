@@ -1,3 +1,4 @@
+import { asset } from "@/lib/asset"
 const sf = "font-sf not-italic";
 
 type Product = {
@@ -64,13 +65,13 @@ function ProductCard({ product }: { product: Product }) {
       <div className="relative flex h-[120.75px] w-[136.025px] shrink-0 items-start justify-end overflow-clip p-[5.819px]">
         {product.cropped ? (
           <div className="pointer-events-none absolute inset-0 overflow-hidden">
-            <img alt="" className={`absolute max-w-none ${product.imageClassName}`} src={product.image} />
+            <img alt="" className={`absolute max-w-none ${product.imageClassName}`} src={asset(product.image)} />
           </div>
         ) : (
-          <img alt="" className="pointer-events-none absolute inset-0 size-full max-w-none object-bottom" src={product.image} />
+          <img alt="" className="pointer-events-none absolute inset-0 size-full max-w-none object-bottom" src={asset(product.image)} />
         )}
         <div className="relative size-[16.003px] shrink-0">
-          <img alt="" className="absolute inset-0 block size-full max-w-none" src="/figma/ic-heart.svg" />
+          <img alt="" className="absolute inset-0 block size-full max-w-none" src={asset("/figma/ic-heart.svg")} />
         </div>
       </div>
       <div className="relative flex w-full shrink-0 flex-col items-start gap-[5.819px] px-[8.729px] pb-[8.729px] pt-[5.819px]">
@@ -84,7 +85,7 @@ function ProductCard({ product }: { product: Product }) {
             {product.safe && (
               <div className="flex h-[14.548px] w-full items-center gap-[1.455px] rounded-[6px] bg-[#f5effe] pl-[2.91px] pr-[4.364px]">
                 <div className="relative size-[13.093px] shrink-0">
-                  <img alt="" className="absolute inset-0 block size-full max-w-none" src="/figma/ic-trust-wallet.svg" />
+                  <img alt="" className="absolute inset-0 block size-full max-w-none" src={asset("/figma/ic-trust-wallet.svg")} />
                 </div>
                 <p className={`${sf} whitespace-nowrap text-[8px] font-medium leading-none text-[#6e0ffb]`}>Сделка безопасна</p>
               </div>
@@ -93,7 +94,7 @@ function ProductCard({ product }: { product: Product }) {
           <div className="flex w-full items-center gap-[2.91px] opacity-40">
             {product.metaIcon && (
               <div className="relative size-[11.639px] shrink-0">
-                <img alt="" className="absolute inset-0 block size-full max-w-none" src="/figma/ic-car.svg" />
+                <img alt="" className="absolute inset-0 block size-full max-w-none" src={asset("/figma/ic-car.svg")} />
               </div>
             )}
             <p className={`${sf} min-w-px flex-[1_0_0] overflow-hidden text-ellipsis whitespace-nowrap text-[8.73px] leading-[11.639px] text-black`}>
@@ -120,7 +121,7 @@ export function YulaHomeScreen({ locationIcon = "/figma/ic-location.svg" }: { lo
               <div className="relative h-[21.822px] w-[235.68px] shrink-0 rounded-[5.819px] bg-[#ebedf0]">
                 <div className="absolute left-0 right-0 top-1/2 h-[26.187px] -translate-y-1/2">
                   <div className="absolute left-[12px] top-[calc(50%+4.91px)] size-[16px] -translate-y-1/2">
-                    <img alt="" className="absolute inset-0 block size-full max-w-none" src="/figma/ic-search.svg" />
+                    <img alt="" className="absolute inset-0 block size-full max-w-none" src={asset("/figma/ic-search.svg")} />
                   </div>
                   <p className={`${sf} absolute left-[26.19px] top-[calc(50%-8.37px)] whitespace-nowrap text-[12.366px] leading-[16.003px] tracking-[-0.2982px] text-[#818c99]`}>
                     Поиск
@@ -130,7 +131,7 @@ export function YulaHomeScreen({ locationIcon = "/figma/ic-location.svg" }: { lo
               <div className="relative size-[21.822px] shrink-0 overflow-clip rounded-full bg-[#dedddd]">
                 <div className="absolute left-0 top-[-131.27px] h-[38.298px] w-[21.556px]">
                   <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                    <img alt="" className="absolute left-[0.03%] top-[0.02%] h-[99.95%] w-[99.94%] max-w-none" src="/figma/yula-avatar.webp" />
+                    <img alt="" className="absolute left-[0.03%] top-[0.02%] h-[99.95%] w-[99.94%] max-w-none" src={asset("/figma/yula-avatar.webp")} />
                   </div>
                 </div>
               </div>
@@ -141,7 +142,7 @@ export function YulaHomeScreen({ locationIcon = "/figma/ic-location.svg" }: { lo
                 <div className="absolute left-[10.18px] top-0 h-[92.381px] w-[263.321px] overflow-clip rounded-[5.819px] bg-[#d1dbfe]">
                   <div className="absolute left-[0.73px] top-[0.73px] h-[91.653px] w-[261.867px] rounded-[5.819px]">
                     <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[5.819px]">
-                      <img alt="" className="absolute left-[-4.17%] top-[-76.31%] h-[670.87%] w-[108.33%] max-w-none" src="/figma/yula-banners.webp" />
+                      <img alt="" className="absolute left-[-4.17%] top-[-76.31%] h-[670.87%] w-[108.33%] max-w-none" src={asset("/figma/yula-banners.webp")} />
                     </div>
                   </div>
                 </div>
@@ -152,7 +153,7 @@ export function YulaHomeScreen({ locationIcon = "/figma/ic-location.svg" }: { lo
                   <div key={color} className={`relative h-[82.197px] w-[82.924px] shrink-0 overflow-clip rounded-[5.819px] ${color}`}>
                     <div className={`absolute size-[81.47px] rounded-[5.819px] ${bannerCrops[i]}`}>
                       <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[5.819px]">
-                        <img alt="" className={`absolute top-[-205.49%] h-[754.73%] w-[348.21%] max-w-none ${bannerOffsets[i]}`} src="/figma/yula-banners.webp" />
+                        <img alt="" className={`absolute top-[-205.49%] h-[754.73%] w-[348.21%] max-w-none ${bannerOffsets[i]}`} src={asset("/figma/yula-banners.webp")} />
                       </div>
                     </div>
                   </div>
@@ -163,12 +164,12 @@ export function YulaHomeScreen({ locationIcon = "/figma/ic-location.svg" }: { lo
               <div className="flex w-full items-center justify-between rounded-[5.819px] border-[0.727px] border-[#e0e0df] px-[5.819px] pb-[5.092px] pt-[5.819px]">
                 <div className="flex items-center gap-[4.364px]">
                   <div className="relative size-[10.184px] shrink-0">
-                    <img alt="" className="absolute inset-0 block size-full max-w-none" src={locationIcon} />
+                    <img alt="" className="absolute inset-0 block size-full max-w-none" src={asset(locationIcon)} />
                   </div>
                   <p className={`${sf} whitespace-nowrap text-[8.729px] leading-[10.184px] text-[#707070]`}>Москва, улица Годовикова 10</p>
                 </div>
                 <div className="relative size-[10.184px] -scale-y-100">
-                  <img alt="" className="absolute inset-0 block size-full max-w-none" src="/figma/ic-arrow-up.svg" />
+                  <img alt="" className="absolute inset-0 block size-full max-w-none" src={asset("/figma/ic-arrow-up.svg")} />
                 </div>
               </div>
             </div>
@@ -187,7 +188,7 @@ export function YulaHomeScreen({ locationIcon = "/figma/ic-location.svg" }: { lo
             <div className="absolute left-[-19.33px] top-[-36.06px] flex h-[196.757px] w-[305.559px] items-center justify-center">
               <div className="flex-none rotate-[97.28deg]">
                 <div className="relative h-[287.401px] w-[161.663px]">
-                  <img alt="" className="pointer-events-none absolute inset-0 size-full max-w-none object-cover" src="/figma/yula-safe-bg.webp" />
+                  <img alt="" className="pointer-events-none absolute inset-0 size-full max-w-none object-cover" src={asset("/figma/yula-safe-bg.webp")} />
                 </div>
               </div>
             </div>
@@ -195,7 +196,7 @@ export function YulaHomeScreen({ locationIcon = "/figma/ic-location.svg" }: { lo
               <div className="flex-none rotate-[-1.36deg]">
                 <div className="relative h-[141.881px] w-[159.367px]">
                   <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                    <img alt="" className="absolute left-[-57.12%] top-0 h-full w-[157.12%] max-w-none" src="/figma/yula-safe-shield.webp" />
+                    <img alt="" className="absolute left-[-57.12%] top-0 h-full w-[157.12%] max-w-none" src={asset("/figma/yula-safe-shield.webp")} />
                   </div>
                 </div>
               </div>
@@ -220,27 +221,27 @@ export function YulaHomeScreen({ locationIcon = "/figma/ic-location.svg" }: { lo
       <div className="absolute bottom-[0.24px] left-1/2 flex -translate-x-1/2 items-center justify-center gap-[39.28px] border-t-[0.727px] border-black/5 bg-white px-[18.913px] pb-[26.187px] pt-[7.274px]">
         <div className="relative size-[17.458px] shrink-0">
           <div className="absolute inset-[11.8%_13.71%_11.81%_13.72%]">
-            <img alt="" className="absolute inset-0 block size-full max-w-none" src="/figma/ic-home.svg" />
+            <img alt="" className="absolute inset-0 block size-full max-w-none" src={asset("/figma/ic-home.svg")} />
           </div>
         </div>
         <div className="relative size-[17.458px] shrink-0">
-          <img alt="" className="absolute inset-0 block size-full max-w-none" src="/figma/ic-search-menu.svg" />
+          <img alt="" className="absolute inset-0 block size-full max-w-none" src={asset("/figma/ic-search-menu.svg")} />
         </div>
         <div className="flex h-[20.367px] items-center justify-center rounded-full bg-[linear-gradient(213.45deg,#00e5ff_7.1%,#de66ff_93.6%)] px-[1.455px]">
           <div className="relative size-[17.458px] shrink-0">
-            <img alt="" className="absolute inset-0 block size-full max-w-none" src="/figma/ic-plus.svg" />
+            <img alt="" className="absolute inset-0 block size-full max-w-none" src={asset("/figma/ic-plus.svg")} />
           </div>
         </div>
         <div className="relative flex items-center gap-[7.274px]">
           <div className="relative size-[17.458px] shrink-0">
-            <img alt="" className="absolute inset-0 block size-full max-w-none" src="/figma/ic-email.svg" />
+            <img alt="" className="absolute inset-0 block size-full max-w-none" src={asset("/figma/ic-email.svg")} />
           </div>
           <div className="absolute left-[9.46px] top-[-4.36px] flex h-[11.639px] w-[14.548px] items-center justify-center rounded-full border-[1.091px] border-white bg-[#ff3d52] p-[2.91px]">
             <p className={`${sf} whitespace-nowrap text-[8.001px] font-medium leading-none text-white`}>13</p>
           </div>
         </div>
         <div className="relative size-[16.003px] shrink-0">
-          <img alt="" className="absolute inset-0 block size-full max-w-none" src="/figma/ic-heart-tab.svg" />
+          <img alt="" className="absolute inset-0 block size-full max-w-none" src={asset("/figma/ic-heart-tab.svg")} />
         </div>
       </div>
     </div>

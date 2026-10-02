@@ -4,6 +4,10 @@
 
 Стек: Next.js (App Router), TypeScript, Tailwind CSS v4, shadcn/ui.
 
+Опубликованная страница: https://marimel9212.github.io/portfolio/
+
+Каждый пуш в `main` заново собирает сайт и выкладывает его на GitHub Pages.
+
 ## Запуск
 
 ```bash
