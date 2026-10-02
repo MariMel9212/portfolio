@@ -1,6 +1,4 @@
-"use client";
-
-import { useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/utils";
 
 export function ScaledStage({
   width,
@@ -13,24 +11,12 @@ export function ScaledStage({
   className?: string;
   children: React.ReactNode;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [scale, setScale] = useState(1);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new ResizeObserver(([entry]) => {
-      setScale(entry.contentRect.width / width);
-    });
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [width]);
-
   return (
-    <div ref={ref} className={className} style={{ aspectRatio: `${width} / ${height}` }}>
+    <div className={cn("@container relative", className)} style={{ aspectRatio: `${width} / ${height}` }}>
       <div
-        className="relative origin-top-left"
-        style={{ width, height, transform: `scale(${scale})` }}
+        className="absolute left-0 top-0 origin-top-left"
+        // tan(atan2(a, b)) divides two lengths into a unitless ratio, so the stage scales without JS.
+        style={{ width, height, transform: `scale(tan(atan2(100cqw, ${width}px)))` }}
       >
         {children}
       </div>
