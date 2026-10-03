@@ -37,16 +37,16 @@ function TaxiCard() {
     >
       <div
         className="relative z-10 flex shrink-0 flex-col items-start justify-between self-stretch"
-        style={{ width: u(447), marginRight: u(-12) }}
+        style={{ width: u(447), marginRight: u(-12), paddingBottom: u(20) }}
       >
         <div className="flex w-full flex-col items-start" style={{ gap: u(64) }}>
           <div className="flex w-full flex-col items-start" style={{ gap: u(22) }}>
             <div className="flex w-full flex-col items-start" style={{ gap: u(14) }}>
               <h3 className="opacity-90 transition-opacity duration-500 group-hover:opacity-100" style={{ width: u(426), fontSize: u(36), lineHeight: u(44), letterSpacing: u(-0.36) }}>
-                Центр мониторинга беспилотного такси
+                Мониторинг беспилотного автопарка
               </h3>
-              <p className="w-full opacity-60 transition-opacity duration-500 group-hover:opacity-80" style={{ fontSize: u(22), lineHeight: u(29), letterSpacing: u(-0.22) }}>
-                Тут тоже будет текст, дополнительно описание
+              <p className="w-full opacity-60 transition-opacity duration-500 group-hover:opacity-80" style={{ fontSize: u(18), lineHeight: "normal", letterSpacing: u(-0.18) }}>
+                Сервис для инженеров центра мониторинга, который помогает отслеживать состояние автомобилей, замечать критичные инциденты и&nbsp;быстро принимать решение
               </p>
             </div>
             <div className="flex items-center justify-center bg-[#f7f7f7]" style={{ borderRadius: u(15), padding: `${u(8)} ${u(12)}` }}>
@@ -55,7 +55,16 @@ function TaxiCard() {
               </p>
             </div>
           </div>
-          <Meta />
+          <div className="flex flex-col whitespace-nowrap opacity-60" style={{ width: u(234), gap: u(8), fontSize: u(18), lineHeight: "normal", letterSpacing: u(-0.18) }}>
+            <div className="flex items-center" style={{ gap: u(8) }}>
+              <p>Дата</p>
+              <p>2025</p>
+            </div>
+            <div className="flex items-center" style={{ gap: u(8) }}>
+              <p>Роль</p>
+              <p>Product designer</p>
+            </div>
+          </div>
         </div>
         <img alt="" style={{ width: u(56), height: u(56) }} src={asset("/figma/t-shield.svg")} />
       </div>
@@ -63,7 +72,7 @@ function TaxiCard() {
         <div className="absolute overflow-hidden" style={{ left: u(-167), top: u(-79), width: u(1176), height: u(711) }}>
           <div className="absolute" style={{ left: u(167), top: u(90), width: u(821), height: u(627), borderRadius: u(26) }}>
             <img
-              alt="Центр мониторинга беспилотного такси"
+              alt="Мониторинг беспилотного автопарка"
               className="pointer-events-none absolute max-w-none"
               style={{
                 left: u(-182.55),
