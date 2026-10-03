@@ -3,8 +3,8 @@ import { MailIcon } from "@/components/mail-icon";
 import { site } from "@/content/site";
 
 const glow = "text-shadow-[0px_0px_1.46px_rgba(255,255,255,0.6)]";
-const label = "font-display text-[16px] uppercase leading-[18px] tracking-[0.32px] text-black opacity-40";
-const value = "text-[22px] leading-[28px] tracking-[-0.01em] text-black opacity-90 sm:text-[28px] sm:leading-[36px]";
+const label = "font-display text-[12px] uppercase leading-[14px] tracking-[0.24px] text-black opacity-40 lg:text-[16px] lg:leading-[18px] lg:tracking-[0.32px]";
+const value = "text-[16px] leading-[21px] tracking-[-0.01em] text-black opacity-90 sm:text-[18px] sm:leading-[24px] lg:text-[28px] lg:leading-[36px]";
 
 function Field({ title, children, className }: { title: string; children: React.ReactNode; className?: string }) {
   return (
@@ -20,10 +20,10 @@ export function ProfileCard() {
     <section
       id="about"
       aria-label="Обо мне"
-      className="relative mx-4 mt-10 flex scroll-mt-6 flex-col gap-6 overflow-clip rounded-[32px] bg-white p-5 sm:mx-auto sm:w-[600px] sm:p-8 md:mt-[52px] lg:w-fit lg:flex-row lg:items-start lg:gap-[12px] lg:rounded-[46px] lg:px-[44px] lg:pb-[32px] lg:pt-[44px]"
+      className="relative mx-4 mt-10 grid scroll-mt-6 grid-cols-[minmax(0,1fr)_124px] items-start gap-x-4 gap-y-5 overflow-clip rounded-[32px] bg-white p-5 sm:mx-auto sm:w-[600px] sm:grid-cols-[minmax(0,1fr)_168px] sm:p-8 md:mt-[52px] lg:flex lg:w-fit lg:flex-row lg:items-start lg:gap-[12px] lg:rounded-[46px] lg:px-[44px] lg:pb-[32px] lg:pt-[44px]"
     >
       <div className="contents lg:flex lg:h-[454px] lg:w-[291px] lg:shrink-0 lg:flex-col lg:gap-[24px] lg:border-r lg:border-black/5">
-          <div className="pointer-events-none relative order-2 aspect-[272/407] w-full max-w-[220px] overflow-clip rounded-[14.595px] border-[0.73px] border-[#e5e7eb] drop-shadow-[0px_0px_1.46px_rgba(255,255,255,0.6)] max-lg:mx-auto sm:max-w-[260px] lg:order-none lg:w-[272px] lg:max-w-none">
+          <div className="pointer-events-none relative col-start-2 row-start-2 aspect-[272/407] w-full overflow-clip rounded-[14.595px] border-[0.73px] border-[#e5e7eb] drop-shadow-[0px_0px_1.46px_rgba(255,255,255,0.6)] lg:col-auto lg:row-auto lg:w-[272px]">
             <div className="absolute left-[-0.27%] top-[-0.18%] h-[88.75%] w-[100.34%] rounded-[14.595px]">
               <div aria-hidden className="absolute inset-0 rounded-[14.595px] bg-[#d9d9d9]" />
               <div className="absolute inset-0 rounded-[inherit] shadow-[inset_0px_0.73px_0px_0px_rgba(255,255,255,0.7)]" />
@@ -39,7 +39,7 @@ export function ProfileCard() {
               <div className="absolute inset-0 rounded-[inherit] shadow-[inset_0px_0.73px_0px_0px_rgba(255,255,255,0.7)]" />
             </div>
           </div>
-          <div className="order-5 flex w-full items-center justify-between lg:order-none lg:w-[272px]">
+          <div className="col-span-2 row-start-4 flex w-full items-center justify-between lg:col-auto lg:row-auto lg:w-[272px]">
             <p className={`text-[18px] leading-[23px] tracking-[-0.18px] text-black opacity-80 ${glow}`}>Moscow, Russia</p>
             <div className="relative size-[18px] shrink-0 overflow-clip">
               <div className="absolute left-[3px] top-[3px] size-[13.136px]">
@@ -53,12 +53,12 @@ export function ProfileCard() {
 
       <div className="contents lg:flex lg:w-[550px] lg:shrink-0 lg:flex-col lg:items-end lg:gap-[24px]">
         <div className="contents lg:relative lg:flex lg:w-full lg:flex-col lg:items-start lg:gap-[48px]">
-          <h1 className="font-display order-1 w-full text-[52px] uppercase leading-[0.86] tracking-[0.02em] text-black opacity-50 text-shadow-[0px_0px_2.919px_rgba(255,255,255,0.6)] sm:text-[58px] lg:order-none lg:text-[78px] lg:leading-[0.77]">
+          <h1 className="font-display col-span-2 row-start-1 w-full text-[48px] uppercase leading-[0.86] tracking-[0.02em] text-black opacity-50 text-shadow-[0px_0px_2.919px_rgba(255,255,255,0.6)] sm:text-[56px] lg:col-auto lg:row-auto lg:text-[78px] lg:leading-[0.77]">
             product <br className="lg:hidden" />
             designer
           </h1>
-          <div className="relative z-10 order-3 flex w-full flex-col gap-[26px] lg:order-none lg:pl-[5px] lg:w-[336.415px]">
-            <div className="flex w-full items-center gap-8 uppercase sm:gap-[44px]">
+          <div className="relative z-10 col-start-1 row-start-2 flex w-full min-w-0 flex-col gap-3.5 lg:col-auto lg:row-auto lg:w-[336.415px] lg:gap-[26px] lg:pl-[5px]">
+            <div className="flex w-full flex-col gap-3 uppercase lg:flex-row lg:items-center lg:gap-[44px]">
               <Field title="name" className="sm:w-[108px]">
                 <p className={`${value} font-medium`}>Мария</p>
               </Field>
@@ -75,7 +75,7 @@ export function ProfileCard() {
               </Field>
             </div>
           </div>
-          <div className="relative z-10 order-4 flex items-center gap-[10px] drop-shadow-[0px_0px_1.095px_rgba(255,255,255,0.6)] lg:order-none lg:pl-[6px]">
+          <div className="relative z-10 col-span-2 row-start-3 flex items-center gap-[10px] drop-shadow-[0px_0px_1.095px_rgba(255,255,255,0.6)] lg:col-auto lg:row-auto lg:pl-[6px]">
             <a
               href={`mailto:${site.email}`}
               aria-label="Написать на почту"
