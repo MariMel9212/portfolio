@@ -22,9 +22,8 @@ export function ProfileCard() {
       aria-label="Обо мне"
       className="relative mx-4 mt-10 flex scroll-mt-6 flex-col gap-6 overflow-clip rounded-[32px] bg-white p-5 sm:mx-auto sm:w-[600px] sm:p-8 md:mt-[52px] lg:w-fit lg:flex-row lg:items-start lg:gap-[12px] lg:rounded-[46px] lg:px-[44px] lg:pb-[32px] lg:pt-[44px]"
     >
-      <div className="border-black/5 max-lg:border-b max-lg:pb-6 lg:h-[454px] lg:w-[291px] lg:shrink-0 lg:border-r">
-        <div className="flex flex-col gap-[24px] lg:w-[272px]">
-          <div className="pointer-events-none relative aspect-[272/407] w-full overflow-clip rounded-[14.595px] border-[0.73px] border-[#e5e7eb] drop-shadow-[0px_0px_1.46px_rgba(255,255,255,0.6)] max-lg:mx-auto max-lg:max-w-[340px]">
+      <div className="contents lg:flex lg:h-[454px] lg:w-[291px] lg:shrink-0 lg:flex-col lg:gap-[24px] lg:border-r lg:border-black/5">
+          <div className="pointer-events-none relative order-2 aspect-[272/407] w-full overflow-clip rounded-[14.595px] border-[0.73px] border-[#e5e7eb] drop-shadow-[0px_0px_1.46px_rgba(255,255,255,0.6)] max-lg:mx-auto max-lg:max-w-[340px] lg:order-none lg:w-[272px]">
             <div className="absolute left-[-0.27%] top-[-0.18%] h-[88.75%] w-[100.34%] rounded-[14.595px]">
               <div aria-hidden className="absolute inset-0 rounded-[14.595px] bg-[#d9d9d9]" />
               <div className="absolute inset-0 rounded-[inherit] shadow-[inset_0px_0.73px_0px_0px_rgba(255,255,255,0.7)]" />
@@ -40,7 +39,7 @@ export function ProfileCard() {
               <div className="absolute inset-0 rounded-[inherit] shadow-[inset_0px_0.73px_0px_0px_rgba(255,255,255,0.7)]" />
             </div>
           </div>
-          <div className="flex w-full items-center justify-between max-lg:mx-auto max-lg:max-w-[340px]">
+          <div className="order-5 flex w-full items-center justify-between lg:order-none lg:w-[272px]">
             <p className={`text-[18px] leading-[23px] tracking-[-0.18px] text-black opacity-80 ${glow}`}>Moscow, Russia</p>
             <div className="relative size-[18px] shrink-0 overflow-clip">
               <div className="absolute left-[3px] top-[3px] size-[13.136px]">
@@ -50,15 +49,14 @@ export function ProfileCard() {
               </div>
             </div>
           </div>
-        </div>
       </div>
 
-      <div className="flex flex-col items-end gap-[24px] lg:w-[550px] lg:shrink-0">
-        <div className="relative flex w-full flex-col items-start gap-8 sm:gap-[48px]">
-          <h1 className="font-display w-full text-[42px] uppercase leading-[0.77] tracking-[0.02em] text-black opacity-50 text-shadow-[0px_0px_2.919px_rgba(255,255,255,0.6)] sm:text-[62px] lg:text-[78px]">
+      <div className="contents lg:flex lg:w-[550px] lg:shrink-0 lg:flex-col lg:items-end lg:gap-[24px]">
+        <div className="contents lg:relative lg:flex lg:w-full lg:flex-col lg:items-start lg:gap-[48px]">
+          <h1 className="font-display order-1 w-full text-[42px] uppercase leading-[0.77] tracking-[0.02em] text-black opacity-50 text-shadow-[0px_0px_2.919px_rgba(255,255,255,0.6)] sm:text-[62px] lg:order-none lg:text-[78px]">
             product designer
           </h1>
-          <div className="relative z-10 flex w-full flex-col gap-[26px] pl-[5px] sm:w-[336.415px]">
+          <div className="relative z-10 order-3 flex w-full flex-col gap-[26px] lg:order-none lg:pl-[5px] lg:w-[336.415px]">
             <div className="flex w-full items-center gap-8 uppercase sm:gap-[44px]">
               <Field title="name" className="sm:w-[108px]">
                 <p className={`${value} font-medium`}>Мария</p>
@@ -76,7 +74,7 @@ export function ProfileCard() {
               </Field>
             </div>
           </div>
-          <div className="relative z-10 flex items-center gap-[10px] pl-[6px] drop-shadow-[0px_0px_1.095px_rgba(255,255,255,0.6)]">
+          <div className="relative z-10 order-4 flex items-center gap-[10px] drop-shadow-[0px_0px_1.095px_rgba(255,255,255,0.6)] lg:order-none lg:pl-[6px]">
             <a
               href={`mailto:${site.email}`}
               aria-label="Написать на почту"
@@ -98,7 +96,7 @@ export function ProfileCard() {
             <img alt="" className="absolute inset-0 block size-full max-w-none" src={asset("/figma/pattern.svg")} />
           </div>
         </div>
-        <div className="flex items-center justify-end gap-[14.595px] drop-shadow-[0px_0px_0.73px_rgba(255,255,255,0.6)]">
+        <div className="hidden items-center justify-end gap-[14.595px] drop-shadow-[0px_0px_0.73px_rgba(255,255,255,0.6)] lg:flex">
           <p className="font-label whitespace-pre text-[8.027px] font-medium leading-normal tracking-[1.3136px] text-[rgba(26,33,46,0.42)]">
             {"ID / 0426   •   VALID   •   DESIGN DEPT"}
           </p>
