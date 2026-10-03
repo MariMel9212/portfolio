@@ -117,78 +117,34 @@ export function StoryCases() {
 }
 
 function TaxiCard() {
-  const mask = asset("/figma/monitor-mask.png");
   return (
-    <div className="@container relative w-full" style={{ aspectRatio: "1257 / 783.26" }}>
-      <div
-        className="absolute left-0 top-0 origin-top-left"
-        style={{ width: 1257, height: 783.26, transform: "scale(tan(atan2(100cqw, 1257px)))" }}
-      >
-        <div className="absolute left-0 top-[88.26px] h-[695px] w-[1257px]">
-          <div className="absolute left-0 top-0 flex w-[447px] flex-col items-start gap-[64px] pt-[88px] font-medium text-[#fffbfb]">
-            <div className="flex w-full flex-col items-start gap-[22px]">
-              <div className="flex w-full flex-col items-start gap-[14px]">
-                <p className="w-[426px] text-[36px] leading-[44px] tracking-[-0.36px] opacity-90">
-                  Центр мониторинга беспилотного такси
-                </p>
-                <p className="w-full text-[22px] leading-normal tracking-[-0.22px] opacity-60">
-                  Тут тоже будет текст, дополнительно описание
-                </p>
-              </div>
-              <div className="flex items-center justify-center rounded-[15px] bg-[#f7f7f7] px-[12px] py-[8px]">
-                <p className="text-[16px] leading-normal tracking-[-0.16px] whitespace-nowrap text-[#161616]">
-                  Успешное тестовое
-                </p>
-              </div>
-            </div>
-            <div className="flex w-[234px] flex-col items-start gap-[12px] text-[22px] leading-normal tracking-[-0.22px] whitespace-nowrap">
-              <div className="flex items-center gap-[8px]">
-                <p className="opacity-60">Дата</p>
-                <p className="opacity-60">2025</p>
-              </div>
-              <div className="flex w-full items-center gap-[8px]">
-                <p className="opacity-60">Роль</p>
-                <p className="opacity-60">Product designer</p>
-              </div>
-            </div>
-          </div>
-          <img alt="" className="absolute left-0 top-[478px] z-10 size-[56px]" src={asset("/figma/t-shield.svg")} />
-          <div className="absolute left-[487px] top-0 h-[695px] w-[770px] rounded-[26px]">
-            <img
-              alt=""
-              className="pointer-events-none absolute max-w-none object-cover"
-              style={{ left: -200.64, top: -88.26, width: 1175.164, height: 783.539 }}
-              src={asset("/figma/monitor-object.webp")}
-            />
-            <div
-              className="absolute"
-              style={{
-                left: "calc(50% - 12.31px)",
-                top: "calc(50% - 94.14px)",
-                width: 773.24,
-                height: 508.383,
-                transform: "translate(-50%, -50%)",
-                maskImage: `url("${mask}")`,
-                WebkitMaskImage: `url("${mask}")`,
-                maskRepeat: "no-repeat",
-                WebkitMaskRepeat: "no-repeat",
-                maskSize: "1175.163px 783.537px",
-                WebkitMaskSize: "1175.163px 783.537px",
-                maskPosition: "-186.71px -87.426px",
-                WebkitMaskPosition: "-186.71px -87.426px",
-              }}
-            >
-              <img
-                alt=""
-                width={773.24}
-                height={508.383}
-                className="absolute inset-0 size-full max-w-none"
-                src={asset("/figma/monitor-screen.webp")}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+    <div className="@container relative w-full font-medium" style={{ aspectRatio: "1257 / 783.26" }}>
+      <img
+        alt=""
+        className="absolute max-w-none"
+        style={{ left: "22.781%", top: 0, width: "93.49%", height: "100.036%" }}
+        src={asset("/figma/cover-taxi-3.webp")}
+      />
+      <h3 className="absolute left-0 top-[22.503%] z-10 w-[33.891%] text-[length:2.864cqw] leading-[1.222] tracking-[-0.01em] text-[#fffbfb] opacity-90">
+        Центр мониторинга беспилотного такси
+      </h3>
+      <p className="absolute left-0 top-[35.527%] z-10 w-[35.561%] text-[length:1.75cqw] leading-normal tracking-[-0.01em] text-[#fffbfb] opacity-60">
+        Тут тоже будет текст, дополнительно описание
+      </p>
+      <p className="absolute left-0 top-[45.74%] z-10 rounded-[1.193cqw] bg-[#f7f7f7] px-[0.955cqw] py-[0.636cqw] text-[length:1.273cqw] leading-normal tracking-[-0.01em] text-[#161616]">
+        Успешное тестовое
+      </p>
+      <p className="absolute left-0 top-[58.634%] z-10 text-[length:1.75cqw] leading-[1.318] tracking-[-0.01em] text-[#fffbfb] opacity-60">
+        Дата 2025
+      </p>
+      <p className="absolute left-0 top-[63.87%] z-10 text-[length:1.75cqw] leading-[1.318] tracking-[-0.01em] text-[#fffbfb] opacity-60">
+        Роль Product designer
+      </p>
+      <img
+        alt=""
+        className="absolute left-0 top-[72.295%] z-10 size-[4.455cqw]"
+        src={asset("/figma/t-shield.svg")}
+      />
     </div>
   );
 }
