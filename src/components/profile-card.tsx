@@ -23,20 +23,27 @@ export function ProfileCard() {
       className="@container relative mx-4 mt-10 grid scroll-mt-6 grid-cols-[minmax(0,1fr)_132px] items-start gap-x-4 gap-y-6 overflow-clip rounded-[32px] bg-white p-5 sm:mx-auto sm:w-[600px] sm:grid-cols-[minmax(0,1fr)_220px] sm:gap-x-6 sm:p-8 md:mt-[52px] lg:flex lg:w-fit lg:flex-row lg:items-start lg:gap-[12px] lg:rounded-[46px] lg:px-[44px] lg:pb-[32px] lg:pt-[44px]"
     >
       <div className="contents lg:flex lg:h-[454px] lg:w-[291px] lg:shrink-0 lg:flex-col lg:gap-[24px] lg:border-r lg:border-black/5">
-          <div className="pointer-events-none relative col-start-2 row-start-2 aspect-[272/407] w-full overflow-clip rounded-[14.595px] border-[0.73px] border-[#e5e7eb] drop-shadow-[0px_0px_1.46px_rgba(255,255,255,0.6)] lg:col-auto lg:row-auto lg:w-[272px]">
-            <div className="absolute left-[-0.27%] top-[-0.18%] h-[88.75%] w-[100.34%] rounded-[14.595px]">
-              <div aria-hidden className="absolute inset-0 rounded-[14.595px] bg-[#d9d9d9]" />
-              <div className="absolute inset-0 rounded-[inherit] shadow-[inset_0px_0.73px_0px_0px_rgba(255,255,255,0.7)]" />
-            </div>
-            <div className="absolute left-[-23.61%] top-[-7.89%] h-[109.82%] w-[146.64%]">
-              <div className="absolute inset-0 overflow-hidden">
-                <img
-                  alt="Мария Мельничук"
-                  className="absolute left-0 top-[0.06%] h-[99.91%] w-full max-w-none"
-                  src={asset("/figma/portrait.webp")}
-                />
+          <div className="pointer-events-none relative col-start-2 row-start-2 aspect-[800/896] w-full overflow-clip rounded-[14.595px] border-[0.73px] border-[#e5e7eb] drop-shadow-[0px_0px_1.46px_rgba(255,255,255,0.6)] lg:col-auto lg:row-auto lg:aspect-[272/407] lg:w-[272px]">
+            <img
+              alt="Мария Мельничук"
+              className="size-full object-contain lg:hidden"
+              src={asset("/figma/portrait.webp")}
+            />
+            <div className="absolute inset-0 hidden lg:block">
+              <div className="absolute left-[-0.27%] top-[-0.18%] h-[88.75%] w-[100.34%] rounded-[14.595px]">
+                <div aria-hidden className="absolute inset-0 rounded-[14.595px] bg-[#d9d9d9]" />
+                <div className="absolute inset-0 rounded-[inherit] shadow-[inset_0px_0.73px_0px_0px_rgba(255,255,255,0.7)]" />
               </div>
-              <div className="absolute inset-0 rounded-[inherit] shadow-[inset_0px_0.73px_0px_0px_rgba(255,255,255,0.7)]" />
+              <div className="absolute left-[-23.61%] top-[-7.89%] h-[109.82%] w-[146.64%]">
+                <div className="absolute inset-0 overflow-hidden">
+                  <img
+                    alt=""
+                    className="absolute left-0 top-[0.06%] h-[99.91%] w-full max-w-none"
+                    src={asset("/figma/portrait.webp")}
+                  />
+                </div>
+                <div className="absolute inset-0 rounded-[inherit] shadow-[inset_0px_0.73px_0px_0px_rgba(255,255,255,0.7)]" />
+              </div>
             </div>
           </div>
           <div className="col-span-2 row-start-4 flex w-full items-center justify-between lg:col-auto lg:row-auto lg:w-[272px]">
