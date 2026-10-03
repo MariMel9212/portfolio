@@ -1,3 +1,4 @@
+import { CasesSection } from "@/components/cases/cases-section";
 import { ProfileCard } from "@/components/profile-card";
 import { SiteHeader } from "@/components/site-header";
 
@@ -7,6 +8,7 @@ export default function Home() {
       <SiteHeader />
       <main className="flex w-full flex-col">
         <ProfileCard />
+        <CasesSection />
       </main>
     </>
   );
