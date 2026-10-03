@@ -1,6 +1,11 @@
 import { asset } from "@/lib/asset";
 
-const stories = [
+const stories: {
+  cover: string;
+  title: string;
+  description: string;
+  coverRight?: boolean;
+}[] = [
   {
     cover: "/figma/deal-cover-flat.webp",
     title: "Улучшение сценария Безопасной сделки",
@@ -26,13 +31,22 @@ const stories = [
     title: "Улучшение сценария Безопасной сделки",
     description: "Тут тоже будет текст, дополнительно описание",
   },
+  {
+    cover: "/figma/test-cover-3.webp",
+    title: "Улучшение сценария Безопасной сделки",
+    description: "Тут тоже будет текст, дополнительно описание",
+    coverRight: true,
+  },
 ];
 
 export function StoryCases() {
   return (
     <div className="mx-auto mt-10 flex w-full max-w-[1257px] flex-col gap-10 lg:mt-[52px] lg:gap-[49px]">
       {stories.map((story) => (
-        <article key={story.cover} className="flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-10">
+        <article
+          key={story.cover}
+          className={`flex flex-col gap-6 lg:items-start lg:gap-10 ${story.coverRight ? "lg:flex-row-reverse" : "lg:flex-row"}`}
+        >
           <div className="relative aspect-[770/500] w-full overflow-hidden rounded-[30px] bg-[rgba(27,27,27,0.9)] lg:max-w-[770px] lg:min-w-0 lg:flex-1">
             <img
               alt=""
