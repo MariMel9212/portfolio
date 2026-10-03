@@ -6,7 +6,8 @@ const stories: {
   description: string;
   badge?: string;
   coverRight?: boolean;
-  bleed?: boolean;
+  bleed?: { left: string; top: string; width: string; height: string; aspect: string };
+  textClass?: string;
   mark?: "youla" | "tbank";
 }[] = [
   {
@@ -21,7 +22,17 @@ const stories: {
     description: "Тут тоже будет текст, дополнительно описание",
     badge: "Успешное тестовое",
     coverRight: true,
-    bleed: true,
+    bleed: { left: "-26.057%", top: "-31.221%", width: "152.618%", height: "156.551%", aspect: "770/500.5" },
+    mark: "tbank",
+  },
+  {
+    cover: "/figma/cover-taxi-3.webp",
+    title: "Центр мониторинга беспилотного такси",
+    description: "Тут тоже будет текст, дополнительно описание",
+    badge: "Успешное тестовое",
+    coverRight: true,
+    bleed: { left: "-26.057%", top: "-12.699%", width: "152.618%", height: "112.739%", aspect: "770/695" },
+    textClass: "lg:pt-[7.001cqw]",
     mark: "tbank",
   },
 ];
@@ -39,23 +50,30 @@ export function StoryCases() {
           <div
             className={`relative ${
               story.bleed
-                ? "lg:aspect-[770/500.5]"
+                ? ""
                 : "aspect-[770/500.5] overflow-hidden rounded-[26px] bg-[#111] lg:rounded-[2.069cqw]"
             } ${story.coverRight ? "lg:order-2" : ""}`}
+            style={story.bleed ? { aspectRatio: story.bleed.aspect } : undefined}
           >
             <img
               alt=""
               loading="lazy"
-              className={
+              className={story.bleed ? "absolute max-w-none" : "absolute inset-0 size-full max-w-none object-cover"}
+              style={
                 story.bleed
-                  ? "block h-auto w-full lg:absolute lg:left-[-26.057%] lg:top-[-31.221%] lg:h-[156.551%] lg:w-[152.618%] lg:max-w-none"
-                  : "absolute inset-0 size-full max-w-none object-cover"
+                  ? {
+                      left: story.bleed.left,
+                      top: story.bleed.top,
+                      width: story.bleed.width,
+                      height: story.bleed.height,
+                    }
+                  : undefined
               }
               src={asset(story.cover)}
             />
           </div>
           <div
-            className={`flex flex-col gap-8 pt-1 font-medium text-[#fffbfb] lg:gap-[5.092cqw] lg:pt-[1.273cqw] ${
+            className={`flex flex-col gap-8 pt-1 font-medium text-[#fffbfb] lg:gap-[5.092cqw] ${story.textClass ?? "lg:pt-[1.273cqw]"} ${
               story.coverRight ? "lg:order-1" : ""
             }`}
           >
@@ -85,7 +103,11 @@ export function StoryCases() {
               </div>
             </dl>
             {story.mark === "tbank" ? (
-              <img alt="" className="size-14 lg:size-[4.455cqw]" src={asset("/figma/t-shield.svg")} />
+              <img
+                alt=""
+                className={`size-14 lg:size-[4.455cqw] ${story.textClass ? "lg:-mt-[2.148cqw]" : ""}`}
+                src={asset("/figma/t-shield.svg")}
+              />
             ) : null}
           </div>
           {story.mark === "youla" ? (
