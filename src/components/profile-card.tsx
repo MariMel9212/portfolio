@@ -67,7 +67,7 @@ function Contacts() {
 
 function IdLine() {
   return (
-    <div className="mt-auto hidden items-center justify-end gap-[clamp(8px,2cqw,15px)] @min-[560px]:flex">
+    <div className="ml-auto hidden items-center justify-end gap-[clamp(8px,2cqw,15px)] @min-[560px]:flex">
       <p className="font-label whitespace-pre text-[clamp(7px,1.13cqw,8.5px)] font-medium leading-normal tracking-[0.16em] text-[rgba(26,33,46,0.42)]">
         {"ID / 0426   •   VALID   •   DESIGN DEPT"}
       </p>
@@ -87,7 +87,9 @@ export function ProfileCard() {
           <div className="flex items-stretch gap-[1.69cqw]">
             <div className="flex w-[42.47cqw] shrink-0 flex-col gap-[2.67cqw] border-r border-black/[0.06] pr-[1.4cqw]">
               <Portrait />
-              <Moscow />
+              <div className="flex h-[clamp(32px,7.03cqw,56px)] items-center">
+                <Moscow />
+              </div>
             </div>
             <div className="flex min-w-0 flex-1 flex-col pt-[1.4cqw]">
               <div className="flex flex-col gap-[3.66cqw]">
@@ -108,10 +110,10 @@ export function ProfileCard() {
                   </Field>
                 </div>
               </div>
-              <div className="mt-[9.1cqw]">
+              <div className="mt-auto flex items-center">
                 <Contacts />
+                <IdLine />
               </div>
-              <IdLine />
             </div>
           </div>
         </div>
