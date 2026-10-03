@@ -133,20 +133,11 @@
 
 .case-card {
   cursor: pointer;
-  background-color: transparent;
-  box-shadow: 0 0 0 1px transparent;
-  transition:
-    transform 620ms cubic-bezier(0.22, 1, 0.36, 1),
-    background-color 620ms cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 620ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .case-card:hover {
   transform: translateY(-10px) scale(1.018);
-  background-color: rgba(255, 255, 255, 0.045);
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.16),
-    0 28px 50px rgba(0, 0, 0, 0.38);
 }
 
 @media (prefers-reduced-motion: reduce) {
