@@ -1,5 +1,6 @@
 import { BeltCover, DealCover } from "@/components/cases/case-covers";
 import { ScaledStage } from "@/components/cases/scaled-stage";
+import { StoryCases } from "@/components/cases/story-cases";
 
 const cases = [
   {
@@ -46,6 +47,7 @@ export function CasesSection() {
           </article>
         ))}
       </div>
+      <StoryCases />
     </section>
   );
 }
