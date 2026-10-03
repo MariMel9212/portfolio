@@ -3,8 +3,8 @@ import { MailIcon } from "@/components/mail-icon";
 import { site } from "@/content/site";
 
 const glow = "text-shadow-[0px_0px_1.46px_rgba(255,255,255,0.6)]";
-const label = "font-display text-[16px] uppercase leading-normal tracking-[0.32px] text-black opacity-40";
-const value = "text-[22px] leading-normal tracking-[-0.01em] text-black opacity-90 sm:text-[28px]";
+const label = "font-display text-[16px] uppercase leading-[18px] tracking-[0.32px] text-black opacity-40";
+const value = "text-[22px] leading-[28px] tracking-[-0.01em] text-black opacity-90 sm:text-[28px] sm:leading-[36px]";
 
 function Field({ title, children, className }: { title: string; children: React.ReactNode; className?: string }) {
   return (
@@ -20,9 +20,9 @@ export function ProfileCard() {
     <section
       id="about"
       aria-label="Обо мне"
-      className="relative mx-4 mt-10 flex scroll-mt-6 flex-col gap-6 overflow-clip rounded-[32px] bg-white p-5 sm:mx-auto sm:w-[600px] sm:p-8 md:mt-[52px] lg:w-fit lg:flex-row lg:items-center lg:gap-[26px] lg:rounded-[46px] lg:px-[44px] lg:pb-[32px] lg:pt-[44px]"
+      className="relative mx-4 mt-10 flex scroll-mt-6 flex-col gap-6 overflow-clip rounded-[32px] bg-white p-5 sm:mx-auto sm:w-[600px] sm:p-8 md:mt-[52px] lg:w-fit lg:flex-row lg:items-start lg:gap-[12px] lg:rounded-[46px] lg:px-[44px] lg:pb-[32px] lg:pt-[44px]"
     >
-      <div className="border-black/5 max-lg:border-b max-lg:pb-6 lg:h-[454px] lg:w-[298px] lg:shrink-0 lg:border-r">
+      <div className="border-black/5 max-lg:border-b max-lg:pb-6 lg:h-[454px] lg:w-[291px] lg:shrink-0 lg:border-r">
         <div className="flex flex-col gap-[24px] lg:w-[272px]">
           <div className="pointer-events-none relative aspect-[272/407] w-full overflow-clip rounded-[14.595px] border-[0.73px] border-[#e5e7eb] drop-shadow-[0px_0px_1.46px_rgba(255,255,255,0.6)] max-lg:mx-auto max-lg:max-w-[340px]">
             <div className="absolute left-[-0.27%] top-[-0.18%] h-[88.75%] w-[100.34%] rounded-[14.595px]">
@@ -41,7 +41,7 @@ export function ProfileCard() {
             </div>
           </div>
           <div className="flex w-full items-center justify-between max-lg:mx-auto max-lg:max-w-[340px]">
-            <p className={`text-[18px] leading-normal tracking-[-0.18px] text-black opacity-80 ${glow}`}>Moscow, Russia</p>
+            <p className={`text-[18px] leading-[23px] tracking-[-0.18px] text-black opacity-80 ${glow}`}>Moscow, Russia</p>
             <div className="relative size-[18px] shrink-0 overflow-clip">
               <div className="absolute left-[3px] top-[3px] size-[13.136px]">
                 <div className="absolute inset-[-22.22%]">
