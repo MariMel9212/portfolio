@@ -6,7 +6,7 @@ const stories: {
   description: string;
   badge?: string;
   coverRight?: boolean;
-  natural?: boolean;
+  bleed?: boolean;
   mark?: "youla" | "tbank";
 }[] = [
   {
@@ -21,7 +21,7 @@ const stories: {
     description: "Тут тоже будет текст, дополнительно описание",
     badge: "Успешное тестовое",
     coverRight: true,
-    natural: true,
+    bleed: true,
     mark: "tbank",
   },
 ];
@@ -37,18 +37,18 @@ export function StoryCases() {
           }`}
         >
           <div
-            className={`${
-              story.natural
-                ? ""
-                : "relative aspect-[770/500.5] overflow-hidden rounded-[26px] bg-[#111] lg:rounded-[2.069cqw]"
+            className={`relative ${
+              story.bleed
+                ? "lg:aspect-[770/500.5]"
+                : "aspect-[770/500.5] overflow-hidden rounded-[26px] bg-[#111] lg:rounded-[2.069cqw]"
             } ${story.coverRight ? "lg:order-2" : ""}`}
           >
             <img
               alt=""
               loading="lazy"
               className={
-                story.natural
-                  ? "block h-auto w-full"
+                story.bleed
+                  ? "block h-auto w-full lg:absolute lg:left-[-26.057%] lg:top-[-31.221%] lg:h-[156.551%] lg:w-[152.618%] lg:max-w-none"
                   : "absolute inset-0 size-full max-w-none object-cover"
               }
               src={asset(story.cover)}
