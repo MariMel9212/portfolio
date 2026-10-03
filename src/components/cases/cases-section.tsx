@@ -1,11 +1,17 @@
 import { asset } from "@/lib/asset";
 
+const FRAME_W = 1420;
+
+function u(px: number) {
+  return `${(px / FRAME_W) * 100}cqw`;
+}
+
 export function CasesSection() {
   return (
     <section id="cases" aria-label="Кейсы" className="mx-[4px] mb-8 mt-16 scroll-mt-4 lg:mx-[6px] lg:mb-[130px] lg:mt-[150px]">
       <div
         className="@container relative w-full overflow-hidden bg-[#161616] font-medium text-[#fffbfb]"
-        style={{ aspectRatio: "1420 / 1601.5", borderRadius: "5.634cqw" }}
+        style={{ aspectRatio: "1420 / 1747", borderRadius: u(80) }}
       >
         <TaxiCard />
         <YulaCard />
@@ -16,96 +22,106 @@ export function CasesSection() {
 
 function TaxiCard() {
   return (
-    <div
-      className="absolute flex items-start overflow-hidden border-solid border-[#414141]"
+    <article
+      className="absolute flex items-start"
       style={{
-        left: "2.958%",
-        top: "9.616%",
-        width: "94.085%",
-        height: "40.399%",
-        paddingTop: "1.408cqw",
-        paddingLeft: "2.817cqw",
-        paddingRight: "2.817cqw",
-        borderRadius: "2.817cqw",
-        borderWidth: "0.0704cqw",
+        left: u(42),
+        top: u(154),
+        width: u(1336),
+        paddingTop: u(20),
+        paddingLeft: u(40),
+        paddingRight: u(40),
+        borderRadius: u(40),
       }}
     >
-      <div className="flex h-full w-[35.59%] shrink-0 flex-col items-start justify-between" style={{ marginRight: "-0.955%" }}>
-        <div className="flex w-full flex-col items-start" style={{ gap: "4.507cqw" }}>
-          <div className="flex w-full flex-col items-start" style={{ gap: "1.549cqw" }}>
-            <div className="flex w-full flex-col items-start" style={{ gap: "0.986cqw" }}>
-              <p className="w-[95.3%] text-[length:2.535cqw] leading-[1.222] tracking-[-0.01em] opacity-90">
+      <div className="flex shrink-0 flex-col items-start justify-between self-stretch" style={{ width: u(447), marginRight: u(-12) }}>
+        <div className="flex w-full flex-col items-start" style={{ gap: u(64) }}>
+          <div className="flex w-full flex-col items-start" style={{ gap: u(22) }}>
+            <div className="flex w-full flex-col items-start" style={{ gap: u(14) }}>
+              <h3 className="opacity-90" style={{ width: u(426), fontSize: u(36), lineHeight: u(44), letterSpacing: u(-0.36) }}>
                 Центр мониторинга беспилотного такси
-              </p>
-              <p className="w-full text-[length:1.549cqw] leading-normal tracking-[-0.01em] opacity-60">
+              </h3>
+              <p className="w-full opacity-60" style={{ fontSize: u(22), lineHeight: u(29), letterSpacing: u(-0.22) }}>
                 Тут тоже будет текст, дополнительно описание
               </p>
             </div>
-            <div className="flex items-center justify-center bg-[#f7f7f7] px-[0.845cqw] py-[0.563cqw]" style={{ borderRadius: "1.056cqw" }}>
-              <p className="text-[length:1.127cqw] leading-normal tracking-[-0.01em] whitespace-nowrap text-[#161616]">
+            <div className="flex items-center justify-center bg-[#f7f7f7]" style={{ borderRadius: u(15), padding: `${u(8)} ${u(12)}` }}>
+              <p className="whitespace-nowrap text-[#161616]" style={{ fontSize: u(16), lineHeight: u(21), letterSpacing: u(-0.16) }}>
                 Успешное тестовое
               </p>
             </div>
           </div>
-          <div className="flex w-[52.35%] flex-col items-start text-[length:1.549cqw] leading-normal tracking-[-0.01em] whitespace-nowrap opacity-60" style={{ gap: "0.845cqw" }}>
-            <div className="flex items-center" style={{ gap: "0.563cqw" }}>
-              <p>Дата</p>
-              <p>2025</p>
-            </div>
-            <div className="flex w-full items-center" style={{ gap: "0.563cqw" }}>
-              <p>Роль</p>
-              <p>Product designer</p>
-            </div>
-          </div>
+          <Meta />
         </div>
-        <img alt="" className="size-[3.944cqw]" src={asset("/figma/t-shield.svg")} />
+        <img alt="" style={{ width: u(56), height: u(56) }} src={asset("/figma/t-shield.svg")} />
       </div>
-      <div className="relative h-full min-w-0 flex-1 overflow-visible bg-[#1b1b1b]" style={{ borderRadius: "1.831cqw" }}>
+      <div className="relative shrink-0" style={{ width: u(821), height: u(627) }}>
         <img
-          alt=""
-          className="pointer-events-none absolute max-w-none object-cover"
-          style={{ left: "-20.297%", top: "-25.161%", width: "143.138%", height: "124.966%" }}
+          alt="Центр мониторинга беспилотного такси"
+          className="pointer-events-none absolute max-w-none"
+          style={{ left: u(-231.1376953125), top: u(-157.76171875), width: u(1134.25), height: u(801) }}
           src={asset("/figma/cover-taxi.webp")}
         />
       </div>
-    </div>
+    </article>
   );
 }
 
 function YulaCard() {
   return (
-    <div className="absolute flex items-start" style={{ left: "5.775%", top: "54.137%", width: "88.451%", gap: "2.746cqw" }}>
-      <div className="relative shrink-0 overflow-hidden" style={{ width: "61.306%", aspectRatio: "770 / 500.5", borderRadius: "1.831cqw" }}>
-        <img alt="" className="absolute inset-0 size-full max-w-none object-cover" src={asset("/figma/cover-yula.webp")} />
+    <article
+      className="absolute flex items-start border border-solid border-[#414141]"
+      style={{
+        left: u(41),
+        top: u(867),
+        width: u(1338),
+        gap: u(39),
+        padding: `${u(20)} ${u(40)}`,
+        borderRadius: u(40),
+      }}
+    >
+      <div className="relative shrink-0 overflow-hidden" style={{ width: u(770), height: u(500.5), borderRadius: u(26) }}>
+        <img
+          alt="Улучшение сценария Безопасной сделки"
+          className="absolute inset-0 size-full max-w-none object-cover"
+          src={asset("/figma/cover-yula.webp")}
+        />
       </div>
-      <div className="flex w-[35.59%] shrink-0 flex-col items-start" style={{ gap: "9.507cqw" }}>
-        <div className="flex w-full flex-col items-start pt-[1.127cqw]" style={{ gap: "4.507cqw" }}>
-          <div className="flex w-full flex-col items-start" style={{ gap: "0.986cqw" }}>
-            <p className="w-[95.3%] text-[length:2.535cqw] leading-[1.222] tracking-[-0.01em] opacity-90">
+      <div className="flex shrink-0 flex-col items-start" style={{ width: u(447), gap: u(135) }}>
+        <div className="flex w-full flex-col items-start" style={{ gap: u(64), paddingTop: u(16) }}>
+          <div className="flex w-full flex-col items-start" style={{ gap: u(14) }}>
+            <h3 className="opacity-90" style={{ width: u(426), fontSize: u(36), lineHeight: u(44), letterSpacing: u(-0.36) }}>
               Улучшение сценария Безопасной сделки
-            </p>
-            <p className="w-full text-[length:1.549cqw] leading-normal tracking-[-0.01em] opacity-60">
+            </h3>
+            <p className="w-full opacity-60" style={{ fontSize: u(22), lineHeight: u(29), letterSpacing: u(-0.22) }}>
               Тут тоже будет текст, дополнительно описание
             </p>
           </div>
-          <div className="flex w-[52.35%] flex-col items-start text-[length:1.549cqw] leading-normal tracking-[-0.01em] whitespace-nowrap opacity-60" style={{ gap: "0.845cqw" }}>
-            <div className="flex items-center" style={{ gap: "0.563cqw" }}>
-              <p>Дата</p>
-              <p>2025</p>
-            </div>
-            <div className="flex w-full items-center" style={{ gap: "0.563cqw" }}>
-              <p>Роль</p>
-              <p>Product designer</p>
-            </div>
-          </div>
+          <Meta />
         </div>
-        <div className="relative size-[3.944cqw] overflow-hidden mix-blend-screen">
+        <div className="relative overflow-hidden" style={{ width: u(56), height: u(56) }}>
           <img
             alt=""
-            className="absolute left-[-22.22%] top-[-22.7%] h-[145.39%] w-[144.44%] max-w-none"
+            className="absolute max-w-none"
+            style={{ left: "-22.22%", top: "-22.7%", width: "144.44%", height: "145.39%" }}
             src={asset("/figma/youla-mark.png")}
           />
         </div>
+      </div>
+    </article>
+  );
+}
+
+function Meta() {
+  return (
+    <div className="flex flex-col whitespace-nowrap opacity-60" style={{ width: u(234), gap: u(12), fontSize: u(22), lineHeight: u(29), letterSpacing: u(-0.22) }}>
+      <div className="flex items-center" style={{ gap: u(8) }}>
+        <p>Дата</p>
+        <p>2025</p>
+      </div>
+      <div className="flex items-center" style={{ gap: u(8) }}>
+        <p>Роль</p>
+        <p>Product designer</p>
       </div>
     </div>
   );
