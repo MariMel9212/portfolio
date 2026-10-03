@@ -5,7 +5,7 @@ import { site } from "@/content/site";
 const label =
   "font-display text-[clamp(10px,2.25cqw,18px)] uppercase leading-[1.125] tracking-[0.02em] text-black/40";
 const value =
-  "text-[clamp(14px,4.35cqw,34px)] leading-[1.286] tracking-[-0.01em] text-black/80";
+  "max-w-full break-words text-[clamp(13px,3.7cqw,28px)] leading-[1.286] tracking-[-0.01em] text-black/80";
 
 function Field({ title, children, className }: { title: string; children: React.ReactNode; className?: string }) {
   return (
@@ -91,9 +91,9 @@ export function ProfileCard() {
                 <Moscow />
               </div>
             </div>
-            <div className="flex min-w-0 flex-1 flex-col pt-[1.4cqw]">
-              <div className="flex flex-col gap-[3.66cqw]">
-                <div className="flex items-start gap-[clamp(12px,8.7cqw,62px)] uppercase">
+            <div className="flex min-w-0 flex-1 flex-col pt-[1.4cqw] pr-[clamp(8px,1.8cqw,16px)]">
+              <div className="flex min-w-0 flex-col gap-[3.66cqw]">
+                <div className="flex min-w-0 flex-wrap items-start gap-x-[clamp(8px,3.2cqw,36px)] gap-y-[1.2cqw] uppercase">
                   <Field title="name" className="shrink-0">
                     <p className={`${value} font-medium`}>Мария</p>
                   </Field>
