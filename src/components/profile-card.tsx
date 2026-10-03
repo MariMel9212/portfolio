@@ -20,7 +20,7 @@ export function ProfileCard() {
     <section
       id="about"
       aria-label="Обо мне"
-      className="relative mx-4 mt-10 grid scroll-mt-6 grid-cols-[minmax(0,1fr)_112px] items-stretch gap-x-4 gap-y-5 overflow-clip rounded-[32px] bg-white p-5 sm:mx-auto sm:w-[600px] sm:grid-cols-[minmax(0,1fr)_150px] sm:p-8 md:mt-[52px] lg:flex lg:w-fit lg:flex-row lg:items-start lg:gap-[12px] lg:rounded-[46px] lg:px-[44px] lg:pb-[32px] lg:pt-[44px]"
+      className="@container relative mx-4 mt-10 grid scroll-mt-6 grid-cols-[minmax(0,1fr)_112px] items-stretch gap-x-4 gap-y-5 overflow-clip rounded-[32px] bg-white p-5 sm:mx-auto sm:w-[600px] sm:grid-cols-[minmax(0,1fr)_150px] sm:p-8 md:mt-[52px] lg:flex lg:w-fit lg:flex-row lg:items-start lg:gap-[12px] lg:rounded-[46px] lg:px-[44px] lg:pb-[32px] lg:pt-[44px]"
     >
       <div className="contents lg:flex lg:h-[454px] lg:w-[291px] lg:shrink-0 lg:flex-col lg:gap-[24px] lg:border-r lg:border-black/5">
           <div className="pointer-events-none relative col-start-2 row-start-2 h-full min-h-[168px] w-full overflow-clip rounded-[14.595px] border-[0.73px] border-[#e5e7eb] drop-shadow-[0px_0px_1.46px_rgba(255,255,255,0.6)] lg:col-auto lg:row-auto lg:aspect-[272/407] lg:h-auto lg:min-h-0 lg:w-[272px]">
@@ -53,7 +53,7 @@ export function ProfileCard() {
 
       <div className="contents lg:flex lg:w-[550px] lg:shrink-0 lg:flex-col lg:items-end lg:gap-[24px]">
         <div className="contents lg:relative lg:flex lg:w-full lg:flex-col lg:items-start lg:gap-[48px]">
-          <h1 className="font-display col-span-2 row-start-1 w-full whitespace-nowrap text-[clamp(26px,8.1vw,44px)] uppercase leading-none tracking-[0.01em] text-black opacity-50 text-shadow-[0px_0px_2.919px_rgba(255,255,255,0.6)] sm:text-[40px] lg:col-auto lg:row-auto lg:text-[78px] lg:leading-[0.77] lg:tracking-[0.02em]">
+          <h1 className="font-display col-span-2 row-start-1 w-full whitespace-nowrap text-[length:14.45cqw] uppercase leading-none tracking-[0.01em] text-black opacity-50 text-shadow-[0px_0px_2.919px_rgba(255,255,255,0.6)] lg:col-auto lg:row-auto lg:w-[550px] lg:text-[78px] lg:leading-[0.77] lg:tracking-[0.02em]">
             product designer
           </h1>
           <div className="relative z-10 col-start-1 row-start-2 flex w-full min-w-0 flex-col gap-3.5 lg:col-auto lg:row-auto lg:w-[336.415px] lg:gap-[26px] lg:pl-[5px]">
