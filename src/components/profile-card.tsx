@@ -5,7 +5,7 @@ import { site } from "@/content/site";
 const label =
   "font-display text-[clamp(10px,2.25cqw,18px)] uppercase leading-[1.125] tracking-[0.02em] text-black/40";
 const value =
-  "text-[clamp(14px,4.35cqw,34px)] leading-[1.286] tracking-[-0.01em] text-black/90";
+  "text-[clamp(14px,4.35cqw,34px)] leading-[1.286] tracking-[-0.01em] text-black/80";
 
 function Field({ title, children, className }: { title: string; children: React.ReactNode; className?: string }) {
   return (
@@ -38,8 +38,8 @@ function Portrait() {
 function Moscow() {
   return (
     <div className="flex w-full items-center justify-between gap-[1cqw]">
-      <p className="text-[clamp(12px,2.53cqw,20px)] leading-none tracking-[-0.01em] text-black/80">Moscow, Russia</p>
-      <img alt="" className="size-[clamp(12px,2.53cqw,20px)] shrink-0" src={asset("/figma/arrow-up-right.svg")} />
+      <p className="text-[clamp(12px,2.2cqw,16px)] leading-none tracking-[-0.01em] text-black/40">Moscow, Russia</p>
+      <img alt="" className="size-[clamp(11px,2.2cqw,16px)] shrink-0 opacity-40" src={asset("/figma/arrow-up-right.svg")} />
     </div>
   );
 }
