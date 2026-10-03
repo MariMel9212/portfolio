@@ -10,9 +10,6 @@ export function SiteHeader() {
   return (
     <header className="mx-auto flex w-full max-w-[1308px] items-center justify-between gap-2 px-4 pt-6 sm:px-6 md:pt-[80px]">
       <nav aria-label="Разделы" className="flex items-center gap-[6px] sm:gap-[10px]">
-        <Button render={<a href="#cases" />} nativeButton={false} className={cn(lightPill, "px-3 sm:px-4")}>
-          Кейсы
-        </Button>
         <Button render={<a href="#about" />} nativeButton={false} className={cn(lightPill, "px-3 sm:px-4")}>
           Обо мне
         </Button>
