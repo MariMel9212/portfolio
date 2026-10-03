@@ -23,7 +23,7 @@ export function ProfileCard() {
       className="relative mx-4 mt-10 flex scroll-mt-6 flex-col gap-6 overflow-clip rounded-[32px] bg-white p-5 sm:mx-auto sm:w-[600px] sm:p-8 md:mt-[52px] lg:w-fit lg:flex-row lg:items-start lg:gap-[12px] lg:rounded-[46px] lg:px-[44px] lg:pb-[32px] lg:pt-[44px]"
     >
       <div className="contents lg:flex lg:h-[454px] lg:w-[291px] lg:shrink-0 lg:flex-col lg:gap-[24px] lg:border-r lg:border-black/5">
-          <div className="pointer-events-none relative order-2 aspect-[272/407] w-full overflow-clip rounded-[14.595px] border-[0.73px] border-[#e5e7eb] drop-shadow-[0px_0px_1.46px_rgba(255,255,255,0.6)] max-lg:mx-auto max-lg:max-w-[340px] lg:order-none lg:w-[272px]">
+          <div className="pointer-events-none relative order-2 aspect-[272/407] w-full max-w-[220px] overflow-clip rounded-[14.595px] border-[0.73px] border-[#e5e7eb] drop-shadow-[0px_0px_1.46px_rgba(255,255,255,0.6)] max-lg:mx-auto sm:max-w-[260px] lg:order-none lg:w-[272px] lg:max-w-none">
             <div className="absolute left-[-0.27%] top-[-0.18%] h-[88.75%] w-[100.34%] rounded-[14.595px]">
               <div aria-hidden className="absolute inset-0 rounded-[14.595px] bg-[#d9d9d9]" />
               <div className="absolute inset-0 rounded-[inherit] shadow-[inset_0px_0.73px_0px_0px_rgba(255,255,255,0.7)]" />
@@ -53,8 +53,9 @@ export function ProfileCard() {
 
       <div className="contents lg:flex lg:w-[550px] lg:shrink-0 lg:flex-col lg:items-end lg:gap-[24px]">
         <div className="contents lg:relative lg:flex lg:w-full lg:flex-col lg:items-start lg:gap-[48px]">
-          <h1 className="font-display order-1 w-full text-[42px] uppercase leading-[0.77] tracking-[0.02em] text-black opacity-50 text-shadow-[0px_0px_2.919px_rgba(255,255,255,0.6)] sm:text-[62px] lg:order-none lg:text-[78px]">
-            product designer
+          <h1 className="font-display order-1 w-full text-[52px] uppercase leading-[0.86] tracking-[0.02em] text-black opacity-50 text-shadow-[0px_0px_2.919px_rgba(255,255,255,0.6)] sm:text-[58px] lg:order-none lg:text-[78px] lg:leading-[0.77]">
+            product <br className="lg:hidden" />
+            designer
           </h1>
           <div className="relative z-10 order-3 flex w-full flex-col gap-[26px] lg:order-none lg:pl-[5px] lg:w-[336.415px]">
             <div className="flex w-full items-center gap-8 uppercase sm:gap-[44px]">
