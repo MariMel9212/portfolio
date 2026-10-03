@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { site } from "@/content/site";
 
 const pill =
-  "h-auto rounded-[18px] border-0 py-[10px] text-[13px] font-medium uppercase leading-normal tracking-[-0.01em] sm:text-[16px]";
+  "h-auto rounded-[18px] border-0 pt-[10px] pb-[8px] text-[13px] font-medium uppercase leading-normal tracking-[-0.01em] sm:text-[16px]";
 const lightPill = cn(pill, "bg-white text-[#181818]/90 hover:bg-white/70");
 
 export function SiteHeader() {
