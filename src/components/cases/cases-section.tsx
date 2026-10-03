@@ -16,7 +16,20 @@ export function CasesSection() {
 
 function TaxiCard() {
   return (
-    <div className="absolute flex items-start" style={{ left: "5.775%", top: "9.616%", width: "88.451%", height: "39.151%" }}>
+    <div
+      className="absolute flex items-start overflow-hidden border-solid border-[#414141]"
+      style={{
+        left: "2.958%",
+        top: "9.616%",
+        width: "94.085%",
+        height: "40.399%",
+        paddingTop: "1.408cqw",
+        paddingLeft: "2.817cqw",
+        paddingRight: "2.817cqw",
+        borderRadius: "2.817cqw",
+        borderWidth: "0.0704cqw",
+      }}
+    >
       <div className="flex h-full w-[35.59%] shrink-0 flex-col items-start justify-between" style={{ marginRight: "-0.955%" }}>
         <div className="flex w-full flex-col items-start" style={{ gap: "4.507cqw" }}>
           <div className="flex w-full flex-col items-start" style={{ gap: "1.549cqw" }}>
@@ -61,7 +74,7 @@ function TaxiCard() {
 
 function YulaCard() {
   return (
-    <div className="absolute flex items-start" style={{ left: "5.775%", top: "59.132%", width: "88.451%", gap: "2.746cqw" }}>
+    <div className="absolute flex items-start" style={{ left: "5.775%", top: "54.137%", width: "88.451%", gap: "2.746cqw" }}>
       <div className="relative shrink-0 overflow-hidden" style={{ width: "61.306%", aspectRatio: "770 / 500.5", borderRadius: "1.831cqw" }}>
         <img alt="" className="absolute inset-0 size-full max-w-none object-cover" src={asset("/figma/cover-yula.webp")} />
       </div>
