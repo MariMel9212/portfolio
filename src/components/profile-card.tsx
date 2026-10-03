@@ -20,10 +20,10 @@ export function ProfileCard() {
     <section
       id="about"
       aria-label="Обо мне"
-      className="relative mx-4 mt-10 grid scroll-mt-6 grid-cols-[minmax(0,1fr)_124px] items-start gap-x-4 gap-y-5 overflow-clip rounded-[32px] bg-white p-5 sm:mx-auto sm:w-[600px] sm:grid-cols-[minmax(0,1fr)_168px] sm:p-8 md:mt-[52px] lg:flex lg:w-fit lg:flex-row lg:items-start lg:gap-[12px] lg:rounded-[46px] lg:px-[44px] lg:pb-[32px] lg:pt-[44px]"
+      className="relative mx-4 mt-10 grid scroll-mt-6 grid-cols-[minmax(0,1fr)_112px] items-stretch gap-x-4 gap-y-5 overflow-clip rounded-[32px] bg-white p-5 sm:mx-auto sm:w-[600px] sm:grid-cols-[minmax(0,1fr)_150px] sm:p-8 md:mt-[52px] lg:flex lg:w-fit lg:flex-row lg:items-start lg:gap-[12px] lg:rounded-[46px] lg:px-[44px] lg:pb-[32px] lg:pt-[44px]"
     >
       <div className="contents lg:flex lg:h-[454px] lg:w-[291px] lg:shrink-0 lg:flex-col lg:gap-[24px] lg:border-r lg:border-black/5">
-          <div className="pointer-events-none relative col-start-2 row-start-2 aspect-[272/407] w-full overflow-clip rounded-[14.595px] border-[0.73px] border-[#e5e7eb] drop-shadow-[0px_0px_1.46px_rgba(255,255,255,0.6)] lg:col-auto lg:row-auto lg:w-[272px]">
+          <div className="pointer-events-none relative col-start-2 row-start-2 h-full min-h-[168px] w-full overflow-clip rounded-[14.595px] border-[0.73px] border-[#e5e7eb] drop-shadow-[0px_0px_1.46px_rgba(255,255,255,0.6)] lg:col-auto lg:row-auto lg:aspect-[272/407] lg:h-auto lg:min-h-0 lg:w-[272px]">
             <div className="absolute left-[-0.27%] top-[-0.18%] h-[88.75%] w-[100.34%] rounded-[14.595px]">
               <div aria-hidden className="absolute inset-0 rounded-[14.595px] bg-[#d9d9d9]" />
               <div className="absolute inset-0 rounded-[inherit] shadow-[inset_0px_0.73px_0px_0px_rgba(255,255,255,0.7)]" />
@@ -53,13 +53,12 @@ export function ProfileCard() {
 
       <div className="contents lg:flex lg:w-[550px] lg:shrink-0 lg:flex-col lg:items-end lg:gap-[24px]">
         <div className="contents lg:relative lg:flex lg:w-full lg:flex-col lg:items-start lg:gap-[48px]">
-          <h1 className="font-display col-span-2 row-start-1 w-full text-[48px] uppercase leading-[0.86] tracking-[0.02em] text-black opacity-50 text-shadow-[0px_0px_2.919px_rgba(255,255,255,0.6)] sm:text-[56px] lg:col-auto lg:row-auto lg:text-[78px] lg:leading-[0.77]">
-            product <br className="lg:hidden" />
-            designer
+          <h1 className="font-display col-span-2 row-start-1 w-full whitespace-nowrap text-[clamp(26px,8.1vw,44px)] uppercase leading-none tracking-[0.01em] text-black opacity-50 text-shadow-[0px_0px_2.919px_rgba(255,255,255,0.6)] sm:text-[40px] lg:col-auto lg:row-auto lg:text-[78px] lg:leading-[0.77] lg:tracking-[0.02em]">
+            product designer
           </h1>
           <div className="relative z-10 col-start-1 row-start-2 flex w-full min-w-0 flex-col gap-3.5 lg:col-auto lg:row-auto lg:w-[336.415px] lg:gap-[26px] lg:pl-[5px]">
-            <div className="flex w-full flex-col gap-3 uppercase lg:flex-row lg:items-center lg:gap-[44px]">
-              <Field title="name" className="sm:w-[108px]">
+            <div className="flex w-full items-start gap-3 uppercase lg:gap-[44px]">
+              <Field title="name" className="shrink-0 lg:w-[108px]">
                 <p className={`${value} font-medium`}>Мария</p>
               </Field>
               <Field title="First name" className="justify-center">
