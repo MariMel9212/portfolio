@@ -25,16 +25,6 @@ const stories: {
     bleed: { left: "-26.057%", top: "-31.221%", width: "152.618%", height: "156.551%", aspect: "770/500.5" },
     mark: "tbank",
   },
-  {
-    cover: "/figma/cover-taxi-3.webp",
-    title: "Центр мониторинга беспилотного такси",
-    description: "Тут тоже будет текст, дополнительно описание",
-    badge: "Успешное тестовое",
-    coverRight: true,
-    bleed: { left: "-26.057%", top: "-12.699%", width: "152.618%", height: "112.739%", aspect: "770/695" },
-    textClass: "lg:pt-[7.001cqw]",
-    mark: "tbank",
-  },
 ];
 
 export function StoryCases() {
@@ -121,6 +111,41 @@ export function StoryCases() {
           ) : null}
         </article>
       ))}
+      <TaxiCard />
+    </div>
+  );
+}
+
+function TaxiCard() {
+  return (
+    <div className="@container relative w-full" style={{ aspectRatio: "1257 / 695" }}>
+      <div
+        className="absolute left-0 top-0 origin-top-left font-medium text-[#fffbfb]"
+        style={{ width: 1257, height: 695, transform: "scale(tan(atan2(100cqw, 1257px)))" }}
+      >
+        <h3 className="absolute left-0 top-[88px] z-10 w-[426px] text-[36px] leading-[44px] tracking-[-0.36px] opacity-90">
+          Центр мониторинга беспилотного такси
+        </h3>
+        <p className="absolute left-0 top-[190px] z-10 w-[447px] text-[22px] leading-normal tracking-[-0.22px] opacity-60">
+          Тут тоже будет текст, дополнительно описание
+        </p>
+        <p className="absolute left-0 top-[270px] z-10 rounded-[15px] bg-[#f7f7f7] px-3 py-2 text-[16px] leading-normal tracking-[-0.16px] text-[#161616]">
+          Успешное тестовое
+        </p>
+        <p className="absolute left-0 top-[371px] z-10 text-[22px] leading-[29px] tracking-[-0.22px] opacity-60">
+          Дата 2025
+        </p>
+        <p className="absolute left-0 top-[412px] z-10 text-[22px] leading-[29px] tracking-[-0.22px] opacity-60">
+          Роль Product designer
+        </p>
+        <img alt="" className="absolute left-0 top-[478px] z-10 size-[56px]" src={asset("/figma/t-shield.svg")} />
+        <img
+          alt=""
+          className="absolute max-w-none"
+          style={{ left: 286.36, top: -88.26, width: 1175.164, height: 783.539 }}
+          src={asset("/figma/cover-taxi-3.webp")}
+        />
+      </div>
     </div>
   );
 }
