@@ -24,7 +24,7 @@ export function CasesSection() {
 function TaxiCard() {
   return (
     <article
-      className="case-card group absolute flex items-start"
+      className="case-card absolute flex items-start"
       style={{
         left: u(42),
         top: u(154),
@@ -42,10 +42,10 @@ function TaxiCard() {
         <div className="flex w-full flex-col items-start" style={{ gap: u(64) }}>
           <div className="flex w-full flex-col items-start" style={{ gap: u(22) }}>
             <div className="flex w-full flex-col items-start" style={{ gap: u(14) }}>
-              <h3 className="opacity-90 transition-opacity duration-500 group-hover:opacity-100" style={{ width: u(426), fontSize: u(36), lineHeight: u(44), letterSpacing: u(-0.36) }}>
+              <h3 className="opacity-90" style={{ width: u(426), fontSize: u(36), lineHeight: u(44), letterSpacing: u(-0.36) }}>
                 Мониторинг беспилотного автопарка
               </h3>
-              <p className="w-full opacity-60 transition-opacity duration-500 group-hover:opacity-80" style={{ fontSize: u(18), lineHeight: "normal", letterSpacing: u(-0.18) }}>
+              <p className="w-full opacity-60" style={{ fontSize: u(18), lineHeight: "normal", letterSpacing: u(-0.18) }}>
                 Сервис для инженеров центра мониторинга, который помогает отслеживать состояние автомобилей, замечать критичные инциденты и&nbsp;быстро принимать решение
               </p>
             </div>
@@ -73,7 +73,7 @@ function TaxiCard() {
           <div className="absolute" style={{ left: u(167), top: u(90), width: u(821), height: u(627), borderRadius: u(26) }}>
             <img
               alt="Мониторинг беспилотного автопарка"
-              className="pointer-events-none absolute max-w-none"
+              className="case-cover pointer-events-none absolute max-w-none"
               style={{
                 left: u(-182.55),
                 top: u(-142.48),
@@ -93,7 +93,7 @@ function TaxiCard() {
 function YulaCard() {
   return (
     <article
-      className="case-card group absolute flex items-start"
+      className="case-card absolute flex items-start"
       style={{
         left: u(42),
         top: u(869),
@@ -106,17 +106,17 @@ function YulaCard() {
       <div className="relative shrink-0 overflow-hidden" style={{ width: u(770), height: u(500.5), borderRadius: u(26) }}>
         <img
           alt="Улучшение сценария Безопасной сделки"
-          className="absolute inset-0 size-full max-w-none object-cover"
+          className="case-cover absolute inset-0 size-full max-w-none object-cover"
           src={asset("/figma/cover-yula.webp")}
         />
       </div>
       <div className="flex shrink-0 flex-col items-start" style={{ width: u(447), gap: u(135) }}>
         <div className="flex w-full flex-col items-start" style={{ gap: u(64), paddingTop: u(16) }}>
           <div className="flex w-full flex-col items-start" style={{ gap: u(14) }}>
-            <h3 className="opacity-90 transition-opacity duration-500 group-hover:opacity-100" style={{ width: u(426), fontSize: u(36), lineHeight: u(44), letterSpacing: u(-0.36) }}>
+            <h3 className="opacity-90" style={{ width: u(426), fontSize: u(36), lineHeight: u(44), letterSpacing: u(-0.36) }}>
               Улучшение сценария Безопасной сделки
             </h3>
-            <p className="w-full opacity-60 transition-opacity duration-500 group-hover:opacity-80" style={{ fontSize: u(22), lineHeight: u(29), letterSpacing: u(-0.22) }}>
+            <p className="w-full opacity-60" style={{ fontSize: u(22), lineHeight: u(29), letterSpacing: u(-0.22) }}>
               Тут тоже будет текст, дополнительно описание
             </p>
           </div>
