@@ -21,6 +21,11 @@ const stories = [
     title: "Тут будет некое название",
     description: "Тут тоже будет текст, дополнительно описание",
   },
+  {
+    cover: "/figma/deal-cover-3.webp",
+    title: "Улучшение сценария Безопасной сделки",
+    description: "Тут тоже будет текст, дополнительно описание",
+  },
 ];
 
 export function StoryCases() {
