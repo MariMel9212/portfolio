@@ -1,0 +1,98 @@
+import { asset } from "@/lib/asset";
+
+const stories: {
+  cover: string;
+  title: string;
+  description: string;
+  badge?: string;
+  coverRight?: boolean;
+  mark?: "youla" | "tbank";
+}[] = [
+  {
+    cover: "/figma/cover-yula.webp",
+    title: "Улучшение сценария Безопасной сделки",
+    description: "Тут тоже будет текст, дополнительно описание",
+    mark: "youla",
+  },
+  {
+    cover: "/figma/cover-taxi.webp",
+    title: "Центр мониторинга беспилотного такси",
+    description: "Тут тоже будет текст, дополнительно описание",
+    badge: "Успешное тестовое",
+    coverRight: true,
+    mark: "tbank",
+  },
+];
+
+export function StoryCases() {
+  return (
+    <div className="mx-auto flex w-full flex-col gap-10 lg:gap-[13.206cqw]">
+      {stories.map((story) => (
+        <article
+          key={story.cover}
+          className={`@container relative grid grid-cols-1 items-start gap-6 lg:gap-[3.182cqw] ${
+            story.coverRight ? "lg:grid-cols-[447fr_770fr]" : "lg:grid-cols-[770fr_447fr]"
+          }`}
+        >
+          <div
+            className={`relative aspect-[770/500.5] overflow-hidden rounded-[26px] bg-[#111] lg:rounded-[2.069cqw] ${
+              story.coverRight ? "lg:order-2" : ""
+            }`}
+          >
+            <img
+              alt=""
+              loading="lazy"
+              className="absolute inset-0 size-full max-w-none object-cover"
+              src={asset(story.cover)}
+            />
+          </div>
+          <div
+            className={`flex flex-col gap-8 pt-1 font-medium text-[#fffbfb] lg:gap-[5.092cqw] lg:pt-[1.273cqw] ${
+              story.coverRight ? "lg:order-1" : ""
+            }`}
+          >
+            <div className="flex flex-col gap-5 lg:gap-[1.75cqw]">
+              <div className="flex flex-col gap-3.5 lg:gap-[1.114cqw]">
+                <h3 className="max-w-[426px] text-[28px] leading-[1.22] tracking-[-0.01em] opacity-90 sm:text-[36px] sm:leading-[44px] lg:max-w-[95.3%] lg:text-[length:2.864cqw] lg:leading-[3.5cqw]">
+                  {story.title}
+                </h3>
+                <p className="text-[18px] leading-normal tracking-[-0.01em] opacity-60 sm:text-[22px] lg:text-[length:1.75cqw]">
+                  {story.description}
+                </p>
+              </div>
+              {story.badge ? (
+                <p className="w-fit rounded-[15px] bg-[#f7f7f7] px-3 py-2 text-[16px] leading-normal tracking-[-0.16px] text-[#161616] lg:rounded-[1.193cqw] lg:px-[0.955cqw] lg:py-[0.636cqw] lg:text-[length:1.273cqw]">
+                  {story.badge}
+                </p>
+              ) : null}
+            </div>
+            <dl className="flex flex-col gap-3 text-[18px] leading-normal tracking-[-0.01em] opacity-60 sm:text-[22px] lg:gap-[0.955cqw] lg:text-[length:1.75cqw]">
+              <div className="flex gap-2 lg:gap-[0.637cqw]">
+                <dt>Дата</dt>
+                <dd>2025</dd>
+              </div>
+              <div className="flex gap-2 lg:gap-[0.637cqw]">
+                <dt>Роль</dt>
+                <dd>Product designer</dd>
+              </div>
+            </dl>
+          </div>
+          {story.mark === "youla" ? (
+            <div className="absolute bottom-0 left-[95.5%] hidden size-[4.455cqw] overflow-hidden mix-blend-screen lg:block">
+              <img
+                alt=""
+                className="absolute left-[-22.22%] top-[-22.7%] h-[145.39%] w-[144.44%] max-w-none"
+                src={asset("/figma/youla-mark.png")}
+              />
+            </div>
+          ) : null}
+          {story.mark === "tbank" ? (
+            <div className="absolute left-0 top-[81.7%] hidden size-[4.455cqw] lg:block">
+              <img alt="" className="absolute inset-0 size-full max-w-none" src={asset("/figma/t-shield.svg")} />
+            </div>
+          ) : null}
+        </article>
+      ))}
+    </div>
+  );
+}
