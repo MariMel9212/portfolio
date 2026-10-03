@@ -7,26 +7,6 @@ const stories: {
   coverRight?: boolean;
 }[] = [
   {
-    cover: "/figma/deal-cover-flat.webp",
-    title: "Улучшение сценария Безопасной сделки",
-    description: "Тут тоже будет текст, дополнительно описание",
-  },
-  {
-    cover: "/figma/deal-cover-built.webp",
-    title: "Улучшение сценария Безопасной сделки",
-    description: "Тут тоже будет текст, дополнительно описание",
-  },
-  {
-    cover: "/figma/test-cover.webp",
-    title: "Тут будет некое название",
-    description: "Тут тоже будет текст, дополнительно описание",
-  },
-  {
-    cover: "/figma/test-cover-2.webp",
-    title: "Тут будет некое название",
-    description: "Тут тоже будет текст, дополнительно описание",
-  },
-  {
     cover: "/figma/deal-cover-3.webp",
     title: "Улучшение сценария Безопасной сделки",
     description: "Тут тоже будет текст, дополнительно описание",
@@ -41,7 +21,7 @@ const stories: {
 
 export function StoryCases() {
   return (
-    <div className="mx-auto mt-10 flex w-full flex-col gap-10 lg:mt-[4.137cqw] lg:gap-[3.898cqw]">
+    <div className="mx-auto mt-8 flex w-full flex-col gap-10 lg:mt-[6.455cqw] lg:gap-[3.898cqw]">
       {stories.map((story) => (
         <article
           key={story.cover}
