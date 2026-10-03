@@ -85,7 +85,7 @@ export function ProfileCard() {
             product designer
           </h1>
           <div className="flex items-stretch gap-[1.69cqw]">
-            <div className="flex w-[42.47cqw] shrink-0 flex-col gap-[2.67cqw] border-r border-black/[0.06] pr-[1.4cqw]">
+            <div className="flex w-[42.47cqw] shrink-0 flex-col gap-[clamp(4px,1cqw,8px)] border-r border-black/[0.06] pr-[1.4cqw]">
               <Portrait />
               <div className="flex h-[clamp(32px,7.03cqw,56px)] items-center">
                 <Moscow />
