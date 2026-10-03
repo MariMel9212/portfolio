@@ -6,6 +6,7 @@ const stories: {
   description: string;
   badge?: string;
   coverRight?: boolean;
+  natural?: boolean;
   mark?: "youla" | "tbank";
 }[] = [
   {
@@ -20,6 +21,7 @@ const stories: {
     description: "Тут тоже будет текст, дополнительно описание",
     badge: "Успешное тестовое",
     coverRight: true,
+    natural: true,
     mark: "tbank",
   },
 ];
@@ -35,14 +37,20 @@ export function StoryCases() {
           }`}
         >
           <div
-            className={`relative aspect-[770/500.5] overflow-hidden rounded-[26px] bg-[#111] lg:rounded-[2.069cqw] ${
-              story.coverRight ? "lg:order-2" : ""
-            }`}
+            className={`${
+              story.natural
+                ? ""
+                : "relative aspect-[770/500.5] overflow-hidden rounded-[26px] bg-[#111] lg:rounded-[2.069cqw]"
+            } ${story.coverRight ? "lg:order-2" : ""}`}
           >
             <img
               alt=""
               loading="lazy"
-              className="absolute inset-0 size-full max-w-none object-cover"
+              className={
+                story.natural
+                  ? "block h-auto w-full"
+                  : "absolute inset-0 size-full max-w-none object-cover"
+              }
               src={asset(story.cover)}
             />
           </div>
@@ -76,6 +84,9 @@ export function StoryCases() {
                 <dd>Product designer</dd>
               </div>
             </dl>
+            {story.mark === "tbank" ? (
+              <img alt="" className="size-14 lg:size-[4.455cqw]" src={asset("/figma/t-shield.svg")} />
+            ) : null}
           </div>
           {story.mark === "youla" ? (
             <div className="absolute bottom-0 left-[95.5%] hidden size-[4.455cqw] overflow-hidden mix-blend-screen lg:block">
@@ -84,11 +95,6 @@ export function StoryCases() {
                 className="absolute left-[-22.22%] top-[-22.7%] h-[145.39%] w-[144.44%] max-w-none"
                 src={asset("/figma/youla-mark.png")}
               />
-            </div>
-          ) : null}
-          {story.mark === "tbank" ? (
-            <div className="absolute left-0 top-[81.7%] hidden size-[4.455cqw] lg:block">
-              <img alt="" className="absolute inset-0 size-full max-w-none" src={asset("/figma/t-shield.svg")} />
             </div>
           ) : null}
         </article>
