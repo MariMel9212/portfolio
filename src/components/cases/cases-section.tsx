@@ -65,7 +65,13 @@ function TaxiCard() {
             <img
               alt="Центр мониторинга беспилотного такси"
               className="pointer-events-none absolute max-w-none"
-              style={{ left: u(-182.55), top: u(-142.48), width: u(1071.87), height: u(756.95) }}
+              style={{
+                left: u(-182.55),
+                top: u(-142.48),
+                width: u(1071.87),
+                height: u(756.95),
+                clipPath: `inset(0 ${u(3)} 0 0)`,
+              }}
               src={asset("/figma/cover-taxi.webp")}
             />
           </div>
