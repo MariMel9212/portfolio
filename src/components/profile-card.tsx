@@ -84,14 +84,11 @@ export function ProfileCard() {
           <h1 className="font-display w-full whitespace-nowrap text-[clamp(28px,11.5cqw,110px)] uppercase leading-[0.77] tracking-[0.02em] text-black/50 text-shadow-[0px_0px_2.919px_rgba(255,255,255,0.6)]">
             product designer
           </h1>
-          <div className="flex items-stretch gap-[1.69cqw]">
-            <div className="flex w-[42.47cqw] shrink-0 flex-col gap-[clamp(4px,1cqw,8px)] border-r border-black/[0.06] pr-[1.4cqw]">
+          <div className="grid grid-cols-[42.47cqw_minmax(0,1fr)] gap-x-[1.69cqw]">
+            <div className="border-r border-black/[0.06] pr-[1.4cqw]">
               <Portrait />
-              <div className="flex h-[clamp(32px,7.03cqw,56px)] items-center">
-                <Moscow />
-              </div>
             </div>
-            <div className="flex min-w-0 flex-1 flex-col pt-[1.4cqw] pr-[clamp(8px,1.8cqw,16px)]">
+            <div className="min-w-0 self-start pt-[1.4cqw] pr-[clamp(8px,1.8cqw,16px)]">
               <div className="flex min-w-0 flex-col gap-[3.66cqw]">
                 <div className="flex min-w-0 flex-wrap items-start gap-x-[clamp(8px,3.2cqw,36px)] gap-y-[1.2cqw] uppercase">
                   <Field title="name" className="shrink-0">
@@ -110,10 +107,13 @@ export function ProfileCard() {
                   </Field>
                 </div>
               </div>
-              <div className="mt-auto flex items-center">
-                <Contacts />
-                <IdLine />
-              </div>
+            </div>
+            <div className="flex items-center border-r border-black/[0.06] pr-[1.4cqw] pt-[clamp(4px,1cqw,8px)]">
+              <Moscow />
+            </div>
+            <div className="flex items-center pr-[clamp(8px,1.8cqw,16px)] pt-[clamp(4px,1cqw,8px)]">
+              <Contacts />
+              <IdLine />
             </div>
           </div>
         </div>
