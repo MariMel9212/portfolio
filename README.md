@@ -22,7 +22,6 @@ npm run dev
 - `src/app/page.tsx` — сама страница.
 - `src/components/site-header.tsx` — верхняя навигация.
 - `src/components/profile-card.tsx` — карточка «Product Designer» с фото и контактами.
-- `src/components/cases/` — блок «Кейсы»: карточки, обложки с мокапами iPhone и экран приложения внутри них.
 - `src/content/site.ts` — ссылки на Telegram, почту и CV. Сейчас там заглушки, замени на свои.
 - `public/figma/` — картинки и иконки, выгруженные из макета.
 
