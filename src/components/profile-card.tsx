@@ -20,10 +20,10 @@ export function ProfileCard() {
     <section
       id="about"
       aria-label="Обо мне"
-      className="@container relative mx-4 mt-10 grid scroll-mt-6 grid-cols-[minmax(0,1fr)_112px] items-stretch gap-x-4 gap-y-5 overflow-clip rounded-[32px] bg-white p-5 sm:mx-auto sm:w-[600px] sm:grid-cols-[minmax(0,1fr)_150px] sm:p-8 md:mt-[52px] lg:flex lg:w-fit lg:flex-row lg:items-start lg:gap-[12px] lg:rounded-[46px] lg:px-[44px] lg:pb-[32px] lg:pt-[44px]"
+      className="@container relative mx-4 mt-10 grid scroll-mt-6 grid-cols-[minmax(0,1fr)_128px] items-stretch gap-x-4 gap-y-6 overflow-clip rounded-[32px] bg-white p-5 sm:mx-auto sm:w-[600px] sm:grid-cols-[minmax(0,1fr)_210px] sm:gap-x-6 sm:p-8 md:mt-[52px] lg:flex lg:w-fit lg:flex-row lg:items-start lg:gap-[12px] lg:rounded-[46px] lg:px-[44px] lg:pb-[32px] lg:pt-[44px]"
     >
       <div className="contents lg:flex lg:h-[454px] lg:w-[291px] lg:shrink-0 lg:flex-col lg:gap-[24px] lg:border-r lg:border-black/5">
-          <div className="pointer-events-none relative col-start-2 row-start-2 h-full min-h-[168px] w-full overflow-clip rounded-[14.595px] border-[0.73px] border-[#e5e7eb] drop-shadow-[0px_0px_1.46px_rgba(255,255,255,0.6)] lg:col-auto lg:row-auto lg:aspect-[272/407] lg:h-auto lg:min-h-0 lg:w-[272px]">
+          <div className="pointer-events-none relative col-start-2 row-start-2 aspect-[3/4] h-full w-full overflow-clip rounded-[14.595px] border-[0.73px] border-[#e5e7eb] drop-shadow-[0px_0px_1.46px_rgba(255,255,255,0.6)] lg:col-auto lg:row-auto lg:aspect-[272/407] lg:h-auto lg:w-[272px]">
             <div className="absolute left-[-0.27%] top-[-0.18%] h-[88.75%] w-[100.34%] rounded-[14.595px]">
               <div aria-hidden className="absolute inset-0 rounded-[14.595px] bg-[#d9d9d9]" />
               <div className="absolute inset-0 rounded-[inherit] shadow-[inset_0px_0.73px_0px_0px_rgba(255,255,255,0.7)]" />
@@ -40,8 +40,8 @@ export function ProfileCard() {
             </div>
           </div>
           <div className="col-span-2 row-start-4 flex w-full items-center justify-between lg:col-auto lg:row-auto lg:w-[272px]">
-            <p className={`text-[18px] leading-[23px] tracking-[-0.18px] text-black opacity-80 ${glow}`}>Moscow, Russia</p>
-            <div className="relative size-[18px] shrink-0 overflow-clip">
+            <p className={`text-[14px] leading-[18px] tracking-[-0.14px] text-black opacity-45 lg:text-[18px] lg:leading-[23px] lg:tracking-[-0.18px] lg:opacity-80 ${glow}`}>Moscow, Russia</p>
+            <div className="relative size-[14px] shrink-0 overflow-clip opacity-50 lg:size-[18px] lg:opacity-100">
               <div className="absolute left-[3px] top-[3px] size-[13.136px]">
                 <div className="absolute inset-[-22.22%]">
                   <img alt="" className="block size-full max-w-none" src={asset("/figma/arrow-up-right.svg")} />
@@ -56,7 +56,7 @@ export function ProfileCard() {
           <h1 className="font-display col-span-2 row-start-1 w-full whitespace-nowrap text-[length:14.45cqw] uppercase leading-none tracking-[0.01em] text-black opacity-50 text-shadow-[0px_0px_2.919px_rgba(255,255,255,0.6)] lg:col-auto lg:row-auto lg:w-[550px] lg:text-[78px] lg:leading-[0.77] lg:tracking-[0.02em]">
             product designer
           </h1>
-          <div className="relative z-10 col-start-1 row-start-2 flex w-full min-w-0 flex-col gap-3.5 lg:col-auto lg:row-auto lg:w-[336.415px] lg:gap-[26px] lg:pl-[5px]">
+          <div className="relative z-10 col-start-1 row-start-2 flex h-full w-full min-w-0 flex-col justify-between gap-6 lg:col-auto lg:row-auto lg:h-auto lg:w-[336.415px] lg:justify-start lg:gap-[26px] lg:pl-[5px]">
             <div className="flex w-full items-start gap-3 uppercase lg:gap-[44px]">
               <Field title="name" className="shrink-0 lg:w-[108px]">
                 <p className={`${value} font-medium`}>Мария</p>
@@ -65,7 +65,7 @@ export function ProfileCard() {
                 <p className={`${value} font-medium`}>Мельничук</p>
               </Field>
             </div>
-            <div className="flex w-full flex-col gap-[14px]">
+            <div className="flex w-full flex-col gap-5 lg:gap-[14px]">
               <Field title="focus">
                 <p className={value}>Mobile &amp; Web Interfaces</p>
               </Field>
@@ -80,14 +80,14 @@ export function ProfileCard() {
               aria-label="Написать на почту"
               className="rounded-full transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#338ff5]"
             >
-              <MailIcon />
+              <MailIcon className="size-9 lg:size-[50px]" />
             </a>
             <a
               href={site.telegramUrl}
               target="_blank"
               rel="noreferrer"
               aria-label="Написать в Telegram"
-              className="relative size-[50px] shrink-0 overflow-clip rounded-full transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#338ff5]"
+              className="relative size-9 shrink-0 overflow-clip rounded-full transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#338ff5] lg:size-[50px]"
             >
               <img alt="" className="absolute inset-0 block size-full max-w-none" src={asset("/figma/telegram.svg")} />
             </a>
