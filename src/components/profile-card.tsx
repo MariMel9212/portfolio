@@ -111,7 +111,9 @@ export function ProfileCard() {
             <div className="col-span-2 grid grid-cols-subgrid items-center pt-[clamp(4px,1cqw,8px)]">
               <Moscow />
               <div className="flex items-center pr-[clamp(8px,1.8cqw,16px)]">
-                <Contacts />
+                <div className="-translate-y-[7px]">
+                  <Contacts />
+                </div>
                 <IdLine />
               </div>
             </div>
