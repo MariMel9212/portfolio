@@ -30,13 +30,13 @@ function MobileTaxiCard() {
     <article className="case-card flex flex-col gap-6">
       <div
         className="relative -mx-4 w-[calc(100%+2rem)] overflow-hidden sm:-mx-6 sm:w-[calc(100%+3rem)]"
-        style={{ aspectRatio: "4537 / 3204" }}
+        style={{ aspectRatio: "6346 / 4232" }}
       >
         <img
           alt="Мониторинг беспилотного автопарка"
           className="case-cover absolute max-w-none"
-          style={{ left: "-28%", top: "-11%", width: "136%", height: "136%" }}
-          src={asset("/figma/cover-taxi.webp")}
+          style={{ left: "-11.9%", top: "-4.8%", width: "126%", height: "126%" }}
+          src={asset("/figma/cover-taxi-hq.webp")}
         />
       </div>
       <div className="flex flex-col gap-4">
