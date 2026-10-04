@@ -26,7 +26,7 @@ export function SiteHeader() {
           target="_blank"
           rel="noreferrer"
           aria-label="Написать в Telegram"
-          className="block size-[41px] shrink-0 lg:hidden"
+          className="block size-[35px] shrink-0 @min-[360px]:size-[36px] @min-[430px]:size-[38px] @min-[640px]:size-[42px] lg:hidden"
         >
           <svg viewBox="0 0 41 41" className="size-full" aria-hidden="true">
             <circle cx="20.5" cy="20.5" r="20.5" fill="#338FF5" />
