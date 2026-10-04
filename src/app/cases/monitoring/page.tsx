@@ -33,19 +33,12 @@ export default function MonitoringCasePage() {
     <div className="min-h-screen overflow-x-hidden bg-[#161616] text-[#fffbfb]">
       <SiteHeader tone="case" />
       <main>
-        <section className="relative mt-4 w-full sm:mt-10" aria-label="Обложка кейса">
+        <section className="mt-2 w-full sm:mt-4" aria-label="Обложка кейса">
           <img
-            alt="Интерфейс центра мониторинга на мониторе"
-            className="relative z-20 mx-auto block w-[min(92%,982px)]"
-            src={asset("/figma/case-monitor.webp")}
+            alt="Монитор с интерфейсом центра мониторинга на деревянной столешнице"
+            className="mx-auto block w-full max-w-[1440px]"
+            src={asset("/figma/case-hero.webp")}
           />
-          <div className="relative z-0 -mt-[9%] sm:-mt-[11%]">
-            <div
-              aria-hidden
-              className="pointer-events-none absolute top-[22%] left-1/2 z-10 h-6 w-[min(88%,940px)] -translate-x-1/2 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.55)_0%,rgba(0,0,0,0.22)_42%,transparent_72%)]"
-            />
-            <img alt="" className="block w-full" src={asset("/figma/case-desk.webp")} />
-          </div>
         </section>
 
         <div className="mx-auto flex w-full max-w-[834px] flex-col px-4 pb-24 pt-10 sm:px-6 sm:pt-16">
