@@ -28,11 +28,14 @@ export function CasesSection() {
 function MobileTaxiCard() {
   return (
     <article className="case-card flex flex-col gap-6">
-      <div className="relative w-full overflow-hidden rounded-2xl" style={{ aspectRatio: "4537 / 3204" }}>
+      <div
+        className="relative -mx-4 w-[calc(100%+2rem)] overflow-hidden sm:-mx-6 sm:w-[calc(100%+3rem)]"
+        style={{ aspectRatio: "4537 / 3204" }}
+      >
         <img
           alt="Мониторинг беспилотного автопарка"
           className="case-cover absolute max-w-none"
-          style={{ left: "-27%", top: "-9%", width: "134%", height: "134%" }}
+          style={{ left: "-28%", top: "-11%", width: "136%", height: "136%" }}
           src={asset("/figma/cover-taxi.webp")}
         />
       </div>
