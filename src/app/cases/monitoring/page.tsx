@@ -7,6 +7,20 @@ export const metadata: Metadata = {
   description: "Кейс: сервис мониторинга беспилотного транспорта для инженеров центра мониторинга.",
 };
 
+function Bracket({ side, className }: { side: "left" | "right"; className?: string }) {
+  return (
+    <svg viewBox="0 0 42 173" preserveAspectRatio="none" className={className} aria-hidden="true">
+      <path
+        d={side === "left" ? "M34 8C10 36 8 70 10 86c2 18 4 52 24 80" : "M8 8C32 36 34 70 32 86c-2 18-4 52-24 80"}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
 const duties = [
   "Отслеживать состояние автомобилей",
   "Выявлять проблемы",
@@ -16,20 +30,22 @@ const duties = [
 
 export default function MonitoringCasePage() {
   return (
-    <div className="min-h-screen bg-[#161616] text-[#fffbfb]">
+    <div className="min-h-screen overflow-x-hidden bg-[#161616] text-[#fffbfb]">
       <SiteHeader tone="case" />
       <main>
-        <section className="relative mx-auto mt-4 w-full max-w-[1440px] sm:mt-8" aria-label="Обложка кейса">
+        <section className="relative mt-4 w-full sm:mt-10" aria-label="Обложка кейса">
           <img
             alt="Интерфейс центра мониторинга на мониторе"
-            className="relative z-10 mx-auto block w-[min(100%,982px)] px-4 sm:px-0"
+            className="relative z-20 mx-auto block w-[min(92%,982px)]"
             src={asset("/figma/case-monitor.webp")}
           />
-          <img
-            alt=""
-            className="pointer-events-none absolute inset-x-0 bottom-[2%] z-0 h-[16%] w-full object-cover object-top sm:bottom-[4%]"
-            src={asset("/figma/case-desk.webp")}
-          />
+          <div className="relative z-0 -mt-[9%] sm:-mt-[11%]">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute top-[22%] left-1/2 z-10 h-6 w-[min(88%,940px)] -translate-x-1/2 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.55)_0%,rgba(0,0,0,0.22)_42%,transparent_72%)]"
+            />
+            <img alt="" className="block w-full" src={asset("/figma/case-desk.webp")} />
+          </div>
         </section>
 
         <div className="mx-auto flex w-full max-w-[834px] flex-col px-4 pb-24 pt-10 sm:px-6 sm:pt-16">
@@ -38,21 +54,15 @@ export default function MonitoringCasePage() {
             Спроектировать сервис мониторинга беспилотного транспорта для инженеров центра мониторинга
           </p>
 
-          <div className="relative mt-12 sm:mt-16">
-            <span className="pointer-events-none absolute top-1/2 -left-2 hidden -translate-y-1/2 select-none font-serif text-[140px] leading-none text-white/[0.06] sm:block" aria-hidden>
-              (
-            </span>
-            <span className="pointer-events-none absolute top-1/2 -right-2 hidden -translate-y-1/2 select-none font-serif text-[140px] leading-none text-white/[0.06] sm:block" aria-hidden>
-              )
-            </span>
-            <div className="sm:px-10">
-              <h2 className="font-display text-[28px] leading-[0.77] tracking-[0.02em] sm:text-[34px]">Сервис должен помогать:</h2>
-              <ul className="mt-5 space-y-1 text-[16px] font-medium leading-snug opacity-95 sm:text-[18px]">
-                {duties.map((item) => (
-                  <li key={item}>– {item}</li>
-                ))}
-              </ul>
-            </div>
+          <div className="relative mt-12 max-w-[434px] sm:mt-16">
+            <Bracket side="left" className="absolute top-1/2 -left-14 hidden h-[118%] w-9 -translate-y-1/2 text-white/25 sm:block" />
+            <Bracket side="right" className="absolute top-1/2 -right-16 hidden h-[118%] w-9 -translate-y-1/2 text-white/25 sm:block" />
+            <h2 className="font-display text-[28px] leading-[0.77] tracking-[0.02em] sm:text-[34px]">Сервис должен помогать:</h2>
+            <ul className="mt-5 space-y-1 text-[16px] font-medium leading-snug opacity-95 sm:text-[18px]">
+              {duties.map((item) => (
+                <li key={item}>– {item}</li>
+              ))}
+            </ul>
           </div>
 
           <hr className="mt-16 border-0 border-t border-white/20 sm:mt-20" />
