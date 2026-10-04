@@ -32,7 +32,7 @@ function MobileTaxiCard() {
         <img
           alt="Мониторинг беспилотного автопарка"
           className="case-cover absolute max-w-none"
-          style={{ left: "-16%", top: "-6%", width: "120%", height: "120%" }}
+          style={{ left: "-19%", top: "-7%", width: "123%", height: "123%" }}
           src={asset("/figma/cover-taxi.webp")}
         />
       </div>
