@@ -10,14 +10,95 @@ function u(px: number) {
 export function CasesSection() {
   return (
     <section id="cases" aria-label="Кейсы" className="mx-[4px] mb-8 mt-16 scroll-mt-4 lg:mx-[6px] lg:mb-[130px] lg:mt-[150px]">
+      <div className="flex flex-col gap-12 rounded-[28px] bg-[#161616] px-4 py-8 font-medium text-[#fffbfb] sm:gap-16 sm:rounded-[36px] sm:px-6 sm:py-10 lg:hidden">
+        <MobileTaxiCard />
+        <MobileYulaCard />
+      </div>
       <div
-        className="@container relative w-full overflow-hidden bg-[#161616] font-medium text-[#fffbfb]"
+        className="@container relative hidden w-full overflow-hidden bg-[#161616] font-medium text-[#fffbfb] lg:block"
         style={{ aspectRatio: `${FRAME_W} / ${FRAME_H}`, borderRadius: u(80) }}
       >
         <TaxiCard />
         <YulaCard />
       </div>
     </section>
+  );
+}
+
+function MobileTaxiCard() {
+  return (
+    <article className="case-card flex flex-col gap-6">
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-3">
+          <h3 className="text-[24px] leading-[30px] tracking-[-0.24px] opacity-90 sm:text-[28px] sm:leading-[34px]">
+            Мониторинг беспилотного автопарка
+          </h3>
+          <p className="text-[15px] leading-[22px] tracking-[-0.15px] opacity-60 sm:text-base sm:leading-6">
+            Сервис для инженеров центра мониторинга, который помогает отслеживать состояние автомобилей, замечать критичные инциденты и&nbsp;быстро принимать решение
+          </p>
+        </div>
+        <div className="flex w-fit items-center justify-center rounded-xl bg-[#f7f7f7] px-3 py-2">
+          <p className="text-sm leading-5 tracking-[-0.14px] text-[#161616]">Успешное тестовое</p>
+        </div>
+      </div>
+      <MobileMeta />
+      <img alt="" className="size-10" src={asset("/figma/t-shield.svg")} />
+      <div className="overflow-hidden rounded-2xl">
+        <img
+          alt="Мониторинг беспилотного автопарка"
+          className="case-cover h-auto w-full"
+          src={asset("/figma/cover-taxi.webp")}
+        />
+      </div>
+    </article>
+  );
+}
+
+function MobileYulaCard() {
+  return (
+    <article className="case-card flex flex-col gap-6">
+      <div className="overflow-hidden rounded-2xl">
+        <img
+          alt="Улучшение сценария Безопасной сделки"
+          className="case-cover h-auto w-full"
+          src={asset("/figma/cover-yula.webp")}
+        />
+      </div>
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-3">
+          <h3 className="text-[24px] leading-[30px] tracking-[-0.24px] opacity-90 sm:text-[28px] sm:leading-[34px]">
+            Улучшение сценария Безопасной сделки
+          </h3>
+          <p className="text-[15px] leading-[22px] tracking-[-0.15px] opacity-60 sm:text-base sm:leading-6">
+            Тут тоже будет текст, дополнительно описание
+          </p>
+        </div>
+        <MobileMeta />
+      </div>
+      <div className="relative size-10 overflow-hidden">
+        <img
+          alt=""
+          className="absolute max-w-none"
+          style={{ left: "-22.22%", top: "-22.7%", width: "144.44%", height: "145.39%" }}
+          src={asset("/figma/youla-mark.png")}
+        />
+      </div>
+    </article>
+  );
+}
+
+function MobileMeta() {
+  return (
+    <div className="flex flex-col gap-2 text-[15px] leading-5 tracking-[-0.15px] opacity-60">
+      <div className="flex items-center gap-2">
+        <p>Дата</p>
+        <p>2025</p>
+      </div>
+      <div className="flex items-center gap-2">
+        <p>Роль</p>
+        <p>Product designer</p>
+      </div>
+    </div>
   );
 }
 
