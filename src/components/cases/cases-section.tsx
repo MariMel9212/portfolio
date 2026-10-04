@@ -31,7 +31,7 @@ function MobileTaxiCard() {
       <div className="overflow-hidden rounded-2xl">
         <img
           alt="Мониторинг беспилотного автопарка"
-          className="case-cover h-auto w-full"
+          className="case-cover case-cover-zoom h-auto w-full"
           src={asset("/figma/cover-taxi.webp")}
         />
       </div>

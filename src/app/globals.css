@@ -143,6 +143,15 @@
   transform: translateY(-4px);
 }
 
+.case-cover-zoom {
+  transform: scale(1.32);
+  transform-origin: 62% 46%;
+}
+
+.case-card:hover .case-cover-zoom {
+  transform: translateY(-4px) scale(1.32);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .case-cover {
     transition: none;
@@ -150,5 +159,10 @@
 
   .case-card:hover .case-cover {
     transform: none;
+  }
+
+  .case-cover-zoom,
+  .case-card:hover .case-cover-zoom {
+    transform: scale(1.32);
   }
 }
