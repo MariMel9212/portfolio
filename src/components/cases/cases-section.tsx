@@ -9,7 +9,7 @@ function u(px: number) {
 
 export function CasesSection() {
   return (
-    <section id="cases" aria-label="Кейсы" className="mx-[4px] mb-8 mt-16 scroll-mt-4 lg:mx-[6px] lg:mb-[130px] lg:mt-[150px]">
+    <section id="cases" aria-label="Кейсы" className="mx-0 mb-8 mt-16 scroll-mt-4 lg:mx-[6px] lg:mb-[130px] lg:mt-[150px]">
       <div className="flex flex-col gap-12 rounded-[28px] bg-[#161616] px-4 py-8 font-medium text-[#fffbfb] sm:gap-16 sm:rounded-[36px] sm:px-6 sm:py-10 lg:hidden">
         <MobileTaxiCard />
         <MobileYulaCard />
@@ -28,6 +28,13 @@ export function CasesSection() {
 function MobileTaxiCard() {
   return (
     <article className="case-card flex flex-col gap-6">
+      <div className="overflow-hidden rounded-2xl">
+        <img
+          alt="Мониторинг беспилотного автопарка"
+          className="case-cover h-auto w-full"
+          src={asset("/figma/cover-taxi.webp")}
+        />
+      </div>
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-3">
           <h3 className="text-[24px] leading-[30px] tracking-[-0.24px] opacity-90 sm:text-[28px] sm:leading-[34px]">
@@ -43,13 +50,6 @@ function MobileTaxiCard() {
       </div>
       <MobileMeta />
       <img alt="" className="size-10" src={asset("/figma/t-shield.svg")} />
-      <div className="overflow-hidden rounded-2xl">
-        <img
-          alt="Мониторинг беспилотного автопарка"
-          className="case-cover h-auto w-full"
-          src={asset("/figma/cover-taxi.webp")}
-        />
-      </div>
     </article>
   );
 }
