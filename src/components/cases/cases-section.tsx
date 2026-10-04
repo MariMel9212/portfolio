@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { asset } from "@/lib/asset";
 
 const FRAME_W = 1420;
@@ -27,7 +28,7 @@ export function CasesSection() {
 
 function MobileTaxiCard() {
   return (
-    <article className="case-card flex flex-col gap-6">
+    <Link href="/cases/monitoring" className="case-card flex flex-col gap-6">
       <div className="relative -mx-2 w-[calc(100%+1rem)] overflow-hidden sm:-mx-4 sm:w-[calc(100%+2rem)]">
         <img
           alt="Мониторинг беспилотного автопарка"
@@ -50,7 +51,7 @@ function MobileTaxiCard() {
       </div>
       <MobileMeta />
       <img alt="" className="size-10" src={asset("/figma/t-shield.svg")} />
-    </article>
+    </Link>
   );
 }
 
@@ -104,7 +105,8 @@ function MobileMeta() {
 
 function TaxiCard() {
   return (
-    <article
+    <Link
+      href="/cases/monitoring"
       className="case-card absolute flex items-start"
       style={{
         left: u(42),
@@ -167,7 +169,7 @@ function TaxiCard() {
           </div>
         </div>
       </div>
-    </article>
+    </Link>
   );
 }
 
