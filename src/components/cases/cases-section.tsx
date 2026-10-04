@@ -10,7 +10,7 @@ function u(px: number) {
 export function CasesSection() {
   return (
     <section id="cases" aria-label="Кейсы" className="mx-0 mb-8 mt-16 scroll-mt-4 lg:mx-[6px] lg:mb-[130px] lg:mt-[150px]">
-      <div className="flex flex-col gap-12 rounded-[28px] bg-[#161616] px-4 py-8 font-medium text-[#fffbfb] sm:gap-16 sm:rounded-[36px] sm:px-6 sm:py-10 lg:hidden">
+      <div className="flex flex-col gap-12 overflow-hidden rounded-[28px] bg-[#161616] px-4 py-8 font-medium text-[#fffbfb] sm:gap-16 sm:rounded-[36px] sm:px-6 sm:py-10 lg:hidden">
         <MobileTaxiCard />
         <MobileYulaCard />
       </div>
@@ -28,14 +28,10 @@ export function CasesSection() {
 function MobileTaxiCard() {
   return (
     <article className="case-card flex flex-col gap-6">
-      <div
-        className="relative -mx-4 w-[calc(100%+2rem)] overflow-hidden sm:-mx-6 sm:w-[calc(100%+3rem)]"
-        style={{ aspectRatio: "6346 / 4232" }}
-      >
+      <div className="relative -mx-4 w-[calc(100%+2rem)] overflow-hidden sm:-mx-6 sm:w-[calc(100%+3rem)]">
         <img
           alt="Мониторинг беспилотного автопарка"
-          className="case-cover absolute max-w-none"
-          style={{ left: "-11.9%", top: "-4.8%", width: "126%", height: "126%" }}
+          className="case-cover block h-auto w-full"
           src={asset("/figma/cover-taxi-hq.webp")}
         />
       </div>
