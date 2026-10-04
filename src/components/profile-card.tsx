@@ -3,13 +3,13 @@ import { MailIcon } from "@/components/mail-icon";
 import { site } from "@/content/site";
 
 const label =
-  "font-display text-[clamp(10px,2.25cqw,18px)] uppercase leading-[1.125] tracking-[0.02em] text-black/40";
+  "font-display text-[clamp(11px,1.5cqw,12px)] uppercase leading-none tracking-[0.06em] text-black/40";
 const value =
-  "max-w-full break-words text-[clamp(13px,3.7cqw,28px)] leading-[1.286] tracking-[-0.01em] text-black/80";
+  "max-w-full break-words text-[clamp(15px,2.8cqw,22px)] leading-snug tracking-[-0.01em] text-black/80";
 
 function Field({ title, children, className }: { title: string; children: React.ReactNode; className?: string }) {
   return (
-    <div className={`flex flex-col gap-[0.2cqw] ${className ?? ""}`}>
+    <div className={`flex flex-col gap-1 ${className ?? ""}`}>
       <p className={label}>{title}</p>
       {children}
     </div>
@@ -37,18 +37,18 @@ function Portrait() {
 
 function Moscow() {
   return (
-    <div className="flex w-full items-center justify-between gap-[1cqw]">
-      <p className="text-[clamp(12px,2.2cqw,16px)] leading-none tracking-[-0.01em] text-black/40">Moscow, Russia</p>
-      <img alt="" className="size-[clamp(11px,2.2cqw,16px)] shrink-0 opacity-40" src={asset("/figma/arrow-up-right.svg")} />
+    <div className="flex items-center gap-2">
+      <p className="text-[clamp(13px,1.7cqw,15px)] leading-none tracking-[-0.01em] text-black/45">Moscow, Russia</p>
+      <img alt="" className="size-3.5 shrink-0 opacity-40" src={asset("/figma/arrow-up-right.svg")} />
     </div>
   );
 }
 
 function Contacts() {
   const button =
-    "size-[clamp(32px,7.03cqw,56px)] shrink-0 rounded-full transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#338ff5]";
+    "size-11 shrink-0 rounded-full transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#338ff5]";
   return (
-    <div className="flex items-center gap-[clamp(8px,1.4cqw,10px)]">
+    <div className="flex items-center gap-2.5">
       <a href={`mailto:${site.email}`} aria-label="Написать на почту" className={button}>
         <MailIcon className="size-full" />
       </a>
@@ -68,7 +68,7 @@ function Contacts() {
 function IdLine() {
   return (
     <div className="ml-auto hidden items-center justify-end gap-[clamp(8px,2cqw,15px)] @min-[560px]:flex">
-      <p className="font-label whitespace-pre text-[clamp(7px,1.13cqw,8.5px)] font-medium leading-normal tracking-[0.16em] text-[rgba(26,33,46,0.42)]">
+      <p className="font-label whitespace-pre text-[11px] font-medium leading-none tracking-[0.14em] text-[rgba(26,33,46,0.42)]">
         {"ID / 0426   •   VALID   •   DESIGN DEPT"}
       </p>
       <img alt="" className="size-[clamp(12px,2.46cqw,18px)] shrink-0" src={asset("/figma/globe.svg")} />
@@ -80,17 +80,17 @@ export function ProfileCard() {
   return (
     <section id="about" aria-label="Обо мне" className="scroll-mt-6 px-4 md:px-6">
       <div className="@container mx-auto mt-10 w-full max-w-[760px] md:mt-[52px]">
-        <div className="flex flex-col gap-[3.52cqw] overflow-clip rounded-[3.4cqw] bg-white p-[3.094cqw]">
-          <h1 className="font-display w-full whitespace-nowrap text-[clamp(28px,11.5cqw,110px)] uppercase leading-[0.77] tracking-[0.02em] text-black/50 text-shadow-[0px_0px_2.919px_rgba(255,255,255,0.6)]">
+        <div className="flex flex-col gap-5 overflow-clip rounded-[3.4cqw] bg-white p-[clamp(16px,3.2cqw,28px)] sm:gap-6">
+          <h1 className="font-display w-full whitespace-nowrap text-[clamp(32px,8.4cqw,64px)] uppercase leading-none tracking-[0.02em] text-black/50 text-shadow-[0px_0px_2.919px_rgba(255,255,255,0.6)]">
             product designer
           </h1>
-          <div className="grid grid-cols-[42.47cqw_minmax(0,1fr)] gap-x-[1.69cqw]">
+          <div className="grid grid-cols-[minmax(0,42%)_minmax(0,1fr)] gap-x-4 sm:gap-x-6">
             <div>
               <Portrait />
             </div>
-            <div className="min-w-0 self-start pt-[1.4cqw] pr-[clamp(8px,1.8cqw,16px)]">
-              <div className="flex min-w-0 flex-col gap-[3.66cqw]">
-                <div className="flex min-w-0 flex-wrap items-start gap-x-[clamp(8px,3.2cqw,36px)] gap-y-[1.2cqw] uppercase">
+            <div className="flex min-w-0 items-center">
+              <div className="flex w-full min-w-0 flex-col gap-5">
+                <div className="flex min-w-0 flex-wrap items-start gap-x-6 gap-y-3 uppercase">
                   <Field title="name" className="shrink-0">
                     <p className={`${value} font-medium`}>Мария</p>
                   </Field>
@@ -98,7 +98,7 @@ export function ProfileCard() {
                     <p className={`${value} font-medium`}>Мельничук</p>
                   </Field>
                 </div>
-                <div className="flex flex-col gap-[1.97cqw]">
+                <div className="flex flex-col gap-4">
                   <Field title="focus">
                     <p className={value}>Mobile &amp; Web Interfaces</p>
                   </Field>
@@ -108,9 +108,9 @@ export function ProfileCard() {
                 </div>
               </div>
             </div>
-            <div className="col-span-2 grid grid-cols-subgrid items-center pt-[clamp(4px,1cqw,8px)]">
+            <div className="col-span-2 grid grid-cols-subgrid items-center pt-4">
               <Moscow />
-              <div className="flex items-center pr-[clamp(8px,1.8cqw,16px)]">
+              <div className="flex items-center gap-4">
                 <div className="-translate-y-[12px]">
                   <Contacts />
                 </div>
