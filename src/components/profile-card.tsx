@@ -6,6 +6,8 @@ const label =
   "font-display text-[clamp(10px,2.25cqw,18px)] uppercase leading-[1.125] tracking-[0.02em] text-black/40";
 const value =
   "max-w-full break-words text-[clamp(13px,3.7cqw,28px)] leading-[1.286] tracking-[-0.01em] text-black/80";
+const name =
+  "max-w-full break-words text-[clamp(20px,5.4cqw,42px)] font-medium uppercase leading-[1.15] tracking-[-0.01em] text-black/80";
 
 function Field({ title, children, className }: { title: string; children: React.ReactNode; className?: string }) {
   return (
@@ -90,9 +92,9 @@ export function ProfileCard() {
             </div>
             <div className="min-w-0 self-start pt-[1.4cqw] pr-[clamp(8px,1.8cqw,16px)]">
               <div className="flex min-w-0 flex-col gap-[3.66cqw]">
-                <div className="flex flex-col gap-[0.4cqw] uppercase">
-                  <p className={`${value} font-medium`}>Мария</p>
-                  <p className={`${value} font-medium`}>Мельничук</p>
+                <div className="flex flex-col gap-[0.3cqw]">
+                  <p className={name}>Мария</p>
+                  <p className={name}>Мельничук</p>
                 </div>
                 <div className="flex flex-col gap-[1.97cqw]">
                   <Field title="focus">
