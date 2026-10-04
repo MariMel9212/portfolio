@@ -145,7 +145,7 @@
 
 .case-cover-zoom {
   transform: scale(1.32);
-  transform-origin: 62% 46%;
+  transform-origin: 82% 46%;
 }
 
 .case-card:hover .case-cover-zoom {
