@@ -7,7 +7,7 @@ const label =
 const value =
   "max-w-full break-words text-[clamp(13px,3.7cqw,28px)] leading-[1.286] tracking-[-0.01em] text-black/80";
 const name =
-  "max-w-full break-words text-[clamp(20px,5.4cqw,42px)] font-medium uppercase leading-[1.15] tracking-[-0.01em] text-black/80";
+  "max-w-full break-words text-[clamp(20px,5.4cqw,42px)] font-normal uppercase leading-[1.15] tracking-[-0.01em] text-black/80";
 
 function Field({ title, children, className }: { title: string; children: React.ReactNode; className?: string }) {
   return (
