@@ -10,7 +10,7 @@ function u(px: number) {
 export function CasesSection() {
   return (
     <section id="cases" aria-label="Кейсы" className="mx-0 mb-8 mt-16 scroll-mt-4 lg:mx-[6px] lg:mb-[130px] lg:mt-[150px]">
-      <div className="flex flex-col gap-12 overflow-hidden rounded-[28px] bg-[#161616] px-4 py-8 font-medium text-[#fffbfb] sm:gap-16 sm:rounded-[36px] sm:px-6 sm:py-10 lg:hidden">
+      <div className="flex flex-col gap-20 overflow-hidden rounded-[28px] bg-[#161616] px-4 py-8 font-medium text-[#fffbfb] sm:gap-28 sm:rounded-[36px] sm:px-6 sm:py-10 lg:hidden">
         <MobileTaxiCard />
         <MobileYulaCard />
       </div>
