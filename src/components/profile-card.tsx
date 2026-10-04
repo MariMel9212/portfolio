@@ -90,13 +90,9 @@ export function ProfileCard() {
             </div>
             <div className="min-w-0 self-start pt-[1.4cqw] pr-[clamp(8px,1.8cqw,16px)]">
               <div className="flex min-w-0 flex-col gap-[3.66cqw]">
-                <div className="flex min-w-0 flex-wrap items-start gap-x-[clamp(8px,3.2cqw,36px)] gap-y-[1.2cqw] uppercase">
-                  <Field title="name" className="shrink-0">
-                    <p className={`${value} font-medium`}>Мария</p>
-                  </Field>
-                  <Field title="First name" className="min-w-0">
-                    <p className={`${value} font-medium`}>Мельничук</p>
-                  </Field>
+                <div className="flex flex-col gap-[0.4cqw] uppercase">
+                  <p className={`${value} font-medium`}>Мария</p>
+                  <p className={`${value} font-medium`}>Мельничук</p>
                 </div>
                 <div className="flex flex-col gap-[1.97cqw]">
                   <Field title="focus">
