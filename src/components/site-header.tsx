@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { asset } from "@/lib/asset";
 import { site } from "@/content/site";
 
 const pill =
@@ -21,10 +22,19 @@ export function SiteHeader() {
         <Button render={<a href={site.cvUrl} />} nativeButton={false} className={cn(lightPill, "@min-[640px]:px-8")}>
           Резюме
         </Button>
+        <a
+          href={site.telegramUrl}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Написать в Telegram"
+          className="relative size-9 shrink-0 overflow-clip rounded-full @min-[640px]:size-10 lg:hidden"
+        >
+          <img alt="" className="absolute inset-0 block size-full max-w-none" src={asset("/figma/telegram.svg")} />
+        </a>
         <Button
           render={<a href={site.telegramUrl} target="_blank" rel="noreferrer" />}
           nativeButton={false}
-          className={cn(pill, "bg-[#338ff5] text-[#f6f6f6] hover:bg-[#338ff5]/85 @min-[640px]:px-[10px]")}
+          className={cn(pill, "hidden bg-[#338ff5] text-[#f6f6f6] hover:bg-[#338ff5]/85 @min-[640px]:px-[10px] lg:inline-flex")}
         >
           Написать в тг
         </Button>
