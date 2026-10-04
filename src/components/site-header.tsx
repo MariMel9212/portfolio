@@ -19,7 +19,7 @@ export function SiteHeader() {
       </nav>
       <div className="flex items-center gap-[6px] sm:gap-[10px]">
         <Button render={<a href={site.cvUrl} />} nativeButton={false} className={cn(lightPill, "px-4 sm:px-8")}>
-          CV
+          Резюме
         </Button>
         <Button
           render={<a href={site.telegramUrl} target="_blank" rel="noreferrer" />}
