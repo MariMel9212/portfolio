@@ -28,7 +28,7 @@ export function CasesSection() {
 function MobileTaxiCard() {
   return (
     <article className="case-card flex flex-col gap-6">
-      <div className="relative -mx-4 w-[calc(100%+2rem)] overflow-hidden sm:-mx-6 sm:w-[calc(100%+3rem)]">
+      <div className="relative -mx-2 w-[calc(100%+1rem)] overflow-hidden sm:-mx-4 sm:w-[calc(100%+2rem)]">
         <img
           alt="Мониторинг беспилотного автопарка"
           className="case-cover block h-auto w-full"
