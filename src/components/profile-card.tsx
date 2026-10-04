@@ -85,7 +85,7 @@ export function ProfileCard() {
             product designer
           </h1>
           <div className="grid grid-cols-[42.47cqw_minmax(0,1fr)] gap-x-[1.69cqw]">
-            <div className="border-r border-black/[0.06] pr-[1.4cqw]">
+            <div>
               <Portrait />
             </div>
             <div className="min-w-0 self-start pt-[1.4cqw] pr-[clamp(8px,1.8cqw,16px)]">
@@ -108,12 +108,12 @@ export function ProfileCard() {
                 </div>
               </div>
             </div>
-            <div className="flex items-center border-r border-black/[0.06] pr-[1.4cqw] pt-[clamp(4px,1cqw,8px)]">
+            <div className="col-span-2 grid grid-cols-subgrid items-center pt-[clamp(4px,1cqw,8px)]">
               <Moscow />
-            </div>
-            <div className="flex items-center pr-[clamp(8px,1.8cqw,16px)] pt-[clamp(4px,1cqw,8px)]">
-              <Contacts />
-              <IdLine />
+              <div className="flex items-center pr-[clamp(8px,1.8cqw,16px)]">
+                <Contacts />
+                <IdLine />
+              </div>
             </div>
           </div>
         </div>
