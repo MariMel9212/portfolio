@@ -119,17 +119,17 @@ export function ProfileCard() {
               product designer
             </h1>
             <div className="flex items-stretch gap-[2.23cqw]">
-              <div className="flex w-[48.32cqw] shrink-0 flex-col gap-[2.79cqw]">
+              <div className="flex w-[48.32cqw] shrink-0 flex-col gap-[1.12cqw]">
                 <Portrait />
                 <div className="flex items-center justify-between">
-                  <p className="text-[clamp(10px,2.79cqw,14px)] leading-none tracking-[-0.01em] text-black/80">Moscow, Russia</p>
+                  <p className="text-[clamp(10px,2.79cqw,14px)] leading-none tracking-[-0.01em] text-black/60">Moscow, Russia</p>
                   <img alt="" className="size-[clamp(11px,3.2cqw,16px)] shrink-0" src={asset("/figma/arrow-up-right.svg")} />
                 </div>
               </div>
               <div className="flex min-w-0 flex-1 flex-col">
                 <div className="flex flex-col gap-[3.63cqw] pt-[1.68cqw]">
                   <div className="text-[clamp(18px,6.7cqw,28px)] font-medium leading-normal tracking-[-0.01em] text-[#1a1a1a]/90">
-                    <p>Мария</p>
+                    <p className="-mb-[2px]">Мария</p>
                     <p>Мельничук</p>
                   </div>
                   <div className="flex flex-col gap-[2.23cqw] text-[clamp(13px,4.19cqw,18px)] font-medium leading-normal tracking-[-0.01em] text-black/60">
