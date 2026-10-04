@@ -144,12 +144,12 @@
 }
 
 .case-cover-zoom {
-  transform: scale(1.32);
-  transform-origin: 82% 46%;
+  transform: scale(1.18);
+  transform-origin: 100% 8%;
 }
 
 .case-card:hover .case-cover-zoom {
-  transform: translateY(-4px) scale(1.32);
+  transform: translateY(-4px) scale(1.18);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -163,6 +163,6 @@
 
   .case-cover-zoom,
   .case-card:hover .case-cover-zoom {
-    transform: scale(1.32);
+    transform: scale(1.18);
   }
 }
