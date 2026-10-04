@@ -37,7 +37,7 @@ export default function MonitoringCasePage() {
           <img
             alt="Монитор с интерфейсом центра мониторинга на деревянной столешнице"
             className="mx-auto block w-full max-w-[1440px]"
-            src={asset("/figma/case-hero.webp")}
+            src={asset("/figma/case-scene.webp")}
           />
         </section>
 
