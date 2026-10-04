@@ -33,10 +33,10 @@ export default function MonitoringCasePage() {
     <div className="min-h-screen overflow-x-hidden bg-[#161616] text-[#fffbfb]">
       <SiteHeader tone="case" />
       <main>
-        <section className="mt-2 w-full sm:mt-4" aria-label="Обложка кейса">
+        <section className="mt-2 w-full overflow-hidden sm:mt-4" aria-label="Обложка кейса">
           <img
             alt="Монитор с интерфейсом центра мониторинга на деревянной столешнице"
-            className="mx-auto block w-full max-w-[1440px]"
+            className="relative left-1/2 block w-[140%] max-w-none -translate-x-1/2"
             src={asset("/figma/case-scene.webp")}
           />
         </section>
