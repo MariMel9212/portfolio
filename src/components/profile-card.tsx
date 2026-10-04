@@ -82,7 +82,7 @@ export function ProfileCard() {
   return (
     <section id="about" aria-label="Обо мне" className="scroll-mt-6 px-4 md:px-6">
       <div className="@container mx-auto mt-10 w-full max-w-[760px] md:mt-[52px]">
-        <div className="flex flex-col gap-[3.52cqw] overflow-clip rounded-[3.4cqw] bg-white p-[3.094cqw]">
+        <div className="flex flex-col gap-[2cqw] overflow-clip rounded-[3.4cqw] bg-white px-[3.094cqw] pb-[3.094cqw] pt-[5.6cqw]">
           <h1 className="font-display w-full whitespace-nowrap text-[clamp(28px,11.5cqw,110px)] uppercase leading-[0.77] tracking-[0.02em] text-black/50 text-shadow-[0px_0px_2.919px_rgba(255,255,255,0.6)]">
             product designer
           </h1>
