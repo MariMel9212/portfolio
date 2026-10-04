@@ -26,9 +26,15 @@ export function SiteHeader() {
           target="_blank"
           rel="noreferrer"
           aria-label="Написать в Telegram"
-          className="block size-[35px] shrink-0 @min-[360px]:size-[36px] @min-[430px]:size-[38px] @min-[640px]:size-[42px] lg:hidden"
+          className="inline-flex shrink-0 lg:hidden"
         >
-          <svg viewBox="0 0 41 41" className="size-full" aria-hidden="true">
+          <svg
+            width="36"
+            height="36"
+            viewBox="0 0 41 41"
+            className="block h-[35px] w-[35px] @min-[360px]:h-[36px] @min-[360px]:w-[36px] @min-[430px]:h-[38px] @min-[430px]:w-[38px] @min-[640px]:h-[42px] @min-[640px]:w-[42px]"
+            aria-hidden="true"
+          >
             <circle cx="20.5" cy="20.5" r="20.5" fill="#338FF5" />
             <path
               transform="translate(7.749 12.341)"
