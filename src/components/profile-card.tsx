@@ -128,8 +128,8 @@ export function ProfileCard() {
               </div>
               <div className="flex min-w-0 flex-1 flex-col">
                 <div className="flex flex-col gap-[3.63cqw] pt-[1.68cqw]">
-                  <div className="text-[clamp(18px,6.7cqw,28px)] font-medium leading-normal tracking-[-0.01em] text-[#1a1a1a]/90">
-                    <p className="-mb-[2px]">Мария</p>
+                  <div className="text-[clamp(18px,6.7cqw,28px)] font-medium leading-[1.05] tracking-[-0.01em] text-[#1a1a1a]/90">
+                    <p className="-mb-[6px]">Мария</p>
                     <p>Мельничук</p>
                   </div>
                   <div className="flex flex-col gap-[2.23cqw] text-[clamp(13px,4.19cqw,18px)] font-medium leading-normal tracking-[-0.01em] text-black/60">
