@@ -198,11 +198,17 @@ export default function MonitoringCasePage() {
             </p>
           </div>
           <div className={`${wide} mt-6`}>
-            <img
-              alt="Вакансии и описания специальности инженера мониторинга"
-              className="aspect-[834/396] w-full rounded-[22px] object-cover"
-              src={asset("/figma/case/jobs.webp")}
-            />
+            <div className="relative aspect-[834/396] w-full overflow-hidden rounded-[22px] bg-white/[0.08]">
+              {[1, 2, 3, 4].map((n) => (
+                <img
+                  key={n}
+                  alt={`Вакансия инженера мониторинга ${n}`}
+                  src={asset(`/figma/case/vac-${n}.webp`)}
+                  className="absolute h-auto"
+                  style={{ left: `${((n - 1) * 200 + 20) / 8.34}%`, top: "6.3%", width: `${194 / 8.34}%` }}
+                />
+              ))}
+            </div>
             <p className={`${caption} mt-3`}>
               Пообщаться с реальными специалистами не удалось, поэтому я изучала целевых пользователей через вакансии и&nbsp;описания профильных специальностей в вузах и колледжах
             </p>
