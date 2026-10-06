@@ -39,64 +39,6 @@ function Slot({ label, hint, ratio = "834 / 396" }: { label: string; hint?: stri
   );
 }
 
-type Job = [string, string, string];
-const jtbd: { name: string; main: Job; more: Job[] }[] = [
-  {
-    name: "Руководитель парка",
-    main: ["я оцениваю работу парка за смену", "увидеть статистику по инцидентам и простоям", "понять, где нужны улучшения в процессах или обучении операторов"],
-    more: [
-      ["происходит массовый сбой, например проблемы с GPS в районе", "быстро найти все затронутые машины", "скоординировать команду и снизить репутационные риски"],
-      ["я анализирую эффективность команды", "увидеть время реакции каждого оператора на алерты", "выявить тех, кому нужна помощь или обучение"],
-      ["приходит запрос от клиента", "быстро найти историю поездок и инцидентов по машине", "дать точный ответ и сохранить доверие"],
-    ],
-  },
-  {
-    name: "Инженер мониторинга",
-    main: ["поступает критический алерт", "быстро понять контекст проблемы и получить чёткий алгоритм действий", "сократить простой машины и обеспечить безопасность пассажира"],
-    more: [
-      ["я начинаю смену", "увидеть общую картину по парку за 30 секунд", "понять, где нужно вмешаться срочно"],
-      ["машина передаёт ошибку датчика", "увидеть видео с камер и телеметрию в одном окне", "отличить программный сбой от поломки без лишних переключений"],
-      ["я закрываю инцидент", "автоматически зафиксировать все действия в логе", "отчитаться перед руководством и избежать вопросов"],
-    ],
-  },
-];
-
-function JobLine({ job }: { job: Job }) {
-  const k = "font-medium text-white/45";
-  return (
-    <p className="text-[15px] leading-[1.6] text-white/85">
-      <span className={k}>Когда </span>
-      {job[0]}
-      <span className={k}>, я хочу </span>
-      {job[1]}
-      <span className={k}>, чтобы </span>
-      {job[2]}.
-    </p>
-  );
-}
-
-function JTBDGrid() {
-  return (
-    <div className="grid gap-4 sm:grid-cols-2">
-      {jtbd.map((seg) => (
-        <div key={seg.name} className="rounded-[22px] bg-white/[0.06] p-6">
-          <div className="text-[18px] font-semibold text-white">{seg.name}</div>
-          <div className="mt-5 text-[11px] font-medium uppercase tracking-[0.08em] text-white/45">Главная работа</div>
-          <div className="mt-2">
-            <JobLine job={seg.main} />
-          </div>
-          <div className="mt-6 text-[11px] font-medium uppercase tracking-[0.08em] text-white/45">Вспомогательные</div>
-          <div className="mt-2 space-y-4">
-            {seg.more.map((j) => (
-              <JobLine key={j[0]} job={j} />
-            ))}
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 function Pair({ left, right }: { left: ReactNode; right: ReactNode }) {
   return (
     <div className="grid gap-4 sm:grid-cols-2">
@@ -505,15 +447,6 @@ export default function MonitoringCasePage() {
             <p className={body}>
               <strong className="font-semibold text-white">Подробности — на втором уровне.</strong> Подробная информация нужна уже после того, как проблема найдена. На первом уровне достаточно самого важного: что произошло, с какой машиной и насколько это критично
             </p>
-          </div>
-
-          <div className={`${col} mt-10`}>
-            <p className={body}>
-              Задачи пользователей я записала как джобы: «когда — я хочу — чтобы». В них видно ситуацию, действие и результат, поэтому по ним легко решать, что выносить на экран. Получилось два сегмента: те, кто управляет парком, и те, кто разбирает инциденты.
-            </p>
-          </div>
-          <div className={`${wide} mt-6`}>
-            <JTBDGrid />
           </div>
 
           <hr className={`${hrCls} mt-14`} />
