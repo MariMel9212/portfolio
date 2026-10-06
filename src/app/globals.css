@@ -244,3 +244,19 @@
   100% { background-color: transparent; box-shadow: 0 0 0 8px transparent; }
 }
 .outline-flash { border-radius: 6px; animation: outline-flash 1.4s ease-out; }
+
+@keyframes demo-ripple {
+  0% { transform: translate(-50%, -50%) scale(0.2); opacity: 0.55; }
+  100% { transform: translate(-50%, -50%) scale(1.6); opacity: 0; }
+}
+.demo-ripple {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  background: rgb(51 144 255 / 0.55);
+  opacity: 0;
+  animation: demo-ripple 650ms ease-out 1150ms both;
+}

@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/site-header";
 import { asset } from "@/lib/asset";
 import { DragCarousel } from "@/components/cases/drag-carousel";
 import { CaseOutline } from "@/components/cases/case-outline";
+import { IncidentDemo } from "@/components/cases/incident-demo";
 import { DragPan } from "@/components/cases/drag-pan";
 
 export const metadata: Metadata = {
@@ -533,7 +534,11 @@ export default function MonitoringCasePage() {
               Решение построено вокруг одной задачи: оператор должен быстро понять, что случилось, и безопасно действовать, не теряя фокус. Ниже ключевые решения и зачем они нужны.
             </p>
           </div>
-          <div className={`${wide} mt-10 space-y-14`}>
+          <div className="ml-[clamp(16px,24.027vw,346px)] mr-4 mt-8 max-w-[1000px]">
+            <IncidentDemo />
+          </div>
+
+          <div className={`${wide} mt-16 space-y-14`}>
             <DecisionRow
               img="/figma/case/solution/alert.webp"
               alt="Список активных инцидентов с алертом Critical"
