@@ -498,13 +498,13 @@ export default function MonitoringCasePage() {
               Потом прошла путь оператора по шагам и нашла места, где ему нужно выбрать: помогла ли перезагрузка, есть ли в машине пассажир. Из этих развилок получились действия в карточке машины.
             </p>
           </div>
-          <div className={`${wide} mt-5`}>
+          <div className="ml-[clamp(16px,24.027vw,346px)] mr-4 mt-5">
             <div className="overflow-hidden rounded-[22px] bg-white/[0.06] p-6">
               <DragPan>
                 <img
                   alt="User Flow: реакция на инцидент"
                   src={asset("/figma/case/user-flow-dark.webp?v=2")}
-                  className="block h-[380px] w-auto max-w-none select-none"
+                  className="block h-[clamp(380px,42vw,620px)] w-auto max-w-none select-none"
                   draggable={false}
                 />
               </DragPan>
