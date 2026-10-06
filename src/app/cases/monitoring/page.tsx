@@ -509,7 +509,6 @@ export default function MonitoringCasePage() {
                 />
               </DragPan>
             </div>
-            <p className={`${caption} mt-3`}>Схема широкая — потяни вправо, чтобы увидеть конец сценария</p>
           </div>
 
 
