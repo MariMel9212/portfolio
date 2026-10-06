@@ -531,14 +531,30 @@ export default function MonitoringCasePage() {
             </p>
           </div>
           <div className={`${wide} mt-5`}>
-            <Rows
-              head={["Гипотеза", "Где в решении", "Что измерять"]}
-              rows={[
-                ["Проблемные машины выше остальных", "Список инцидентов: Critical стоит первым и выделен красным", "Время от появления алерта до первого клика"],
-                ["Только суть, детали по клику", "Быстрый просмотр сбоку, полные данные — на экране инцидента", "Сколько раз оператор возвращается назад за недостающими данными"],
-                ["Статус по цвету и иконке", "Красный Critical, статусы шагов протокола, зелёная отметка выполненного", "Тест «5 секунд»: что оператор успел понять о состоянии машины"],
-              ]}
-            />
+            <div className="grid gap-4 sm:grid-cols-3">
+              {[
+                { n: 1, img: "/figma/case/solution/alert.webp", h: "Проблемные машины выше остальных", where: "Список инцидентов: Critical стоит первым и выделен красным", m: "Время от алерта до первого клика" },
+                { n: 2, img: "/figma/case/solution/quick.webp", h: "Только суть, детали по клику", where: "Быстрый просмотр сбоку, полные данные на экране инцидента", m: "Сколько раз оператор возвращается назад за данными" },
+                { n: 3, img: "/figma/case/solution/diag.webp", h: "Статус по цвету и иконке", where: "Цвет приоритета, статусы шагов, зелёная отметка выполненного", m: "Тест «5 секунд»: что оператор успел понять" },
+              ].map((c) => (
+                <div key={c.n} className="flex flex-col overflow-hidden rounded-[20px] bg-[#1f1f1f]">
+                  <div className="relative aspect-[4/3] overflow-hidden bg-white">
+                    <img alt="" loading="lazy" src={asset(c.img)} className="absolute inset-0 size-full object-cover object-top" />
+                    <span className="absolute left-3 top-3 flex size-7 items-center justify-center rounded-full bg-[#161616] text-[13px] font-semibold text-white">
+                      {c.n}
+                    </span>
+                  </div>
+                  <div className="flex flex-1 flex-col gap-3 p-5">
+                    <h3 className="text-[17px] font-semibold leading-[1.25] text-white">{c.h}</h3>
+                    <p className="text-[13px] leading-[1.5] text-white/60">{c.where}</p>
+                    <div className="mt-auto rounded-[12px] bg-white/[0.07] px-3.5 py-3">
+                      <div className="text-[11px] uppercase tracking-wide text-white/45">Что измерять</div>
+                      <div className="mt-1 text-[13px] leading-[1.4] text-white">{c.m}</div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
         </div>
