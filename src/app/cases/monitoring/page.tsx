@@ -16,7 +16,7 @@ const duties = [
   "Принимать решение о дальнейших действиях",
 ];
 
-const col = "ml-[clamp(16px,24.027vw,346px)] mr-4 max-w-[742px]";
+const col = "ml-[clamp(16px,24.027vw,346px)] mr-4 max-w-[834px]";
 const wide = "ml-[clamp(16px,24.027vw,346px)] mr-4 max-w-[834px]";
 const h1 = "text-[32px] font-semibold leading-[1.2] tracking-[-0.01em] text-white";
 const h2 = "text-[22px] font-semibold leading-[1.3] tracking-[-0.005em] text-white";
@@ -221,7 +221,7 @@ export default function MonitoringCasePage() {
             style={
               {
                 ["--left" as string]: "clamp(16px, 24.027vw, 346px)",
-                ["--sw" as string]: "min(1100px, calc(min(100vw, 1440px) - var(--left)))",
+                ["--sw" as string]: "min(870px, calc(min(100vw, 1440px) - var(--left)))",
                 ["--cw" as string]: "calc(var(--sw) - 36px)",
                 marginLeft: "var(--left)",
                 width: "var(--sw)",
@@ -265,9 +265,6 @@ export default function MonitoringCasePage() {
                 </article>
               </div>
             </DragCarousel>
-          </div>
-          <div className={col}>
-            <p className={`${caption} mt-3`}>При поиске смотрела не только на конкретные системы мониторинга</p>
           </div>
 
           <div className={`${col} mt-12`}>
