@@ -18,15 +18,11 @@ export function SiteHeader({ tone = "home" }: { tone?: "home" | "case" }) {
           Обо мне
         </Button>
       </nav>
-      <div className={tone === "case" ? "flex items-center gap-[7px]" : "flex items-center gap-1 @min-[360px]:gap-[6px] @min-[640px]:gap-[10px]"}>
+      <div className="flex items-center gap-1 @min-[360px]:gap-[6px] @min-[640px]:gap-[10px]">
         <Button
           render={<a href={site.cvUrl} />}
           nativeButton={false}
-          className={
-            tone === "case"
-              ? "h-[41px] rounded-[18px] border-0 bg-white px-[10px] py-0 text-[16px] font-medium uppercase leading-none tracking-[-0.01em] text-[#181818]/90 hover:bg-white/80"
-              : cn(lightPill, "@min-[640px]:px-8")
-          }
+          className={cn(lightPill, tone === "home" && "@min-[640px]:px-8")}
         >
           Резюме
         </Button>
@@ -41,11 +37,7 @@ export function SiteHeader({ tone = "home" }: { tone?: "home" | "case" }) {
             width="36"
             height="36"
             viewBox="0 0 41 41"
-            className={
-              tone === "case"
-                ? "block h-[41px] w-[41px]"
-                : "block h-[35px] w-[35px] @min-[360px]:h-[36px] @min-[360px]:w-[36px] @min-[430px]:h-[38px] @min-[430px]:w-[38px] @min-[640px]:h-[42px] @min-[640px]:w-[42px]"
-            }
+            className="block h-[35px] w-[35px] @min-[360px]:h-[36px] @min-[360px]:w-[36px] @min-[430px]:h-[38px] @min-[430px]:w-[38px] @min-[640px]:h-[42px] @min-[640px]:w-[42px]"
             aria-hidden="true"
           >
             <circle cx="20.5" cy="20.5" r="20.5" fill="#338FF5" />
