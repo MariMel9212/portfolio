@@ -547,34 +547,6 @@ export default function MonitoringCasePage() {
             ))}
           </div>
 
-          <div className={`${col} mt-12`}>
-            <Label draft>Как менялось решение</Label>
-          </div>
-          <div className={`${wide} mt-3 space-y-10`}>
-            {[
-              {
-                v: "Версия 1",
-                title: "Всё на одном экране",
-                text: "Список, карта и детали одновременно. Оператор терялся: непонятно, куда смотреть в первую очередь.",
-              },
-              {
-                v: "Версия 2",
-                title: "Проблемы выше, детали по клику",
-                text: "Критичные машины поднялись наверх списка, детали раскрываются отдельной панелью. Ушло лишнее с первого уровня.",
-              },
-            ].map((x) => (
-              <div key={x.v} className="space-y-3">
-                <Slot label={`Макет: ${x.v}`} hint={x.title} ratio="834 / 470" />
-                <div>
-                  <h3 className="text-[16px] font-semibold text-white">
-                    {x.v}: {x.title}
-                  </h3>
-                  <p className={`${caption} mt-1`}>{x.text}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
           <hr className={`${hrCls} mt-14`} />
 
           {/* 5. Итог */}
