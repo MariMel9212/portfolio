@@ -12,7 +12,7 @@ const caseNav =
 export function SiteHeader({ tone = "home" }: { tone?: "home" | "case" }) {
   if (tone === "case") {
     return (
-      <header className="mx-auto flex w-full max-w-[1440px] items-center justify-between px-[clamp(16px,6.25vw,90px)] pt-[clamp(20px,5.56vw,80px)]">
+      <header className="mx-auto flex w-full max-w-[1440px] items-center justify-between px-[clamp(16px,6.25vw,90px)] pt-[clamp(14px,2.2vw,32px)]">
         <nav aria-label="Разделы" className="flex items-center gap-1.5">
           <a href="/#cases" className={caseNav}>
             Кейсы
