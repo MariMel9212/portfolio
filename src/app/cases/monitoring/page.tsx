@@ -33,14 +33,60 @@ export default function MonitoringCasePage() {
     <div className="min-h-screen overflow-x-hidden bg-[#161616] text-[#fffbfb]">
       <main>
         <section
-          className="relative w-full overflow-hidden bg-[#161616] aspect-[7452/2974]"
+          className="relative w-full overflow-x-hidden bg-[#161616]"
+          style={{ aspectRatio: "1440 / 1356.84" }}
           aria-label="Обложка кейса"
         >
-          <img
-            alt="Монитор с интерфейсом центра мониторинга на деревянной столешнице"
-            className="pointer-events-none absolute left-1/2 top-0 w-[105%] max-w-none -translate-x-1/2"
-            src={asset("/figma/case-scene.webp")}
-          />
+          <div
+            className="absolute left-1/2 -translate-x-1/2"
+            style={{
+              top: "14.382%",
+              width: "127.368%",
+              height: "85.618%",
+            }}
+          >
+            <div
+              className="absolute left-0 overflow-hidden"
+              style={{ top: "53.475%", width: "100%", height: "46.525%" }}
+            >
+              <img
+                alt=""
+                src={asset("/figma/case-desk.webp")}
+                className="pointer-events-none absolute max-w-none"
+                style={{ height: "191.07%", width: "100.05%", left: "-0.02%", top: "-49.54%" }}
+              />
+            </div>
+            <div
+              className="absolute"
+              style={{
+                left: "23.403%",
+                top: 0,
+                width: "52.711%",
+                height: "59.956%",
+              }}
+            >
+              <div
+                aria-hidden
+                className="absolute rounded-[19px] opacity-70 blur-[15px]"
+                style={{
+                  left: 0,
+                  top: "95.796%",
+                  width: "99.083%",
+                  height: "3.392%",
+                  background:
+                    "radial-gradient(ellipse at center, rgb(28 24 24) 0%, rgb(88 63 52 / 0.72) 100%)",
+                }}
+              />
+              <div className="absolute inset-0 overflow-hidden">
+                <img
+                  alt="Монитор с интерфейсом центра мониторинга"
+                  src={asset("/figma/case-monitor.webp")}
+                  className="pointer-events-none absolute max-w-none"
+                  style={{ height: "100%", width: "128.01%", left: "-14.01%", top: 0 }}
+                />
+              </div>
+            </div>
+          </div>
           <div className="absolute inset-x-0 top-0 z-10">
             <SiteHeader tone="case" />
           </div>

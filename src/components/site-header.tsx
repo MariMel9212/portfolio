@@ -7,13 +7,13 @@ const pill =
 const lightPill = cn(pill, "bg-white text-[#181818]/90 hover:bg-white/70");
 
 const caseNav =
-  "text-[12px] font-medium uppercase leading-none tracking-[-0.01em] text-white/90 sm:text-[13px]";
+  "flex items-center justify-center rounded-[18px] px-3 py-2 text-[clamp(11px,1.11vw,16px)] font-medium uppercase leading-normal tracking-[-0.01em] text-white/90 sm:px-4";
 
 export function SiteHeader({ tone = "home" }: { tone?: "home" | "case" }) {
   if (tone === "case") {
     return (
-      <header className="mx-auto flex w-full max-w-[1308px] items-center justify-between gap-3 px-5 pt-6 sm:px-10 sm:pt-8 md:px-16">
-        <nav aria-label="Разделы" className="flex items-center gap-5 sm:gap-7">
+      <header className="mx-auto flex w-full max-w-[1440px] items-center justify-between px-[clamp(16px,6.25vw,90px)] pt-[clamp(20px,5.56vw,80px)]">
+        <nav aria-label="Разделы" className="flex items-center gap-1.5">
           <a href="/#cases" className={caseNav}>
             Кейсы
           </a>
@@ -21,8 +21,8 @@ export function SiteHeader({ tone = "home" }: { tone?: "home" | "case" }) {
             Обо мне
           </a>
         </nav>
-        <div className="flex items-center gap-2.5 sm:gap-3">
-          <a href={site.cvUrl} className={caseNav}>
+        <div className="flex items-center gap-[7px]">
+          <a href={site.cvUrl} className={`${caseNav} sm:px-8`}>
             Резюме
           </a>
           <a
@@ -30,7 +30,7 @@ export function SiteHeader({ tone = "home" }: { tone?: "home" | "case" }) {
             target="_blank"
             rel="noreferrer"
             aria-label="Написать в Telegram"
-            className="inline-flex size-8 shrink-0 sm:size-9"
+            className="inline-flex size-[clamp(28px,2.85vw,41px)] shrink-0 overflow-hidden"
           >
             <svg viewBox="0 0 41 41" className="block size-full" aria-hidden="true">
               <circle cx="20.5" cy="20.5" r="20.5" fill="#338FF5" />
