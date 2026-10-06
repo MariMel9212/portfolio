@@ -7,7 +7,7 @@ const pill =
 const lightPill = cn(pill, "bg-white text-[#181818]/90 hover:bg-white/70");
 
 const caseNav =
-  "flex items-center justify-center rounded-[18px] px-3 py-2 text-[clamp(11px,1.11vw,16px)] font-medium uppercase leading-normal tracking-[-0.01em] text-white/90 sm:px-4";
+  "flex items-center justify-center rounded-[18px] px-3 py-2 text-[clamp(11px,1.11vw,16px)] font-medium uppercase leading-normal tracking-[-0.01em] text-white/90 transition duration-200 hover:bg-white/10 hover:text-white active:scale-[0.96] active:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 sm:px-4";
 
 export function SiteHeader({ tone = "home" }: { tone?: "home" | "case" }) {
   if (tone === "case") {
@@ -30,7 +30,7 @@ export function SiteHeader({ tone = "home" }: { tone?: "home" | "case" }) {
             target="_blank"
             rel="noreferrer"
             aria-label="Написать в Telegram"
-            className="inline-flex size-[clamp(28px,2.85vw,41px)] shrink-0 overflow-hidden"
+            className="inline-flex size-[clamp(28px,2.85vw,41px)] shrink-0 overflow-hidden rounded-full transition duration-200 hover:scale-110 hover:brightness-110 active:scale-95 active:brightness-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
           >
             <svg viewBox="0 0 41 41" className="block size-full" aria-hidden="true">
               <circle cx="20.5" cy="20.5" r="20.5" fill="#338FF5" />
