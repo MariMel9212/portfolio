@@ -1,11 +1,15 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export type OutlineItem = { id: string; label: string; desc: string; level: 1 | 2 };
 
-const SHOW_DELAY = 100;
-const HIDE_DELAY = 200;
+const SHOW_DELAY = 80;
+const HIDE_DELAY = 180;
+const BASE_W = 14;
+const MAX_W = 36;
+const PITCH = 13;
+const SIGMA = 22;
 
 function scrollToId(id: string) {
   const el = document.getElementById(id);
@@ -39,14 +43,20 @@ function scrollToId(id: string) {
 
 export function CaseOutline({ items }: { items: OutlineItem[] }) {
   const [visible, setVisible] = useState<string[]>([items[0]?.id]);
-  const [mouseY, setMouseY] = useState<number | null>(null);
   const [hover, setHover] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
-  const tickRefs = useRef<Record<string, HTMLButtonElement | null>>({});
-  const navRef = useRef<HTMLElement>(null);
   const [y, setY] = useState(0);
+
+  const trackRef = useRef<HTMLDivElement>(null);
+  const barRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const visRef = useRef<string[]>(visible);
+  const hoverRef = useRef<string | null>(null);
+  const openRef = useRef(false);
   const showT = useRef<number | undefined>(undefined);
   const hideT = useRef<number | undefined>(undefined);
+  const raf = useRef<number | undefined>(undefined);
+
+  visRef.current = visible;
 
   useEffect(() => {
     const update = () => {
@@ -59,7 +69,8 @@ export function CaseOutline({ items }: { items: OutlineItem[] }) {
         const end = i + 1 < items.length ? tops[i + 1] : docEnd;
         if (start < vh * 0.92 && end > vh * 0.08) vis.push(it.id);
       });
-      setVisible(vis.length ? vis : [items[items.length - 1].id]);
+      const next = vis.length ? vis : [items[items.length - 1].id];
+      setVisible((prev) => (prev.join() === next.join() ? prev : next));
     };
     update();
     window.addEventListener("scroll", update, { passive: true });
@@ -70,118 +81,124 @@ export function CaseOutline({ items }: { items: OutlineItem[] }) {
     };
   }, [items]);
 
-  const trackRef = useRef<HTMLDivElement>(null);
+  // resting look of the ticks (width + brightness) when the mouse is not over them
+  const paintRest = () => {
+    items.forEach((it, i) => {
+      const b = barRefs.current[i];
+      if (!b) return;
+      b.style.width = `${BASE_W}px`;
+      b.style.opacity = visRef.current.includes(it.id) ? "0.7" : "0.3";
+    });
+  };
+  useEffect(() => {
+    if (hoverRef.current === null) paintRest();
+  });
+
+  const paintMouse = (clientY: number) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const top = track.getBoundingClientRect().top;
+    const padTop = 16;
+    let best = 0;
+    let bestD = Infinity;
+    items.forEach((it, i) => {
+      const center = top + padTop + i * PITCH + PITCH / 2;
+      const d = clientY - center;
+      if (Math.abs(d) < bestD) {
+        bestD = Math.abs(d);
+        best = i;
+      }
+      const f = Math.exp(-Math.pow(d / SIGMA, 2));
+      const b = barRefs.current[i];
+      if (!b) return;
+      const base = visRef.current.includes(it.id) ? 0.7 : 0.3;
+      b.style.width = `${BASE_W + (MAX_W - BASE_W) * f}px`;
+      b.style.opacity = `${base + (1 - base) * f}`;
+    });
+    return best;
+  };
 
   const onMove = (e: React.MouseEvent) => {
-    const track = trackRef.current;
-    const nav = navRef.current;
-    if (!track || !nav) return;
-    const my = e.clientY;
-    setMouseY(my);
-    let best: string | null = null;
-    let bestD = Infinity;
-    let bestY = 0;
-    for (const it of items) {
-      const b = tickRefs.current[it.id];
-      if (!b) continue;
-      const r = b.getBoundingClientRect();
-      const c = r.top + r.height / 2;
-      const d = Math.abs(my - c);
-      if (d < bestD) {
-        bestD = d;
-        best = it.id;
-        bestY = c - nav.getBoundingClientRect().top;
-      }
-    }
-    if (best) {
+    const cy = e.clientY;
+    if (raf.current) cancelAnimationFrame(raf.current);
+    raf.current = requestAnimationFrame(() => {
+      const idx = paintMouse(cy);
+      if (idx === undefined) return;
+      const id = items[idx].id;
       window.clearTimeout(hideT.current);
-      setHover(best);
-      setY(bestY);
-      if (!open) {
-        window.clearTimeout(showT.current);
-        showT.current = window.setTimeout(() => setOpen(true), SHOW_DELAY);
+      if (hoverRef.current !== id) {
+        hoverRef.current = id;
+        setHover(id);
+        setY(16 + idx * PITCH + PITCH / 2);
       }
-    }
+      if (!openRef.current) {
+        window.clearTimeout(showT.current);
+        showT.current = window.setTimeout(() => {
+          openRef.current = true;
+          setOpen(true);
+        }, SHOW_DELAY);
+      }
+    });
   };
 
-  const enterArea = () => {
-    window.clearTimeout(hideT.current);
-  };
-
-  const leave = () => {
+  const onLeave = () => {
     window.clearTimeout(showT.current);
     window.clearTimeout(hideT.current);
-    setMouseY(null);
+    if (raf.current) cancelAnimationFrame(raf.current);
+    paintRest();
     hideT.current = window.setTimeout(() => {
+      openRef.current = false;
+      hoverRef.current = null;
       setOpen(false);
       setHover(null);
     }, HIDE_DELAY);
   };
 
+  const onEnterNav = () => window.clearTimeout(hideT.current);
+
   const shown = items.find((i) => i.id === hover);
 
   return (
     <nav
-      ref={navRef}
       aria-label="Навигация по кейсу"
-      onMouseEnter={enterArea}
-      onMouseLeave={leave}
+      onMouseEnter={onEnterNav}
+      onMouseLeave={onLeave}
       className="fixed right-4 top-1/2 z-30 hidden -translate-y-1/2 xl:block"
     >
       <div
         ref={trackRef}
         onMouseMove={onMove}
-        onMouseLeave={() => setMouseY(null)}
-        className="flex flex-col items-end py-4 pl-10 pr-1"
+        onMouseLeave={paintRest}
+        className="flex flex-col items-end py-4"
       >
-        {items.map((it) => {
-          const isVisible = visible.includes(it.id);
-          let f = 0;
-          const b = tickRefs.current[it.id];
-          if (mouseY !== null && b) {
-            const r = b.getBoundingClientRect();
-            const d = mouseY - (r.top + r.height / 2);
-            f = Math.exp(-Math.pow(d / 22, 2));
-          }
-          const w = 14 + 22 * f;
-          const base = isVisible ? 0.7 : 0.3;
-          const alpha = base + (1 - base) * f;
-          return (
-            <button
-              key={it.id}
+        {items.map((it, i) => (
+          <button
+            key={it.id}
+            type="button"
+            aria-label={it.label}
+            onClick={() => scrollToId(it.id)}
+            className="flex items-center justify-end"
+            style={{ width: MAX_W + 4, height: PITCH }}
+          >
+            <span
               ref={(el) => {
-                tickRefs.current[it.id] = el;
+                barRefs.current[i] = el;
               }}
-              type="button"
-              aria-label={it.label}
-              onFocus={() => {
-                const r = tickRefs.current[it.id]?.getBoundingClientRect();
-                if (r) onMove({ clientY: r.top + r.height / 2 } as React.MouseEvent);
-              }}
-              onClick={() => scrollToId(it.id)}
-              className="flex h-[13px] items-center justify-end"
-              style={{ width: 40 }}
-            >
-              <span
-                className="block h-[2px] rounded-full bg-white"
-                style={{
-                  width: w,
-                  opacity: alpha,
-                  transition: "width 120ms ease-out, opacity 120ms ease-out",
-                }}
-              />
-            </button>
-          );
-        })}
+              className="block h-[2px] rounded-full bg-white"
+              style={{ width: BASE_W, opacity: 0.3, transition: "width 90ms ease-out, opacity 90ms ease-out" }}
+            />
+          </button>
+        ))}
       </div>
 
       <div
-        className="absolute right-full top-0 pr-2"
+        className="absolute right-full top-0 pr-1"
         style={{
-          transform: `translateY(${y}px) translateY(-50%) translateX(${open ? 0 : 8}px)`,
+          transform: `translateY(${y}px) translateY(-50%) translateX(${open ? 0 : 6}px)`,
           opacity: open ? 1 : 0,
           pointerEvents: open ? "auto" : "none",
-          transition: `opacity 180ms cubic-bezier(0.22,1,0.36,1), transform ${open ? "200ms" : "180ms"} cubic-bezier(0.22,1,0.36,1)`,
+          transition: `opacity 150ms ease-out, transform ${open ? "130ms" : "150ms"} cubic-bezier(0.22,1,0.36,1)`,
+          willChange: "transform, opacity",
         }}
       >
         <div className="w-[300px] rounded-[20px] bg-[#262626] px-5 py-4 shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
