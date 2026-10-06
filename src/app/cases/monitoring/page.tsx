@@ -20,15 +20,15 @@ const duties = [
   "Принимать решение о дальнейших действиях",
 ];
 
-const col = "ml-[clamp(16px,24.027vw,346px)] mr-4 max-w-[834px]";
-const wide = "ml-[clamp(16px,24.027vw,346px)] mr-4 max-w-[834px]";
+const col = "ml-[clamp(16px,24.027vw,346px)] mr-4 max-w-[834px] max-md:ml-4";
+const wide = "ml-[clamp(16px,24.027vw,346px)] mr-4 max-w-[834px] max-md:ml-4";
 const h1 = "text-[32px] font-semibold leading-[1.2] tracking-[-0.01em] text-white";
 const h2 = "text-[22px] font-semibold leading-[1.3] tracking-[-0.005em] text-white";
 const body = "text-[16px] leading-[1.65] text-white/80";
 const caption = "text-[13px] leading-[1.5] text-white/50";
 
 
-const hrCls = "ml-[clamp(16px,24.027vw,346px)] mr-4 max-w-[834px] border-0 h-px bg-white/15";
+const hrCls = "ml-[clamp(16px,24.027vw,346px)] mr-4 max-w-[834px] border-0 h-px bg-white/15 max-md:ml-4";
 
 function Slot({ label, hint, ratio = "834 / 396" }: { label: string; hint?: string; ratio?: string }) {
   return (
@@ -407,7 +407,7 @@ export default function MonitoringCasePage() {
           </div>
 
           <div
-            className="mt-6"
+            className="mt-6 max-md:[--left:16px]!"
             style={
               {
                 ["--left" as string]: "clamp(16px, 24.027vw, 346px)",
