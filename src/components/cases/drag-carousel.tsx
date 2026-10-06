@@ -23,7 +23,34 @@ export function DragCarousel({ children, count }: { children: ReactNode; count: 
     update();
   }, [update]);
 
+  const hovered = useRef(false);
+  const visible = useRef(false);
+  const lastTouch = useRef(0);
+  const activeRef = useRef(0);
+  activeRef.current = active;
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => (visible.current = e.isIntersecting), { threshold: 0.6 });
+    io.observe(el);
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const id = reduce
+      ? undefined
+      : window.setInterval(() => {
+          if (hovered.current || !visible.current || drag.current.active) return;
+          if (Date.now() - lastTouch.current < 6000) return;
+          const next = activeRef.current + 1 >= count ? 0 : activeRef.current + 1;
+          el.scrollTo({ left: next * cardWidth(), behavior: "smooth" });
+        }, 4500);
+    return () => {
+      io.disconnect();
+      if (id) window.clearInterval(id);
+    };
+  }, [count]);
+
   const go = (i: number) => {
+    lastTouch.current = Date.now();
     const next = Math.min(count - 1, Math.max(0, i));
     ref.current?.scrollTo({ left: next * cardWidth(), behavior: "smooth" });
   };
@@ -33,6 +60,10 @@ export function DragCarousel({ children, count }: { children: ReactNode; count: 
       <div
         ref={ref}
         onScroll={update}
+        onPointerEnter={() => (hovered.current = true)}
+        onPointerCancel={() => (hovered.current = false)}
+        onWheel={() => (lastTouch.current = Date.now())}
+        onTouchStart={() => (lastTouch.current = Date.now())}
         className="no-scrollbar w-full cursor-grab snap-x snap-mandatory overflow-x-auto active:cursor-grabbing"
         onPointerDown={(e) => {
           if (e.pointerType !== "mouse" || !ref.current) return;
@@ -53,6 +84,8 @@ export function DragCarousel({ children, count }: { children: ReactNode; count: 
           if (ref.current) ref.current.style.scrollSnapType = "";
         }}
         onPointerLeave={() => {
+          hovered.current = false;
+          lastTouch.current = Date.now();
           drag.current.active = false;
           if (ref.current) ref.current.style.scrollSnapType = "";
         }}
