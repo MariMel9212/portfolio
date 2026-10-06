@@ -269,7 +269,7 @@ export default function MonitoringCasePage() {
     <style>{`html,body{background:#161616;overflow-x:clip;overscroll-behavior-x:none}`}</style>
     <div
       className="relative min-h-screen overflow-x-clip bg-[#161616] text-[#fffbfb]"
-      style={{ ["--s" as string]: "100vw" }}
+      style={{ ["--s" as string]: "100vw", ["--up" as string]: "calc(var(--s) * 0.0336)" }}
     >
       <PullLidar />
       <div
@@ -280,7 +280,7 @@ export default function MonitoringCasePage() {
         <div
           className="absolute left-1/2 -translate-x-1/2 overflow-hidden"
           style={{
-            top: "calc(var(--s) * 0.51836)",
+            top: "calc(var(--s) * 0.51836 - var(--up))",
             width: "calc(var(--s) * 1.27368)",
             height: "calc(var(--s) * 0.37535)",
           }}
@@ -296,7 +296,7 @@ export default function MonitoringCasePage() {
       <div className="relative mx-auto w-full max-w-[1440px]">
         <section
           className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 overflow-x-hidden"
-          style={{ width: "var(--s)", aspectRatio: "1440 / 1356.84" }}
+          style={{ width: "var(--s)", aspectRatio: "1440 / 1356.84", top: "calc(var(--up) * -1)" }}
           aria-label="Обложка кейса"
         >
           <div
@@ -353,7 +353,7 @@ export default function MonitoringCasePage() {
           />
         </div>
 
-        <div className="relative z-10 pb-[120px] pt-[max(520px,calc(var(--s)*0.68472))]">
+        <div className="relative z-10 pb-[120px] pt-[calc(max(520px,var(--s)*0.68472)-var(--up))]">
           {/* 1. Задача */}
           <div className={col}>
             <h1 id="task" className={h1+" w-fit scroll-mt-24"}>Задача</h1>
