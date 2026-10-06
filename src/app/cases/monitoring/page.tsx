@@ -264,6 +264,8 @@ function SourcesGrid() {
 
 export default function MonitoringCasePage() {
   return (
+    <>
+    <style>{`html,body{background:#161616;overflow-x:clip;overscroll-behavior-x:none}`}</style>
     <div
       className="relative min-h-screen overflow-x-clip bg-[#161616] text-[#fffbfb]"
       style={{ ["--s" as string]: "100vw" }}
@@ -562,5 +564,6 @@ export default function MonitoringCasePage() {
         </div>
       </div>
     </div>
+    </>
   );
 }
