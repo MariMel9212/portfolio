@@ -353,7 +353,7 @@ export default function MonitoringCasePage() {
           />
         </div>
 
-        <div className="relative z-10 pb-[120px] pt-[calc(max(520px,var(--s)*0.68472)-var(--up))] max-md:pt-[calc(var(--s)*1.203+118px)]">
+        <div className="relative z-10 pb-[120px] pt-[calc(max(520px,var(--s)*0.68472)-var(--up))] max-md:pt-[calc(var(--s)*0.853+118px)]">
           {/* 1. Задача */}
           <div className={col}>
             <h1 id="task" className={h1+" w-fit scroll-mt-24"}>Задача</h1>
