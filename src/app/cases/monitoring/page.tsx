@@ -41,16 +41,10 @@ function Slot({ label, hint, ratio = "834 / 396" }: { label: string; hint?: stri
   );
 }
 
-function DecisionRow({ img, alt, title, text, flip }: { img: string; alt: string; title: string; text: string; flip?: boolean }) {
+function DecisionRow({ img, alt }: { img: string; alt: string }) {
   return (
-    <div className={`grid items-center gap-8 md:grid-cols-[260px_minmax(0,1fr)] ${flip ? "md:[&>*:first-child]:order-2" : ""}`}>
-      <div>
-        <h3 className="text-[22px] font-semibold leading-[1.2] tracking-[-0.01em] text-white">{title}</h3>
-        <p className={`${body} mt-3`}>{text}</p>
-      </div>
-      <div className="overflow-hidden rounded-[18px] bg-white">
-        <img alt={alt} loading="lazy" src={asset(img)} className="block w-full" />
-      </div>
+    <div className="overflow-hidden rounded-[18px] bg-white">
+      <img alt={alt} loading="lazy" src={asset(img)} className="block w-full" />
     </div>
   );
 }
@@ -542,44 +536,27 @@ export default function MonitoringCasePage() {
             <DecisionRow
               img="/figma/case/solution/alert.webp"
               alt="Список активных инцидентов с алертом Critical"
-              title="Алерт, который видно сразу"
-              text="Система зафиксировала сбой LiDAR. Алерт появляется в списке с приоритетом Critical и привлекает внимание цветом, поэтому в штатном режиме экран спокойный, а проблему не пропустишь."
             />
             <DecisionRow
-              flip
               img="/figma/case/solution/quick.webp"
               alt="Боковая панель с кратким контекстом инцидента"
-              title="Контекст, не уходя с карты"
-              text="По клику открывается боковая панель: фото машины, локация и суть проблемы. Инженер понимает ситуацию, не теряя из виду парк, и может сразу принять решение."
             />
             <DecisionRow
               img="/figma/case/solution/diag.webp"
               alt="Камеры, локация и телеметрия машины"
-              title="Всё для диагностики в одном окне"
-              text="Видеопотоки, телеметрия и хронология рядом. Ничего лишнего, только данные, нужные, чтобы отличить программный сбой от поломки без переключений между экранами."
             />
 
-            <div>
-              <h3 className="text-[22px] font-semibold leading-[1.2] tracking-[-0.01em] text-white">Протокол действий</h3>
-              <p className={`${body} mt-3`}>
-                Рискованное действие нельзя сделать случайно: каждый шаг подтверждается, а система сразу показывает, что происходит.
-              </p>
-              <div className="mt-6 grid gap-x-5 gap-y-8 sm:grid-cols-2">
-                {[
-                  ["safe", "Подтверждение безопасности", "Перед подключением к салону система спрашивает согласие: оператор не должен слышать пассажира без явного решения, а пассажир не должен пугаться внезапного голоса."],
-                  ["risk", "Предупреждение о последствиях", "Перед перезапуском LiDAR сказано, что машина будет неподвижна около 15 секунд. Инженер осознаёт риск и простой."],
-                  ["proc", "Обратная связь", "Статус «Перезагрузка…» с ожиданием 12–20 секунд снижает тревожность: оператор видит, что команда принята."],
-                  ["done", "Закрытие инцидента", "Датчик вернулся в сеть, а главное действие меняется на «Закрыть инцидент». Сценарий завершён."],
-                ].map(([k, t, d]) => (
-                  <div key={k}>
-                    <div className="overflow-hidden rounded-[16px] bg-white">
-                      <img alt={t} loading="lazy" src={asset(`/figma/case/solution/${k}.webp`)} className="block w-full" />
-                    </div>
-                    <div className="mt-3 text-[16px] font-semibold text-white">{t}</div>
-                    <p className={`${caption} mt-1`}>{d}</p>
-                  </div>
-                ))}
-              </div>
+            <div className="grid gap-x-5 gap-y-5 sm:grid-cols-2">
+              {[
+                ["safe", "Подтверждение безопасности"],
+                ["risk", "Предупреждение о последствиях"],
+                ["proc", "Обратная связь"],
+                ["done", "Закрытие инцидента"],
+              ].map(([k, t]) => (
+                <div key={k} className="overflow-hidden rounded-[16px] bg-white">
+                  <img alt={t} loading="lazy" src={asset(`/figma/case/solution/${k}.webp`)} className="block w-full" />
+                </div>
+              ))}
             </div>
           </div>
         </div>
