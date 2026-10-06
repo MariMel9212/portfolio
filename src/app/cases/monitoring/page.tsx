@@ -525,32 +525,33 @@ export default function MonitoringCasePage() {
           </div>
 
           <div className={`${col} mt-14`}>
-            <h2 className={h2}>Как я бы проверила гипотезы</h2>
+            <h2 className={h2}>Как проверить гипотезы</h2>
             <p className={`${body} mt-3`}>
-              Тестов с операторами не было, поэтому здесь не выводы, а план: на каком экране заложена каждая гипотеза и что именно я бы измеряла.
+              Тестов с операторами не было, поэтому это не выводы, а план проверки. У каждой гипотезы указано, где она заложена в интерфейсе и как я бы её проверила.
             </p>
           </div>
           <div className={`${wide} mt-5`}>
-            <div className="grid gap-4 sm:grid-cols-3">
+            <div className="space-y-4">
               {[
-                { n: 1, img: "/figma/case/solution/alert.webp", h: "Проблемные машины выше остальных", where: "Список инцидентов: Critical стоит первым и выделен красным", m: "Время от алерта до первого клика" },
-                { n: 2, img: "/figma/case/solution/quick.webp", h: "Только суть, детали по клику", where: "Быстрый просмотр сбоку, полные данные на экране инцидента", m: "Сколько раз оператор возвращается назад за данными" },
-                { n: 3, img: "/figma/case/solution/diag.webp", h: "Статус по цвету и иконке", where: "Цвет приоритета, статусы шагов, зелёная отметка выполненного", m: "Тест «5 секунд»: что оператор успел понять" },
+                { n: 1, img: "/figma/case/solution/alert.webp", h: "Проблемную машину видно сразу", ui: "Критичный инцидент стоит первым в списке и подсвечен красным.", test: "Засечь, сколько секунд проходит от появления алерта до клика по нему." },
+                { n: 2, img: "/figma/case/solution/quick.webp", h: "Для первого решения хватает сути", ui: "Сначала короткая карточка сбоку, подробные данные открываются только по клику.", test: "Посмотреть, как часто оператору не хватает данных и он возвращается назад." },
+                { n: 3, img: "/figma/case/solution/diag.webp", h: "Состояние понятно без чтения текста", ui: "Статусы показаны цветом и значками: красный — проблема, зелёный — норма.", test: "Показать экран на 5 секунд и спросить, что случилось с машиной." },
               ].map((c) => (
-                <div key={c.n} className="flex flex-col overflow-hidden rounded-[20px] bg-[#1f1f1f]">
-                  <div className="relative aspect-[4/3] overflow-hidden bg-white">
-                    <img alt="" loading="lazy" src={asset(c.img)} className="absolute inset-0 size-full object-cover object-top" />
-                    <span className="absolute left-3 top-3 flex size-7 items-center justify-center rounded-full bg-[#161616] text-[13px] font-semibold text-white">
-                      {c.n}
-                    </span>
+                <div key={c.n} className="grid items-center gap-5 rounded-[20px] bg-[#1f1f1f] p-4 sm:grid-cols-[250px_minmax(0,1fr)]">
+                  <div className="overflow-hidden rounded-[12px] bg-white">
+                    <img alt="" loading="lazy" src={asset(c.img)} className="block w-full" />
                   </div>
-                  <div className="flex flex-1 flex-col gap-3 p-5">
-                    <h3 className="text-[17px] font-semibold leading-[1.25] text-white">{c.h}</h3>
-                    <p className="text-[13px] leading-[1.5] text-white/60">{c.where}</p>
-                    <div className="mt-auto rounded-[12px] bg-white/[0.07] px-3.5 py-3">
-                      <div className="text-[11px] uppercase tracking-wide text-white/45">Что измерять</div>
-                      <div className="mt-1 text-[13px] leading-[1.4] text-white">{c.m}</div>
-                    </div>
+                  <div className="pr-2">
+                    <div className="text-[12px] uppercase tracking-wide text-white/45">Гипотеза {c.n}</div>
+                    <h3 className="mt-1 text-[19px] font-semibold leading-[1.25] text-white">{c.h}</h3>
+                    <p className="mt-3 text-[14px] leading-[1.55] text-white/75">
+                      <span className="text-white/45">В интерфейсе: </span>
+                      {c.ui}
+                    </p>
+                    <p className="mt-2 text-[14px] leading-[1.55] text-white/75">
+                      <span className="text-white/45">Как проверить: </span>
+                      {c.test}
+                    </p>
                   </div>
                 </div>
               ))}
