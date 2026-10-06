@@ -133,11 +133,11 @@ export function CaseOutline({ items }: { items: OutlineItem[] }) {
       onMouseLeave={leave}
       className="fixed right-4 top-1/2 z-30 hidden -translate-y-1/2 xl:block"
     >
-      <div className="flex flex-col items-end gap-[14px] py-4 pl-10 pr-1">
+      <div className="flex flex-col items-end gap-[3px] py-4 pl-10 pr-1">
         {items.map((it) => {
           const isActive = active === it.id;
           const isHover = hover === it.id;
-          const w = isHover ? (it.level === 1 ? 36 : 26) : isActive ? (it.level === 1 ? 28 : 20) : it.level === 1 ? 16 : 12;
+          const w = isHover ? 36 : isActive ? 28 : 16;
           return (
             <button
               key={it.id}
