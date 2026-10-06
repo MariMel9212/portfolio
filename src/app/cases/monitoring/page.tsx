@@ -534,7 +534,7 @@ export default function MonitoringCasePage() {
               Решение построено вокруг одной задачи: оператор должен быстро понять, что случилось, и безопасно действовать, не теряя фокус. Ниже ключевые решения и зачем они нужны.
             </p>
           </div>
-          <div className="ml-[clamp(16px,24.027vw,346px)] mr-4 mt-8 max-w-[1000px]">
+          <div className="mx-auto mt-8 w-full max-w-[1120px] px-4">
             <IncidentDemo />
           </div>
 
