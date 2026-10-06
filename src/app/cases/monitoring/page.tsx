@@ -3,6 +3,7 @@ import type { CSSProperties, ReactNode } from "react";
 import { SiteHeader } from "@/components/site-header";
 import { asset } from "@/lib/asset";
 import { DragCarousel } from "@/components/cases/drag-carousel";
+import { DragPan } from "@/components/cases/drag-pan";
 
 export const metadata: Metadata = {
   title: "Мониторинг беспилотного автопарка — Мария Мельничук",
@@ -93,6 +94,77 @@ function Rows({ head, rows }: { head: string[]; rows: string[][] }) {
           <span className="text-white/60">{r[2]}</span>
         </div>
       ))}
+    </div>
+  );
+}
+
+const iaTree = [
+  {
+    title: "Автомобиль",
+    groups: [
+      { name: "Идентификация", items: ["ID", "Город", "Госномер"] },
+      { name: "Состояние", items: ["Заряд батареи", "Пробег", "Скорость", "Температура систем"] },
+      { name: "Сенсоры", items: ["Лидары"] },
+      { name: "Камеры", items: ["Stream", "Quality"] },
+      { name: "Навигация", items: ["GPS Signal"] },
+    ],
+  },
+  {
+    title: "Поездка",
+    groups: [
+      { name: "Пассажир", items: ["В салоне", "Тип клиента", "Тариф", "Контакт"] },
+      { name: "Маршрут", items: ["Точка А", "Точка Б", "ETA", "Статус"] },
+    ],
+  },
+  {
+    title: "Диагностика",
+    groups: [
+      { name: "Тип ошибки", items: ["Категория", "Severity", "Время возникновения"] },
+      { name: "Видео-поток", items: ["Front Camera", "LiDAR View"] },
+      { name: "Логи системы", items: ["Error Log", "Last Reboot"] },
+    ],
+  },
+  {
+    title: "Решение",
+    groups: [
+      {
+        name: "Удалённое управление",
+        items: ["Перезагрузить систему", "Разблокировать двери", "Включить сирену / свет"],
+      },
+      { name: "Логистика", items: ["Отправить замену", "Вызвать эвакуатор / механика"] },
+      { name: "Коммуникация", items: ["Включить связь с салоном", "Отправить Push"] },
+    ],
+  },
+] as const;
+
+function IATree() {
+  return (
+    <div className="rounded-[22px] bg-white/[0.06] p-5 sm:p-6">
+      <div className="flex items-center gap-3">
+        <span className="rounded-full bg-[#ff4d4d] px-4 py-1.5 text-[14px] font-semibold text-white">Алерт</span>
+        <span className="text-[13px] text-white/45">точка входа — оператор открывает карточку</span>
+      </div>
+      <div className="mt-5 grid gap-4 sm:grid-cols-2">
+        {iaTree.map((col) => (
+          <div key={col.title} className="rounded-[16px] bg-white/[0.05] p-4">
+            <h3 className="text-[16px] font-semibold text-white">{col.title}</h3>
+            <div className="mt-3 space-y-3">
+              {col.groups.map((g) => (
+                <div key={g.name}>
+                  <p className="text-[13px] font-medium text-white/80">{g.name}</p>
+                  <div className="mt-1.5 flex flex-wrap gap-1.5">
+                    {g.items.map((it) => (
+                      <span key={it} className="rounded-full bg-white/10 px-2.5 py-1 text-[12px] leading-none text-white/70">
+                        {it}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -262,24 +334,6 @@ export default function MonitoringCasePage() {
             </div>
           </div>
 
-          <div className={`${col} mt-12`}>
-            <h2 className={h2}>
-              Цели и метрики успеха <Draft />
-            </h2>
-            <p className={`${body} mt-3`}>
-              Задание тестовое, поэтому критерии успеха сформулировала сама. Главное для центра мониторинга — быстрее замечать проблему и не пропускать критичное.
-            </p>
-          </div>
-          <div className={`${wide} mt-5`}>
-            <Facts
-              items={[
-                { k: "Время до реакции", v: "Цель: сократить время от сигнала до первого действия оператора" },
-                { k: "Пропущенные инциденты", v: "Цель: критичные случаи не теряются среди остальных" },
-                { k: "Нагрузка на оператора", v: "Цель: один оператор уверенно ведёт больший парк" },
-              ]}
-            />
-          </div>
-
           <hr className="ml-[clamp(16px,24.027vw,346px)] mr-4 mt-12 h-px max-w-[834px] border-0 bg-white/15" />
 
           <div className={`${col} mt-12`}>
@@ -403,6 +457,26 @@ export default function MonitoringCasePage() {
           <hr className={`${hrCls} mt-14`} />
 
           <div className={`${col} mt-12`}>
+            <h2 className={h2}>
+              Цели и метрики успеха <Draft />
+            </h2>
+            <p className={`${body} mt-3`}>
+              Задание тестовое, поэтому критерии успеха сформулировала сама. Главное для центра мониторинга — быстрее замечать проблему и не пропускать критичное.
+            </p>
+          </div>
+          <div className={`${wide} mt-5`}>
+            <Facts
+              items={[
+                { k: "Время до реакции", v: "Цель: сократить время от сигнала до первого действия оператора" },
+                { k: "Пропущенные инциденты", v: "Цель: критичные случаи не теряются среди остальных" },
+                { k: "Нагрузка на оператора", v: "Цель: один оператор уверенно ведёт больший парк" },
+              ]}
+            />
+          </div>
+
+          <hr className={`${hrCls} mt-14`} />
+
+          <div className={`${col} mt-12`}>
             <h1 className={h1}>
               Гипотезы <Draft />
             </h1>
@@ -429,32 +503,34 @@ export default function MonitoringCasePage() {
               [Как из исследования получилась структура: какие разделы, что на первом уровне, что на втором.]
             </p>
           </div>
-          <div className={`${wide} mt-6`}>
-            <Pair
-              left={
-                <div className="space-y-3">
-                  <Slot label="Информационная архитектура" hint="Дерево разделов" ratio="400 / 300" />
-                  <p className={caption}>[Подпись: что решает структура]</p>
-                </div>
-              }
-              right={
-                <div className="space-y-3">
-                  <Slot label="User Flow" hint="Основной сценарий оператора" ratio="400 / 300" />
-                  <p className={caption}>[Подпись: ключевые развилки сценария]</p>
-                </div>
-              }
-            />
+          <div className={`${col} mt-8`}>
+            <h2 className={h2}>Информационная архитектура</h2>
+            <p className={`${body} mt-3`}>
+              Точка входа — алерт. Из него оператор попадает в карточку машины, где информация разложена по четырём смыслам: что за автомобиль, что с поездкой, что сломалось и что можно сделать.
+            </p>
+          </div>
+          <div className={`${wide} mt-5`}>
+            <IATree />
           </div>
 
           <div className={`${col} mt-12`}>
-            <h2 className={h2}>Сценарий: реакция на инцидент</h2>
+            <h2 className={h2}>User Flow: реакция на инцидент</h2>
             <p className={`${body} mt-3`}>
-              [Пошагово: оператор заметил проблему → открыл машину → понял причину → принял решение → передал дальше.]
+              От красного алерта на дашборде до закрытия инцидента. Развилки показывают, как решение зависит от того, помогла ли перезагрузка и есть ли в машине пассажир.
             </p>
           </div>
-          <div className={`${wide} mt-6 space-y-3`}>
-            <Slot label="User Flow: реакция на инцидент, часть 1" hint="Шаги от уведомления до открытия машины" ratio="834 / 380" />
-            <Slot label="User Flow: реакция на инцидент, часть 2" hint="Шаги от диагностики до решения" ratio="834 / 380" />
+          <div className={`${wide} mt-5`}>
+            <div className="overflow-hidden rounded-[22px] bg-white">
+              <DragPan>
+                <img
+                  alt="User Flow: реакция на инцидент"
+                  src={asset("/figma/case/user-flow.webp")}
+                  className="block h-[380px] w-auto max-w-none select-none"
+                  draggable={false}
+                />
+              </DragPan>
+            </div>
+            <p className={`${caption} mt-3`}>Схема широкая — потяни вправо, чтобы увидеть конец сценария</p>
           </div>
 
           <hr className={`${hrCls} mt-14`} />
