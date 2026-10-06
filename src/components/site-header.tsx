@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { site } from "@/content/site";
+import { asset } from "@/lib/asset";
 
 const pill =
   "h-auto rounded-[18px] border-0 px-2 pt-[10px] pb-[8px] text-[11px] font-medium uppercase leading-normal tracking-[-0.01em] @min-[360px]:px-2.5 @min-[360px]:text-[12px] @min-[430px]:px-3 @min-[430px]:text-[13px] @min-[640px]:px-4 @min-[640px]:text-[16px]";
@@ -13,7 +14,13 @@ export function SiteHeader({ tone = "home" }: { tone?: "home" | "case" }) {
   if (tone === "case") {
     return (
       <header className="mx-auto flex w-full max-w-[1440px] items-center justify-between px-[clamp(16px,6.25vw,90px)] pt-[clamp(14px,2.2vw,32px)]">
-        <nav aria-label="Разделы" className="flex items-center gap-1.5">
+        <a
+          href={asset("/")}
+          className="hidden items-center rounded-full bg-white/10 px-5 py-2.5 text-[14px] font-medium uppercase leading-none tracking-[-0.01em] text-white transition duration-200 active:scale-[0.96] active:bg-white/20 max-md:inline-flex"
+        >
+          На главную
+        </a>
+        <nav aria-label="Разделы" className="flex items-center gap-1.5 max-md:hidden">
           <a href="/#cases" className={caseNav}>
             Кейсы
           </a>
@@ -22,7 +29,7 @@ export function SiteHeader({ tone = "home" }: { tone?: "home" | "case" }) {
           </a>
         </nav>
         <div className="flex items-center gap-[7px]">
-          <a href={site.cvUrl} className={`${caseNav} sm:px-8`}>
+          <a href={site.cvUrl} className={`${caseNav} sm:px-8 max-md:hidden`}>
             Резюме
           </a>
           <a
@@ -30,7 +37,7 @@ export function SiteHeader({ tone = "home" }: { tone?: "home" | "case" }) {
             target="_blank"
             rel="noreferrer"
             aria-label="Написать в Telegram"
-            className="inline-flex size-[clamp(28px,2.85vw,41px)] shrink-0 overflow-hidden rounded-full transition duration-200 hover:scale-110 hover:brightness-110 active:scale-95 active:brightness-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+            className="inline-flex size-[clamp(28px,2.85vw,41px)] max-md:size-10 shrink-0 overflow-hidden rounded-full transition duration-200 hover:scale-110 hover:brightness-110 active:scale-95 active:brightness-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
           >
             <svg viewBox="0 0 41 41" className="block size-full" aria-hidden="true">
               <circle cx="20.5" cy="20.5" r="20.5" fill="#338FF5" />
