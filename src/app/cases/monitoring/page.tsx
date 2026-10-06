@@ -503,7 +503,7 @@ export default function MonitoringCasePage() {
               <DragPan>
                 <img
                   alt="User Flow: реакция на инцидент"
-                  src={asset("/figma/case/user-flow-dark.webp")}
+                  src={asset("/figma/case/user-flow-dark.webp?v=2")}
                   className="block h-[380px] w-auto max-w-none select-none"
                   draggable={false}
                 />
