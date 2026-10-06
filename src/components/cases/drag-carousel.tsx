@@ -1,42 +1,108 @@
 "use client";
 
-import { useRef, type ReactNode } from "react";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 
-export function DragCarousel({ children }: { children: ReactNode }) {
+const GAP = 25;
+
+export function DragCarousel({ children, count }: { children: ReactNode; count: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const drag = useRef({ active: false, startX: 0, startLeft: 0, moved: false });
+  const [active, setActive] = useState(0);
+
+  const cardWidth = () => {
+    const card = ref.current?.querySelector<HTMLElement>("[data-card]");
+    return (card?.offsetWidth ?? 834) + GAP;
+  };
+
+  const update = useCallback(() => {
+    if (!ref.current) return;
+    setActive(Math.min(count - 1, Math.max(0, Math.round(ref.current.scrollLeft / cardWidth()))));
+  }, [count]);
+
+  useEffect(() => {
+    update();
+  }, [update]);
+
+  const go = (i: number) => {
+    const next = Math.min(count - 1, Math.max(0, i));
+    ref.current?.scrollTo({ left: next * cardWidth(), behavior: "smooth" });
+  };
 
   return (
-    <div
-      ref={ref}
-      className="no-scrollbar w-full cursor-grab snap-x snap-proximity overflow-x-auto active:cursor-grabbing"
-      onPointerDown={(e) => {
-        if (e.pointerType !== "mouse" || !ref.current) return;
-        drag.current = { active: true, startX: e.clientX, startLeft: ref.current.scrollLeft, moved: false };
-      }}
-      onPointerMove={(e) => {
-        const d = drag.current;
-        if (!d.active || !ref.current) return;
-        const dx = e.clientX - d.startX;
-        if (Math.abs(dx) > 4) d.moved = true;
-        ref.current.scrollLeft = d.startLeft - dx;
-      }}
-      onPointerUp={() => {
-        drag.current.active = false;
-      }}
-      onPointerLeave={() => {
-        drag.current.active = false;
-      }}
-      onClickCapture={(e) => {
-        if (drag.current.moved) {
-          e.preventDefault();
-          e.stopPropagation();
-          drag.current.moved = false;
-        }
-      }}
-      onDragStart={(e) => e.preventDefault()}
-    >
-      {children}
+    <div>
+      <div
+        ref={ref}
+        onScroll={update}
+        className="no-scrollbar w-full cursor-grab snap-x snap-mandatory overflow-x-auto active:cursor-grabbing"
+        onPointerDown={(e) => {
+          if (e.pointerType !== "mouse" || !ref.current) return;
+          drag.current = { active: true, startX: e.clientX, startLeft: ref.current.scrollLeft, moved: false };
+        }}
+        onPointerMove={(e) => {
+          const d = drag.current;
+          if (!d.active || !ref.current) return;
+          const dx = e.clientX - d.startX;
+          if (Math.abs(dx) > 4) {
+            d.moved = true;
+            ref.current.style.scrollSnapType = "none";
+          }
+          ref.current.scrollLeft = d.startLeft - dx;
+        }}
+        onPointerUp={() => {
+          drag.current.active = false;
+          if (ref.current) ref.current.style.scrollSnapType = "";
+        }}
+        onPointerLeave={() => {
+          drag.current.active = false;
+          if (ref.current) ref.current.style.scrollSnapType = "";
+        }}
+        onClickCapture={(e) => {
+          if (drag.current.moved) {
+            e.preventDefault();
+            e.stopPropagation();
+            drag.current.moved = false;
+          }
+        }}
+        onDragStart={(e) => e.preventDefault()}
+      >
+        {children}
+      </div>
+
+      <div className="ml-[max(16px,calc((100vw-1440px)/2+346px),24.027vw)] mt-5 flex items-center gap-4">
+        <div className="flex items-center gap-2" role="tablist" aria-label="Слайды">
+          {Array.from({ length: count }).map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              role="tab"
+              aria-selected={i === active}
+              aria-label={`Слайд ${i + 1}`}
+              onClick={() => go(i)}
+              className={`h-2 rounded-full transition-all ${i === active ? "w-6 bg-white" : "w-2 bg-white/25 hover:bg-white/50"}`}
+            />
+          ))}
+        </div>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            aria-label="Назад"
+            disabled={active === 0}
+            onClick={() => go(active - 1)}
+            className="flex size-9 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 disabled:opacity-30"
+          >
+            ←
+          </button>
+          <button
+            type="button"
+            aria-label="Вперёд"
+            disabled={active === count - 1}
+            onClick={() => go(active + 1)}
+            className="flex size-9 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 disabled:opacity-30"
+          >
+            →
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

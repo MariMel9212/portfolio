@@ -23,93 +23,74 @@ const h2 = "text-[22px] font-semibold leading-[1.3] tracking-[-0.005em] text-whi
 const body = "text-[16px] leading-[1.65] text-white/80";
 const caption = "text-[13px] leading-[1.5] text-white/50";
 
-const mixedLinks = [
+const sources = [
   {
     name: "Waymo",
+    note: "Центр удалённой помощи",
     href: "https://medium.com/@michael.wishart1990/waymo-operations-center-3ac5862688d4",
     src: "/figma/case/mixed-e5dda.webp",
-    style: { left: "10.12%", top: "4.29%", width: "15.34%", height: "42.63%" },
-    imgStyle: { height: "93.3%" },
-    overlay: true,
   },
   {
     name: "Tesla",
+    note: "Данные с автомобиля",
     href: "https://www.tesla.com/fsd/safety",
     src: "/figma/case/mixed-640d3.webp",
-    style: { left: "28.35%", top: "4.29%", width: "14.93%", height: "42.63%" },
-    imgStyle: { height: "95.3%" },
-    overlay: true,
   },
   {
     name: "Cruise",
+    note: "Мониторинг парка",
     href: "https://medium.com/@sanidhyacomnetinfo/what-digital-security-precautions-has-cruise-implemented-for-their-remote-access-software-caef1cddcb76",
     src: "/figma/case/mixed-cad7e.webp",
-    style: { left: "10.07%", top: "52.77%", width: "15.27%", height: "42.78%" },
-    imgStyle: { height: "92.3%" },
-    overlay: false,
   },
   {
     name: "Zoox",
+    note: "Удалённые подсказки машине",
     href: "https://webbingsolutions.com/scaling-robotaxis-requires-more-than-autonomy/",
     src: "/figma/case/mixed-5334f.webp",
-    style: { left: "28.35%", top: "52.77%", width: "15.3%", height: "42.3%" },
-    imgStyle: { height: "90.1%" },
-    overlay: true,
   },
 ] as const;
 
-const mixedOverflow = [
-  { src: "/figma/case/mixed-18ad6.webp", style: { left: "57.55%", top: "-34.34%", width: "25.54%", height: "38.64%" } },
-  { src: "/figma/case/mixed-8672f.webp", style: { left: "57.07%", top: "6.82%", width: "26.02%", height: "35.1%" } },
-  { src: "/figma/case/mixed-8f848.webp", style: { left: "84.29%", top: "-1.52%", width: "15.95%", height: "20.71%" } },
-  { src: "/figma/case/mixed-d064a.webp", style: { left: "84.29%", top: "21.72%", width: "29.38%", height: "38.64%" } },
-  { src: "/figma/case/mixed-4c3de.webp", style: { left: "61.75%", top: "44.44%", width: "21.34%", height: "28.03%" } },
-  { src: "/figma/case/mixed-0e57f.webp", style: { left: "84.53%", top: "62.88%", width: "19.3%", height: "21.72%" } },
-  { src: "/figma/case/mixed-a3b8b.webp", style: { left: "59.71%", top: "75%", width: "23.62%", height: "31.82%" } },
-  { src: "/figma/case/mixed-18ad6.webp", style: { left: "84.53%", top: "87.12%", width: "24.58%", height: "37.37%" } },
-] as const;
+const cardBase = "w-[min(834px,calc(100vw-48px))] shrink-0 snap-start";
+const visual = "relative aspect-[834/396] w-full overflow-hidden rounded-[22px] bg-white/[0.07]";
 
-function Board({ children, className }: { children?: ReactNode; className?: string }) {
+function CardText({ n, title, text }: { n: number; title: string; text: string }) {
   return (
-    <div
-      className={`relative h-[min(396px,27.5vw)] min-h-[220px] w-[min(834px,100%)] shrink-0 overflow-hidden rounded-[22px] bg-white/8 ${className ?? ""}`}
-    >
-      {children}
+    <div className="mt-4 flex gap-4 pr-2">
+      <span className="mt-0.5 text-[13px] font-medium tabular-nums text-white/40">0{n}</span>
+      <div>
+        <h3 className="text-[16px] font-semibold leading-snug text-white">{title}</h3>
+        <p className="mt-1 text-[13px] leading-[1.5] text-white/55">{text}</p>
+      </div>
     </div>
   );
 }
 
-function MixedBoard() {
+function SourcesGrid() {
   return (
-    <Board>
-      {mixedOverflow.map((item, i) => (
-        <img
-          key={`${item.src}-${i}`}
-          alt=""
-          src={asset(item.src)}
-          className="pointer-events-none absolute max-w-none object-cover"
-          style={item.style}
-        />
-      ))}
-      {mixedLinks.map((item) => (
+    <div className={`${visual} grid grid-cols-2 gap-2 p-2`}>
+      {sources.map((item) => (
         <a
           key={item.name}
           href={item.href}
           target="_blank"
           rel="noreferrer"
-          className="absolute flex flex-col"
-          style={item.style}
+          className="group relative block overflow-hidden rounded-[16px] bg-black/40"
         >
-          <span className="relative block min-h-0 flex-1 overflow-hidden" style={item.imgStyle}>
-            <img alt="" src={asset(item.src)} className="absolute inset-0 size-full object-cover" />
-            {item.overlay ? <span className="absolute inset-0 bg-black/27" /> : null}
-          </span>
-          <span className="mt-auto pt-1 text-[7.5px] leading-none tracking-[0.075px] text-[#0682da] underline">
-            Подробнее
+          <img
+            alt={`${item.name}: пример интерфейса`}
+            src={asset(item.src)}
+            className="absolute inset-0 size-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+          />
+          <span className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-black/80 to-transparent px-4 pb-3 pt-10">
+            <span>
+              <span className="block text-[15px] font-semibold leading-tight text-white">{item.name}</span>
+              <span className="block text-[12px] leading-tight text-white/65">{item.note}</span>
+            </span>
+            <span className="text-[12px] text-white/70 transition group-hover:text-white">Источник ↗</span>
           </span>
         </a>
       ))}
-    </Board>
+    </div>
   );
 }
 
@@ -199,24 +180,14 @@ export default function MonitoringCasePage() {
             </p>
           </div>
 
-          <div className="relative mt-10 flex min-h-[173px] w-[min(632px,100%)] items-center gap-[57px] max-[700px]:flex-col max-[700px]:items-start max-[700px]:gap-4 max-[700px]:pl-4 min-[701px]:ml-[max(16px,calc(clamp(16px,24.027vw,346px)-99px))]">
-            <div className="relative hidden h-[173px] w-[42px] shrink-0 min-[701px]:block" aria-hidden>
-              <p className="font-bracket absolute top-[-34px] left-[-10px] text-[158.733px] leading-none tracking-[3.17px] text-[#fffbfb] opacity-[0.06]">
-                (
-              </p>
-            </div>
-            <div className="flex w-full max-w-[434px] flex-col gap-4">
+          <div className={`${col} mt-10`}>
+            <div className="flex w-full flex-col gap-3">
               <h2 className={h2}>Сервис должен помогать:</h2>
               <ul className={`${body} space-y-1`}>
                 {duties.map((item) => (
                   <li key={item}>– {item}</li>
                 ))}
               </ul>
-            </div>
-            <div className="relative hidden h-[173px] w-[42px] shrink-0 min-[701px]:block" aria-hidden>
-              <p className="font-bracket absolute top-[-34px] left-0 text-[158.733px] leading-none tracking-[3.17px] text-[#fffbfb] opacity-[0.06]">
-                )
-              </p>
             </div>
           </div>
 
@@ -249,22 +220,44 @@ export default function MonitoringCasePage() {
           </div>
 
           <div className="mt-6" style={{ marginInline: "calc(50% - 50vw)" }}>
-            <DragCarousel>
-              <div className="flex w-max gap-[25px] pl-[max(16px,calc((100vw-1440px)/2+346px),24.027vw)] pr-8 [&>*]:snap-start">
-                <img
-                  alt="Логотипы Tesla, Samsara, ГдеМои, Waymo, Zoox и Cruise"
-                  className="h-[min(396px,27.5vw)] min-h-[220px] w-[min(834px,calc(100vw-48px))] shrink-0 rounded-[22px] object-cover"
-                  src={asset("/figma/case/logos.webp")}
-                />
-                <Board>
-                  <img
-                    alt="Интерфейс разметки сцены для автономного автомобиля"
-                    src={asset("/figma/case/ui.webp")}
-                    className="absolute object-cover"
-                    style={{ left: "8.15%", top: "0.5%", width: "83.69%", height: "99.24%" }}
+            <DragCarousel count={3}>
+              <div className="flex w-max gap-[25px] pl-[max(16px,calc((100vw-1440px)/2+346px),24.027vw)] pr-8">
+                <article data-card className={cardBase}>
+                  <div className={visual}>
+                    <img
+                      alt="Логотипы Tesla, Samsara, ГдеМои, Waymo, Zoox и Cruise"
+                      className="absolute inset-0 size-full object-cover"
+                      src={asset("/figma/case/logos.webp")}
+                    />
+                  </div>
+                  <CardText
+                    n={1}
+                    title="Кого я изучала"
+                    text="Tesla, Waymo, Cruise, Zoox, Samsara и «ГдеМои» — продукты, где оператор следит за большим парком машин"
                   />
-                </Board>
-                <MixedBoard />
+                </article>
+                <article data-card className={cardBase}>
+                  <div className={visual}>
+                    <img
+                      alt="Интерфейс разметки сцены для автономного автомобиля"
+                      className="absolute inset-0 size-full object-cover"
+                      src={asset("/figma/case/ui.webp")}
+                    />
+                  </div>
+                  <CardText
+                    n={2}
+                    title="Как выглядит рабочее место оператора"
+                    text="Вопрос по ситуации, фрагмент с камеры и один понятный ответ — без лишних элементов"
+                  />
+                </article>
+                <article data-card className={cardBase}>
+                  <SourcesGrid />
+                  <CardText
+                    n={3}
+                    title="Как это делают роботакси"
+                    text="Четыре подробных разбора — нажми на карточку, чтобы открыть источник"
+                  />
+                </article>
               </div>
             </DragCarousel>
           </div>
