@@ -6,7 +6,7 @@ import { asset } from "@/lib/asset";
 type Step = {
   src: string;
   h: number; // page height in 1440px space
-  scroll?: number; // simulated scroll, px in 1440 space
+  scroll?: number; // if set: scroll the middle column to the end, back, then move the cursor
   cursor: [number, number]; // target in 1440px space
   click?: boolean;
   dur: number;
@@ -22,7 +22,7 @@ const steps: Step[] = [
   { src: "/figma/case/screens/1-dashboard.webp", h: 1024, cursor: [760, 560], dur: 2600, title: "Сводная панель", sub: "Мониторинг парка в реальном времени", text: "Оператор видит общую картину: сколько машин в работе, сколько на зарядке. Список инцидентов пуст — всё в штатном режиме." },
   { src: "/figma/case/screens/2-trigger.webp", h: 1024, cursor: [1192, 290], click: true, dur: 3200, title: "Событие", sub: "Мгновенное оповещение об инциденте", text: "Система зафиксировала сбой LiDAR. Алерт появляется в списке справа с приоритетом Critical и привлекает внимание цветом." },
   { src: "/figma/case/screens/3-quickview.webp", h: 1024, cursor: [1192, 904], click: true, dur: 3400, title: "Быстрый контекст", sub: "Детализация без потери фокуса", text: "По клику открывается боковая панель: фото машины, локация и суть проблемы. Инженер не уходит с карты и может сразу принять решение." },
-  { src: "/figma/case/screens/4-alert.webp", h: 1541, scroll: 420, cursor: [996, 305], click: true, dur: 4200, title: "Детализация инцидента", sub: "Единый контекст для принятия решений", text: "Видеопотоки, телеметрия и хронология в одном окне. Инженер проходит чек-лист обстановки и ничего не пропускает." },
+  { src: "/figma/case/screens/4-alert.webp", h: 1541, scroll: 1, cursor: [996, 305], click: true, dur: 6800, title: "Детализация инцидента", sub: "Единый контекст для принятия решений", text: "Видеопотоки, телеметрия и хронология в одном окне. Инженер проходит чек-лист обстановки и ничего не пропускает." },
   { src: "/figma/case/screens/5-modal.webp", h: 1541, cursor: [832, 634], click: true, dur: 3400, title: "Подтверждение безопасности", sub: "Защита от случайных действий", text: "Перед подключением к салону система спрашивает согласие: оператор не должен слышать пассажира без явного решения." },
   { src: "/figma/case/screens/6-resolution.webp", h: 1541, cursor: [1171, 659], click: true, dur: 3000, title: "Активный процесс", sub: "Пошаговый протокол", text: "Чек-лист пройден, аудиосвязь активна. Кнопка «Перезапустить LiDAR» разблокирована только после проверки обстановки." },
   { src: "/figma/case/screens/7-confirmation.webp", h: 1541, cursor: [834, 654], click: true, dur: 3400, title: "Подтверждение действия", sub: "Предупреждение о последствиях", text: "Перед перезапуском сказано, что машина будет неподвижна около 15 секунд. Инженер осознаёт риск и простой." },
@@ -35,6 +35,7 @@ export function IncidentDemo() {
   const [playing, setPlaying] = useState(true);
   const [inView, setInView] = useState(false);
   const [reduce, setReduce] = useState(false);
+  const [phase, setPhase] = useState(0);
   const rootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -52,8 +53,21 @@ export function IncidentDemo() {
     return () => window.clearTimeout(t);
   }, [idx, playing, inView, reduce]);
 
+  // phases for the scrolling step: 0 wait, 1 scroll down, 2 scroll back up, 3 cursor
+  useEffect(() => {
+    setPhase(0);
+    if (!steps[idx].scroll) return;
+    const ts = [
+      window.setTimeout(() => setPhase(1), 400),
+      window.setTimeout(() => setPhase(2), 2700),
+      window.setTimeout(() => setPhase(3), 4300),
+    ];
+    return () => ts.forEach(window.clearTimeout);
+  }, [idx]);
+
   const s = steps[idx];
-  const [cx, cy] = s.cursor;
+  const cursorReady = !s.scroll || phase >= 3;
+  const [cx, cy] = cursorReady ? s.cursor : steps[(idx + steps.length - 1) % steps.length].cursor;
 
   return (
     <div ref={rootRef}>
@@ -82,7 +96,9 @@ export function IncidentDemo() {
           const R = 928;
           const T = 78;
           const winW = R - L;
-          const ty = active ? -((T + st.scroll) / st.h) * 100 : -(T / st.h) * 100;
+          const maxScroll = st.h - VIEW_H;
+          const cur = active && phase === 1 ? maxScroll : 0;
+          const ty = -((T + cur) / st.h) * 100;
           return (
             <div key={st.src} className="absolute inset-0" style={{ ...fade, transition: fadeT }}>
               <img alt={st.title} src={asset(st.src)} draggable={false} className="absolute left-0 top-0 w-full select-none" />
@@ -104,7 +120,7 @@ export function IncidentDemo() {
                     left: `-${(L / winW) * 100}%`,
                     width: `${(W / winW) * 100}%`,
                     transform: `translateY(${ty}%)`,
-                    transition: active ? "transform 1600ms cubic-bezier(0.45,0,0.2,1) 700ms" : "none",
+                    transition: active ? `transform ${phase === 1 ? 1900 : 1400}ms cubic-bezier(0.45,0,0.2,1)` : "none",
                   }}
                 />
               </div>
@@ -122,7 +138,7 @@ export function IncidentDemo() {
             transition: "left 900ms cubic-bezier(0.45,0,0.2,1) 200ms, top 900ms cubic-bezier(0.45,0,0.2,1) 200ms",
           }}
         >
-          {s.click && <span key={idx} className="demo-ripple" />}
+          {s.click && cursorReady && <span key={`${idx}-${phase}`} className="demo-ripple" />}
           <svg width="22" height="22" viewBox="0 0 24 24" className="relative drop-shadow-[0_2px_4px_rgba(0,0,0,0.35)]">
             <path d="M5 3l14 8-6.2 1.6L9.6 19 5 3z" fill="#111" stroke="#fff" strokeWidth="1.6" strokeLinejoin="round" />
           </svg>
