@@ -268,7 +268,7 @@ export default function MonitoringCasePage() {
     <>
     <style>{`html,body{background:#161616;overflow-x:clip;overscroll-behavior-x:none}`}</style>
     <div
-      className="relative min-h-screen overflow-x-clip bg-[#161616] text-[#fffbfb] max-md:[--up:calc(var(--s)*0.0336_-_20px)]!"
+      className="relative min-h-screen overflow-x-clip bg-[#161616] text-[#fffbfb] max-md:[--up:calc(var(--s)*0.0336_-_36px)]!"
       style={{ ["--s" as string]: "100vw", ["--up" as string]: "calc(var(--s) * 0.0336)" }}
     >
       <PullLidar />
@@ -353,7 +353,7 @@ export default function MonitoringCasePage() {
           />
         </div>
 
-        <div className="relative z-10 pb-[120px] pt-[calc(max(520px,var(--s)*0.68472)-var(--up))] max-md:pt-[calc(var(--s)*0.853-72px)]">
+        <div className="relative z-10 pb-[120px] pt-[calc(max(520px,var(--s)*0.68472)-var(--up))] max-md:pt-[calc(var(--s)*0.83+90px)]">
           {/* 1. Задача */}
           <div className={col}>
             <h1 id="task" className={h1+" w-fit scroll-mt-24"}>Задача</h1>
