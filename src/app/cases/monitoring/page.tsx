@@ -220,8 +220,8 @@ export default function MonitoringCasePage() {
             className="mt-6"
             style={
               {
-                ["--left" as string]: "max(16px, calc((100vw - 1440px) / 2 + 346px), 24.027vw)",
-                ["--sw" as string]: "min(924px, calc(100vw - var(--left)))",
+                ["--left" as string]: "clamp(16px, 24.027vw, 346px)",
+                ["--sw" as string]: "min(924px, calc(min(100vw, 1440px) - var(--left)))",
                 ["--cw" as string]: "min(834px, calc(var(--sw) - 72px))",
                 marginLeft: "var(--left)",
                 width: "var(--sw)",
