@@ -499,12 +499,12 @@ export default function MonitoringCasePage() {
             </p>
           </div>
           <div className={`${wide} mt-5`}>
-            <div className="overflow-hidden rounded-[22px] bg-white">
+            <div className="overflow-hidden rounded-[22px] bg-white/[0.06] p-6">
               <DragPan>
                 <img
                   alt="User Flow: реакция на инцидент"
                   src={asset("/figma/case/user-flow.webp")}
-                  className="block h-[380px] w-auto max-w-none select-none"
+                  className="block h-[380px] w-auto max-w-none select-none mix-blend-screen [filter:invert(1)_hue-rotate(180deg)]"
                   draggable={false}
                 />
               </DragPan>
