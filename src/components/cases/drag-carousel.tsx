@@ -41,18 +41,47 @@ export function DragCarousel({ children, count }: { children: ReactNode; count: 
           if (hovered.current || !visible.current || drag.current.active) return;
           if (Date.now() - lastTouch.current < 6000) return;
           const next = activeRef.current + 1 >= count ? 0 : activeRef.current + 1;
-          el.scrollTo({ left: next * cardWidth(), behavior: "smooth" });
-        }, 4500);
+          const wrap = next === 0;
+          animateTo(next * cardWidth(), wrap ? 1500 : 1100);
+        }, 5500);
     return () => {
       io.disconnect();
       if (id) window.clearInterval(id);
     };
   }, [count]);
 
+  const raf = useRef(0);
+
+  const cancelAnim = () => {
+    cancelAnimationFrame(raf.current);
+    if (ref.current) ref.current.style.scrollSnapType = "";
+  };
+
+  const animateTo = (left: number, duration: number) => {
+    const el = ref.current;
+    if (!el) return;
+    cancelAnimationFrame(raf.current);
+    const from = el.scrollLeft;
+    const delta = left - from;
+    if (Math.abs(delta) < 1) return;
+    el.style.scrollSnapType = "none";
+    const t0 = performance.now();
+    const ease = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+    const step = (now: number) => {
+      const t = Math.min(1, (now - t0) / duration);
+      el.scrollLeft = from + delta * ease(t);
+      if (t < 1) raf.current = requestAnimationFrame(step);
+      else el.style.scrollSnapType = "";
+    };
+    raf.current = requestAnimationFrame(step);
+  };
+
+  useEffect(() => () => cancelAnimationFrame(raf.current), []);
+
   const go = (i: number) => {
     lastTouch.current = Date.now();
     const next = Math.min(count - 1, Math.max(0, i));
-    ref.current?.scrollTo({ left: next * cardWidth(), behavior: "smooth" });
+    animateTo(next * cardWidth(), 900);
   };
 
   return (
@@ -62,11 +91,18 @@ export function DragCarousel({ children, count }: { children: ReactNode; count: 
         onScroll={update}
         onPointerEnter={() => (hovered.current = true)}
         onPointerCancel={() => (hovered.current = false)}
-        onWheel={() => (lastTouch.current = Date.now())}
-        onTouchStart={() => (lastTouch.current = Date.now())}
+        onWheel={() => {
+          lastTouch.current = Date.now();
+          cancelAnim();
+        }}
+        onTouchStart={() => {
+          lastTouch.current = Date.now();
+          cancelAnim();
+        }}
         className="no-scrollbar w-full cursor-grab snap-x snap-mandatory overflow-x-auto active:cursor-grabbing"
         onPointerDown={(e) => {
           if (e.pointerType !== "mouse" || !ref.current) return;
+          cancelAnim();
           drag.current = { active: true, startX: e.clientX, startLeft: ref.current.scrollLeft, moved: false };
         }}
         onPointerMove={(e) => {
