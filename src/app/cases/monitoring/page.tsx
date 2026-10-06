@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/site-header";
 import { asset } from "@/lib/asset";
 import { DragCarousel } from "@/components/cases/drag-carousel";
 import { CaseOutline } from "@/components/cases/case-outline";
+import { SolutionFlow } from "@/components/cases/solution-flow";
 import { DragPan } from "@/components/cases/drag-pan";
 
 export const metadata: Metadata = {
@@ -264,7 +265,7 @@ function SourcesGrid() {
 export default function MonitoringCasePage() {
   return (
     <div
-      className="relative min-h-screen overflow-x-hidden bg-[#161616] text-[#fffbfb]"
+      className="relative min-h-screen overflow-x-clip bg-[#161616] text-[#fffbfb]"
       style={{ ["--s" as string]: "100vw" }}
     >
       <div
@@ -516,34 +517,23 @@ export default function MonitoringCasePage() {
           <div className={`${col} mt-12`}>
             <h1 id="solution" className={h1+" w-fit scroll-mt-24"}>Решение</h1>
             <p className={`${body} mt-4`}>
-              Сценарий в экранах: от общей картины парка до закрытого инцидента.
+              Реакция на инцидент по шагам: от общей картины парка до закрытого инцидента. Листай, чтобы пройти сценарий.
             </p>
           </div>
-          <div className={`${wide} mt-6 space-y-10`}>
-            {[
-              ["dashboard", "Дашборд", "Карта парка и состояние машин"],
-              ["trigger", "Триггер", "На карте появляется проблемная машина"],
-              ["quickview", "Быстрый просмотр", "Главное о машине, не уходя с карты"],
-              ["alert", "Карточка инцидента", "Что случилось, с какой машиной и что можно сделать"],
-              ["modal", "Подтверждение действия", "Перед важным шагом оператор подтверждает выбор"],
-              ["resolution", "Решение инцидента", "Шаги, которые оператор проходит по сценарию"],
-              ["confirmation", "Проверка решения", "Итог действий перед закрытием"],
-              ["loading", "Загрузка", "Система применяет решение"],
-              ["success", "Инцидент закрыт", "Результат и запись в журнале"],
-            ].map(([key, title, text], i) => (
-              <div key={key} className="space-y-3">
-                <img
-                  alt={`Экран «${title}»`}
-                  loading="lazy"
-                  className="block w-full rounded-[16px] bg-white/[0.06]"
-                  src={asset(`/figma/case/screens/${i + 1}-${key}.webp`)}
-                />
-                <div>
-                  <h3 className="text-[16px] font-semibold text-white">{title}</h3>
-                  <p className={`${caption} mt-1`}>{text}</p>
-                </div>
-              </div>
-            ))}
+          <div className="ml-[clamp(16px,24.027vw,346px)] mr-4 mt-6">
+            <SolutionFlow
+              steps={[
+                { src: "/figma/case/screens/1-dashboard.webp", title: "Сводная панель", sub: "Мониторинг парка в реальном времени", text: "Оператор видит общую картину: сколько машин в работе, сколько на зарядке. Список инцидентов пуст — всё в штатном режиме." },
+                { src: "/figma/case/screens/2-trigger.webp", title: "Событие", sub: "Мгновенное оповещение об инциденте", text: "Система зафиксировала сбой (LiDAR). Алерт появляется в списке справа с приоритетом Critical, привлекая внимание цветом." },
+                { src: "/figma/case/screens/3-quickview.webp", title: "Быстрый контекст", sub: "Детализация без потери фокуса", text: "По клику открывается боковая панель. Инженер видит фото авто, локацию и суть проблемы, не уходя с карты. Можно сразу принять решение." },
+                { src: "/figma/case/screens/4-alert.webp", title: "Детализация инцидента", sub: "Единый контекст для принятия решений", text: "Инженер видит всю картину целиком: видеопотоки, телеметрию и хронологию. Ничего лишнего, только данные, необходимые для диагностики." },
+                { src: "/figma/case/screens/5-modal.webp", title: "Подтверждение безопасности", sub: "Защита от случайных действий", text: "Перед подключением к салону система запрашивает подтверждение. Это критичный шаг: оператор не должен слышать пассажира без явного согласия, а пассажир не должен пугаться внезапного голоса." },
+                { src: "/figma/case/screens/6-resolution.webp", title: "Активный процесс", sub: "Пошаговый протокол", text: "Чек-лист безопасности пройден, активна аудиосвязь с пассажиром. Кнопка «Перезапустить LiDAR» разблокирована: техническое действие доступно только после проверки обстановки." },
+                { src: "/figma/case/screens/7-confirmation.webp", title: "Подтверждение действия", sub: "Предупреждение о последствиях", text: "Перед перезапуском LiDAR машина станет неуправляемой на ~15 секунд. Система требует явного подтверждения, чтобы инженер осознавал риск и простои." },
+                { src: "/figma/case/screens/8-loading.webp", title: "Процесс", sub: "Обратная связь в реальном времени", text: "После нажатия интерфейс показывает статус «Перезагрузка…» с таймером ожидания. Это снижает тревожность оператора: он видит, что команда принята системой." },
+                { src: "/figma/case/screens/9-success.webp", title: "Успех", sub: "Восстановление и закрытие", text: "Датчик вернулся в сеть. Система сообщает, что машина готова продолжить маршрут, а главное действие меняется на «Закрыть инцидент»." },
+              ]}
+            />
           </div>
         </div>
       </div>
