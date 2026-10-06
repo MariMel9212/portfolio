@@ -188,7 +188,7 @@ export default function MonitoringCasePage() {
             </div>
           </div>
 
-          <hr className="mx-auto mt-12 h-px w-[min(1248px,calc(100%-32px))] border-0 bg-white/20" />
+          <hr className="ml-[clamp(16px,24.027vw,346px)] mr-4 mt-12 h-px max-w-[834px] border-0 bg-white/45" />
 
           <div className={`${col} mt-12`}>
             <h1 className={h1}>Исследование</h1>
@@ -280,7 +280,7 @@ export default function MonitoringCasePage() {
             </div>
           </div>
 
-          <hr className="mx-auto mt-14 h-px w-[min(1248px,calc(100%-32px))] border-0 bg-white/20" />
+          <hr className="ml-[clamp(16px,24.027vw,346px)] mr-4 mt-14 h-px max-w-[834px] border-0 bg-white/45" />
         </div>
       </div>
     </div>
