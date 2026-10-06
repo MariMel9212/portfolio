@@ -221,8 +221,8 @@ export default function MonitoringCasePage() {
             style={
               {
                 ["--left" as string]: "clamp(16px, 24.027vw, 346px)",
-                ["--sw" as string]: "min(924px, calc(min(100vw, 1440px) - var(--left)))",
-                ["--cw" as string]: "min(834px, calc(var(--sw) - 72px))",
+                ["--sw" as string]: "min(1100px, calc(min(100vw, 1440px) - var(--left)))",
+                ["--cw" as string]: "calc(var(--sw) - 36px)",
                 marginLeft: "var(--left)",
                 width: "var(--sw)",
               } as CSSProperties
