@@ -23,6 +23,40 @@ const h2 = "text-[22px] font-semibold leading-[1.3] tracking-[-0.005em] text-whi
 const body = "text-[16px] leading-[1.65] text-white/80";
 const caption = "text-[13px] leading-[1.5] text-white/50";
 
+
+const hrCls = "ml-[clamp(16px,24.027vw,346px)] mr-4 max-w-[834px] border-0 h-px bg-white/15";
+
+function Slot({ label, hint, ratio = "834 / 396" }: { label: string; hint?: string; ratio?: string }) {
+  return (
+    <div
+      className="flex w-full flex-col items-center justify-center gap-1 rounded-[22px] border border-dashed border-white/20 bg-white/[0.04] px-6 text-center"
+      style={{ aspectRatio: ratio }}
+    >
+      <span className="text-[14px] font-medium text-white/70">{label}</span>
+      {hint ? <span className="max-w-[460px] text-[12px] leading-[1.5] text-white/40">{hint}</span> : null}
+    </div>
+  );
+}
+
+function Pair({ left, right }: { left: ReactNode; right: ReactNode }) {
+  return (
+    <div className="grid gap-4 sm:grid-cols-2">
+      <div>{left}</div>
+      <div>{right}</div>
+    </div>
+  );
+}
+
+function Takeaway({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <div className="rounded-[14px] bg-white/[0.06] px-5 py-4">
+      <p className={body}>
+        <strong className="font-semibold text-white">{title}</strong> {children}
+      </p>
+    </div>
+  );
+}
+
 const sources = [
   {
     name: "Waymo",
@@ -188,6 +222,21 @@ export default function MonitoringCasePage() {
             </div>
           </div>
 
+          <div className={`${col} mt-12`}>
+            <h1 className={h1}>Контекст и детали</h1>
+            <p className={`${body} mt-4`}>
+              [Коротко: где живёт сервис, кто им пользуется, как сейчас устроена работа центра мониторинга и что в ней не работает.]
+            </p>
+          </div>
+          <div className={`${wide} mt-6 space-y-3`}>
+            <Slot
+              label="Схема контекста: текущий интерфейс с аннотациями"
+              hint="Скрин существующей системы с выносками: медленная реакция, высокая стоимость ошибки, много данных на экране"
+              ratio="834 / 470"
+            />
+            <Takeaway title="Вывод.">[1–2 предложения: какие ограничения контекста влияют на дизайн.]</Takeaway>
+          </div>
+
           <hr className="ml-[clamp(16px,24.027vw,346px)] mr-4 mt-12 h-px max-w-[834px] border-0 bg-white/15" />
 
           <div className={`${col} mt-12`}>
@@ -280,6 +329,105 @@ export default function MonitoringCasePage() {
             </div>
           </div>
 
+
+          <hr className={`${hrCls} mt-14`} />
+
+          <div className={`${col} mt-12`}>
+            <h1 className={h1}>Джобы пользователей</h1>
+            <p className={`${body} mt-4`}>
+              [Один абзац: на какие сегменты разделила инженеров и почему. Формулировки JTBD ниже.]
+            </p>
+          </div>
+          <div className={`${wide} mt-6`}>
+            <Pair
+              left={
+                <Slot
+                  label="Сегмент 1"
+                  hint="Описание работы · основные задачи · что важно в моменте"
+                  ratio="400 / 330"
+                />
+              }
+              right={
+                <Slot
+                  label="Сегмент 2"
+                  hint="Описание работы · основные задачи · что важно в моменте"
+                  ratio="400 / 330"
+                />
+              }
+            />
+          </div>
+
+          <hr className={`${hrCls} mt-14`} />
+
+          <div className={`${col} mt-12`}>
+            <h1 className={h1}>Структура и сценарий</h1>
+            <p className={`${body} mt-4`}>
+              [Как из исследования получилась структура: какие разделы, что на первом уровне, что на втором.]
+            </p>
+          </div>
+          <div className={`${wide} mt-6`}>
+            <Pair
+              left={
+                <div className="space-y-3">
+                  <Slot label="Информационная архитектура" hint="Дерево разделов" ratio="400 / 300" />
+                  <p className={caption}>[Подпись: что решает структура]</p>
+                </div>
+              }
+              right={
+                <div className="space-y-3">
+                  <Slot label="User Flow" hint="Основной сценарий оператора" ratio="400 / 300" />
+                  <p className={caption}>[Подпись: ключевые развилки сценария]</p>
+                </div>
+              }
+            />
+          </div>
+
+          <div className={`${col} mt-12`}>
+            <h2 className={h2}>Сценарий: реакция на инцидент</h2>
+            <p className={`${body} mt-3`}>
+              [Пошагово: оператор заметил проблему → открыл машину → понял причину → принял решение → передал дальше.]
+            </p>
+          </div>
+          <div className={`${wide} mt-6 space-y-3`}>
+            <Slot label="User Flow: реакция на инцидент, часть 1" hint="Шаги от уведомления до открытия машины" ratio="834 / 380" />
+            <Slot label="User Flow: реакция на инцидент, часть 2" hint="Шаги от диагностики до решения" ratio="834 / 380" />
+          </div>
+
+          <hr className={`${hrCls} mt-14`} />
+
+          <div className={`${col} mt-12`}>
+            <h1 className={h1}>Решение</h1>
+            <p className={`${body} mt-4`}>
+              [Принцип: сначала общая картина парка, потом конкретная ситуация. Ниже ключевые экраны.]
+            </p>
+          </div>
+          <div className={`${wide} mt-6 space-y-10`}>
+            {[
+              ["Обзор парка", "Карта и статусы: что в порядке, что требует внимания"],
+              ["Карточка машины", "Что произошло, с какой машиной, насколько критично"],
+              ["Принятие решения", "Действия оператора и передача инцидента"],
+            ].map(([title, text]) => (
+              <div key={title} className="space-y-3">
+                <Slot label={`Экран: ${title}`} hint={text} ratio="834 / 520" />
+                <div>
+                  <h3 className="text-[16px] font-semibold text-white">{title}</h3>
+                  <p className={`${caption} mt-1`}>[Что решает экран и какое решение за ним стоит]</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <hr className={`${hrCls} mt-14`} />
+
+          <div className={`${col} mt-12`}>
+            <h1 className={h1}>Итог</h1>
+            <p className={`${body} mt-4`}>
+              [Что получилось, как проверяли (тест / обратная связь) и что бы сделала дальше.]
+            </p>
+          </div>
+          <div className={`${wide} mt-6`}>
+            <Slot label="Финальный экран / сцена" hint="Эффектный кадр для финала кейса" ratio="834 / 470" />
+          </div>
           <hr className="ml-[clamp(16px,24.027vw,346px)] mr-4 mt-14 h-px max-w-[834px] border-0 bg-white/15" />
         </div>
       </div>
