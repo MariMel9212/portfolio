@@ -68,40 +68,18 @@ export function DragCarousel({ children, count }: { children: ReactNode; count: 
         {children}
       </div>
 
-      <div className="ml-[max(16px,calc((100vw-1440px)/2+346px),24.027vw)] mt-5 flex items-center gap-4">
-        <div className="flex items-center gap-2" role="tablist" aria-label="Слайды">
-          {Array.from({ length: count }).map((_, i) => (
-            <button
-              key={i}
-              type="button"
-              role="tab"
-              aria-selected={i === active}
-              aria-label={`Слайд ${i + 1}`}
-              onClick={() => go(i)}
-              className={`h-2 rounded-full transition-all ${i === active ? "w-6 bg-white" : "w-2 bg-white/25 hover:bg-white/50"}`}
-            />
-          ))}
-        </div>
-        <div className="flex items-center gap-2">
+      <div className="mt-5 flex items-center gap-2" role="tablist" aria-label="Слайды">
+        {Array.from({ length: count }).map((_, i) => (
           <button
+            key={i}
             type="button"
-            aria-label="Назад"
-            disabled={active === 0}
-            onClick={() => go(active - 1)}
-            className="flex size-9 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 disabled:opacity-30"
-          >
-            ←
-          </button>
-          <button
-            type="button"
-            aria-label="Вперёд"
-            disabled={active === count - 1}
-            onClick={() => go(active + 1)}
-            className="flex size-9 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 disabled:opacity-30"
-          >
-            →
-          </button>
-        </div>
+            role="tab"
+            aria-selected={i === active}
+            aria-label={`Слайд ${i + 1}`}
+            onClick={() => go(i)}
+            className={`h-2 rounded-full transition-all ${i === active ? "w-6 bg-white" : "w-2 bg-white/25 hover:bg-white/50"}`}
+          />
+        ))}
       </div>
     </div>
   );

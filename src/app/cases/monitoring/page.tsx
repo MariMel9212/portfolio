@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { SiteHeader } from "@/components/site-header";
 import { asset } from "@/lib/asset";
 import { DragCarousel } from "@/components/cases/drag-carousel";
@@ -50,17 +50,14 @@ const sources = [
   },
 ] as const;
 
-const cardBase = "w-[min(834px,calc(100vw-48px))] shrink-0 snap-start";
+const cardBase = "w-[var(--cw)] shrink-0 snap-start";
 const visual = "relative aspect-[834/396] w-full overflow-hidden rounded-[22px] bg-white/[0.07]";
 
-function CardText({ n, title, text }: { n: number; title: string; text: string }) {
+function CardText({ title, text }: { title: string; text: string }) {
   return (
-    <div className="mt-4 flex gap-4 pr-2">
-      <span className="mt-0.5 text-[13px] font-medium tabular-nums text-white/40">0{n}</span>
-      <div>
-        <h3 className="text-[16px] font-semibold leading-snug text-white">{title}</h3>
-        <p className="mt-1 text-[13px] leading-[1.5] text-white/55">{text}</p>
-      </div>
+    <div className="mt-4 pr-2">
+      <h3 className="text-[16px] font-semibold leading-snug text-white">{title}</h3>
+      <p className="mt-1 text-[13px] leading-[1.5] text-white/55">{text}</p>
     </div>
   );
 }
@@ -219,9 +216,20 @@ export default function MonitoringCasePage() {
             </p>
           </div>
 
-          <div className="mt-6" style={{ marginInline: "calc(50% - 50vw)" }}>
+          <div
+            className="mt-6"
+            style={
+              {
+                ["--left" as string]: "max(16px, calc((100vw - 1440px) / 2 + 346px), 24.027vw)",
+                ["--sw" as string]: "min(924px, calc(100vw - var(--left)))",
+                ["--cw" as string]: "min(834px, calc(var(--sw) - 72px))",
+                marginLeft: "var(--left)",
+                width: "var(--sw)",
+              } as CSSProperties
+            }
+          >
             <DragCarousel count={3}>
-              <div className="flex w-max gap-[25px] pl-[max(16px,calc((100vw-1440px)/2+346px),24.027vw)] pr-8">
+              <div className="flex w-max gap-[25px]" style={{ paddingRight: "calc(var(--sw) - var(--cw))" }}>
                 <article data-card className={cardBase}>
                   <div className={visual}>
                     <img
@@ -231,7 +239,6 @@ export default function MonitoringCasePage() {
                     />
                   </div>
                   <CardText
-                    n={1}
                     title="Кого я изучала"
                     text="Tesla, Waymo, Cruise, Zoox, Samsara и «ГдеМои» — продукты, где оператор следит за большим парком машин"
                   />
@@ -245,7 +252,6 @@ export default function MonitoringCasePage() {
                     />
                   </div>
                   <CardText
-                    n={2}
                     title="Как выглядит рабочее место оператора"
                     text="Вопрос по ситуации, фрагмент с камеры и один понятный ответ — без лишних элементов"
                   />
@@ -253,7 +259,6 @@ export default function MonitoringCasePage() {
                 <article data-card className={cardBase}>
                   <SourcesGrid />
                   <CardText
-                    n={3}
                     title="Как это делают роботакси"
                     text="Четыре подробных разбора — нажми на карточку, чтобы открыть источник"
                   />
