@@ -16,6 +16,13 @@ const duties = [
   "Принимать решение о дальнейших действиях",
 ];
 
+const col = "ml-[clamp(16px,24.027vw,346px)] mr-4 max-w-[742px]";
+const wide = "ml-[clamp(16px,24.027vw,346px)] mr-4 max-w-[834px]";
+const h1 = "text-[32px] font-semibold leading-[1.2] tracking-[-0.01em] text-white";
+const h2 = "text-[22px] font-semibold leading-[1.3] tracking-[-0.005em] text-white";
+const body = "text-[16px] leading-[1.65] text-white/80";
+const caption = "text-[13px] leading-[1.5] text-white/50";
+
 const mixedLinks = [
   {
     name: "Waymo",
@@ -185,95 +192,102 @@ export default function MonitoringCasePage() {
         </div>
 
         <div className="relative z-10 pb-[120px] pt-[max(520px,calc(var(--s)*0.68472))]">
-          <div className="flex w-full flex-col pl-[clamp(16px,24.027vw,346px)] pr-4">
-            <div className="w-full max-w-[694px]">
-              <h1 className="font-display text-[54px] leading-[0.77] tracking-[0.02em]">Задача</h1>
-              <p className="mt-6 text-[18px] font-medium leading-snug tracking-[-0.108px] opacity-[0.96]">
-                Спроектировать сервис мониторинга беспилотного транспорта для инженеров центра мониторинга
+          <div className={col}>
+            <h1 className={h1}>Задача</h1>
+            <p className={`${body} mt-4`}>
+              Спроектировать сервис мониторинга беспилотного транспорта для инженеров центра мониторинга
+            </p>
+          </div>
+
+          <div className="relative mt-10 flex min-h-[173px] w-[min(632px,100%)] items-center gap-[57px] max-[700px]:flex-col max-[700px]:items-start max-[700px]:gap-4 max-[700px]:pl-4 min-[701px]:ml-[max(16px,calc(clamp(16px,24.027vw,346px)-99px))]">
+            <div className="relative hidden h-[173px] w-[42px] shrink-0 min-[701px]:block" aria-hidden>
+              <p className="font-bracket absolute top-[-34px] left-[-10px] text-[158.733px] leading-none tracking-[3.17px] text-[#fffbfb] opacity-[0.06]">
+                (
               </p>
             </div>
-
-            <div className="relative mt-8 flex h-[173px] w-[min(632px,100%)] items-center gap-[57px] max-[700px]:h-auto max-[700px]:flex-col max-[700px]:gap-4 min-[701px]:-ml-[99px]">
-              <div className="relative hidden h-[173px] w-[42px] shrink-0 min-[701px]:block" aria-hidden>
-                <p className="font-bracket absolute top-[-34px] left-[-10px] text-[158.733px] leading-none tracking-[3.17px] text-[#fffbfb] opacity-[0.06]">
-                  (
-                </p>
-              </div>
-              <div className="flex w-full max-w-[434px] flex-col gap-6">
-                <h2 className="font-display text-[34px] leading-[0.77] tracking-[0.02em]">
-                  Сервис должен помогать:
-                </h2>
-                <ul className="text-[18px] font-medium leading-normal tracking-[-0.108px] opacity-[0.96]">
-                  {duties.map((item) => (
-                    <li key={item}>– {item}</li>
-                  ))}
-                </ul>
-              </div>
-              <div className="relative hidden h-[173px] w-[42px] shrink-0 min-[701px]:block" aria-hidden>
-                <p className="font-bracket absolute top-[-34px] left-0 text-[158.733px] leading-none tracking-[3.17px] text-[#fffbfb] opacity-[0.06]">
-                  )
-                </p>
-              </div>
+            <div className="flex w-full max-w-[434px] flex-col gap-4">
+              <h2 className={h2}>Сервис должен помогать:</h2>
+              <ul className={`${body} space-y-1`}>
+                {duties.map((item) => (
+                  <li key={item}>– {item}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="relative hidden h-[173px] w-[42px] shrink-0 min-[701px]:block" aria-hidden>
+              <p className="font-bracket absolute top-[-34px] left-0 text-[158.733px] leading-none tracking-[3.17px] text-[#fffbfb] opacity-[0.06]">
+                )
+              </p>
             </div>
           </div>
 
-          <hr className="mx-auto mt-8 h-px w-[min(1248px,calc(100%-32px))] border-0 bg-white/20" />
+          <hr className="mx-auto mt-12 h-px w-[min(1248px,calc(100%-32px))] border-0 bg-white/20" />
 
-          <div className="mt-9 flex w-full flex-col pl-[clamp(16px,24.027vw,346px)]">
-            <h2 className="max-w-[694px] font-display text-[54px] leading-[0.77] tracking-[0.02em]">
-              Исследование
-            </h2>
-            <p className="mt-[31px] max-w-[834px] pr-4 text-[18px] font-medium leading-snug tracking-[-0.108px] opacity-[0.96]">
+          <div className={`${col} mt-12`}>
+            <h1 className={h1}>Исследование</h1>
+
+            <h2 className={`${h2} mt-8`}>Кто такие инженеры мониторинга</h2>
+            <p className={`${body} mt-3`}>
               Первым делом я решила изучить, кто же такие инженеры центра мониторинга, из чего состоит их работа, с какими задачами они сталкиваются каждый день и какая информация нужна им, чтобы быстро понимать, что происходит с&nbsp;автомобилем
             </p>
+          </div>
+          <div className={`${wide} mt-6`}>
             <img
               alt="Вакансии и описания специальности инженера мониторинга"
-              className="mt-6 h-[min(396px,27.5vw)] min-h-[220px] w-[min(834px,calc(100%-16px))] rounded-[22px] object-cover"
+              className="aspect-[834/396] w-full rounded-[22px] object-cover"
               src={asset("/figma/case/jobs.webp")}
             />
-            <p className="mt-[18px] max-w-[834px] pr-4 text-[12px] font-medium leading-snug opacity-60">
+            <p className={`${caption} mt-3`}>
               Пообщаться с реальными специалистами не удалось, поэтому я изучала целевых пользователей через вакансии и&nbsp;описания профильных специальностей в вузах и колледжах
             </p>
+          </div>
 
-            <p className="mt-8 max-w-[834px] pr-4 text-[18px] font-medium leading-snug tracking-[-0.108px] opacity-[0.96]">
+          <div className={`${col} mt-12`}>
+            <h2 className={h2}>Бенчмарки</h2>
+            <p className={`${body} mt-3`}>
               Следующим шагом я посмотрела, как похожие задачи решают другие продукты, и собрала бенчмарки. Мне было важно понять, как в таких системах показывают большое количество данных, выделяют проблемные состояния и помогают пользователю быстро перейти от общей картины к конкретной ситуации
             </p>
           </div>
 
-          <div className="mt-[26px]" style={{ marginInline: "calc(50% - 50vw)" }}>
+          <div className="mt-6" style={{ marginInline: "calc(50% - 50vw)" }}>
             <DragCarousel>
-            <div className="flex w-max gap-[25px] pl-[max(16px,calc((100vw-1440px)/2+346px),24.027vw)] pr-8 [&>*]:snap-start">
-              <img
-                alt="Логотипы Tesla, Samsara, ГдеМои, Waymo, Zoox и Cruise"
-                className="h-[min(396px,27.5vw)] min-h-[220px] w-[min(834px,calc(100vw-48px))] shrink-0 rounded-[22px] object-cover"
-                src={asset("/figma/case/logos.webp")}
-              />
-              <Board>
+              <div className="flex w-max gap-[25px] pl-[max(16px,calc((100vw-1440px)/2+346px),24.027vw)] pr-8 [&>*]:snap-start">
                 <img
-                  alt="Интерфейс разметки сцены для автономного автомобиля"
-                  src={asset("/figma/case/ui.webp")}
-                  className="absolute object-cover"
-                  style={{ left: "8.15%", top: "0.5%", width: "83.69%", height: "99.24%" }}
+                  alt="Логотипы Tesla, Samsara, ГдеМои, Waymo, Zoox и Cruise"
+                  className="h-[min(396px,27.5vw)] min-h-[220px] w-[min(834px,calc(100vw-48px))] shrink-0 rounded-[22px] object-cover"
+                  src={asset("/figma/case/logos.webp")}
                 />
-              </Board>
-              <MixedBoard />
-            </div>
+                <Board>
+                  <img
+                    alt="Интерфейс разметки сцены для автономного автомобиля"
+                    src={asset("/figma/case/ui.webp")}
+                    className="absolute object-cover"
+                    style={{ left: "8.15%", top: "0.5%", width: "83.69%", height: "99.24%" }}
+                  />
+                </Board>
+                <MixedBoard />
+              </div>
             </DragCarousel>
           </div>
-          <p className="mt-[16px] max-w-[834px] pl-[clamp(16px,24.027vw,346px)] pr-4 text-[12px] font-medium leading-snug opacity-60">
-            При поиске смотрела не только на конкретные системы мониторинга
-          </p>
-
-          <div className="mt-8 flex max-w-[834px] flex-col gap-6 pl-[clamp(16px,24.027vw,346px)] pr-4 text-[18px] font-medium leading-snug tracking-[-0.108px] opacity-[0.96]">
-            <p>
-              После просмотра стало понятно, что в таких системах особенно важно быстро отделять нормальное состояние от проблемного. При большом количестве машин оператор не должен искать проблему — система сама должна подсказывать, куда смотреть в первую очередь
-            </p>
-            <p>
-              Ещё я обратила внимание, что подробная информация нужна уже после того, как проблема найдена. На первом уровне достаточно самого важного: что произошло, с какой машиной и насколько это критично
-            </p>
+          <div className={col}>
+            <p className={`${caption} mt-3`}>При поиске смотрела не только на конкретные системы мониторинга</p>
           </div>
 
-          <hr className="mx-auto mt-10 h-px w-[min(1248px,calc(100%-32px))] border-0 bg-white/20" />
+          <div className={`${col} mt-12`}>
+            <h2 className={h2}>Что я поняла</h2>
+            <p className={`${body} mt-3`}>
+              <strong className="font-semibold text-white">
+                В таких системах особенно важно быстро отделять нормальное состояние от проблемного.
+              </strong>{" "}
+              При большом количестве машин оператор не должен искать проблему — система сама должна подсказывать, куда смотреть в первую очередь
+            </p>
+            <div className="mt-6 rounded-[14px] bg-white/[0.06] px-5 py-4">
+              <p className={body}>
+                <strong className="font-semibold text-white">Подробности — на втором уровне.</strong> Подробная информация нужна уже после того, как проблема найдена. На первом уровне достаточно самого важного: что произошло, с какой машиной и насколько это критично
+              </p>
+            </div>
+          </div>
+
+          <hr className="mx-auto mt-14 h-px w-[min(1248px,calc(100%-32px))] border-0 bg-white/20" />
         </div>
       </div>
     </div>
