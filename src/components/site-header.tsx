@@ -7,15 +7,13 @@ const pill =
 const lightPill = cn(pill, "bg-white text-[#181818]/90 hover:bg-white/70");
 
 const caseNav =
-  "inline-flex h-7 items-center rounded-full px-2.5 text-[11px] font-medium uppercase leading-none tracking-[-0.01em] text-white/90";
-const caseResume =
-  "inline-flex h-7 items-center rounded-full bg-white px-2.5 text-[11px] font-medium uppercase leading-none tracking-[-0.01em] text-[#181818]/90";
+  "text-[12px] font-medium uppercase leading-none tracking-[-0.01em] text-white/90 sm:text-[13px]";
 
 export function SiteHeader({ tone = "home" }: { tone?: "home" | "case" }) {
   if (tone === "case") {
     return (
-      <header className="mx-auto flex w-full max-w-[1308px] items-center justify-between gap-2 px-4 pt-5 sm:px-6">
-        <nav aria-label="Разделы" className="flex items-center gap-1">
+      <header className="mx-auto flex w-full max-w-[1308px] items-center justify-between gap-3 px-5 pt-6 sm:px-10 sm:pt-8 md:px-16">
+        <nav aria-label="Разделы" className="flex items-center gap-5 sm:gap-7">
           <a href="/#cases" className={caseNav}>
             Кейсы
           </a>
@@ -23,8 +21,8 @@ export function SiteHeader({ tone = "home" }: { tone?: "home" | "case" }) {
             Обо мне
           </a>
         </nav>
-        <div className="flex items-center gap-1.5">
-          <a href={site.cvUrl} className={caseResume}>
+        <div className="flex items-center gap-2.5 sm:gap-3">
+          <a href={site.cvUrl} className={caseNav}>
             Резюме
           </a>
           <a
@@ -32,9 +30,9 @@ export function SiteHeader({ tone = "home" }: { tone?: "home" | "case" }) {
             target="_blank"
             rel="noreferrer"
             aria-label="Написать в Telegram"
-            className="inline-flex size-7 shrink-0"
+            className="inline-flex size-8 shrink-0 sm:size-9"
           >
-            <svg width="28" height="28" viewBox="0 0 41 41" className="block size-7" aria-hidden="true">
+            <svg viewBox="0 0 41 41" className="block size-full" aria-hidden="true">
               <circle cx="20.5" cy="20.5" r="20.5" fill="#338FF5" />
               <path
                 transform="translate(7.749 12.341)"

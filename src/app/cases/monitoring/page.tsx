@@ -31,14 +31,19 @@ const duties = [
 export default function MonitoringCasePage() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-[#161616] text-[#fffbfb]">
-      <SiteHeader tone="case" />
       <main>
-        <section className="mt-2 w-full bg-[#161616] sm:mt-4" aria-label="Обложка кейса">
+        <section
+          className="relative w-full overflow-hidden bg-[#161616] aspect-[7452/2974]"
+          aria-label="Обложка кейса"
+        >
           <img
             alt="Монитор с интерфейсом центра мониторинга на деревянной столешнице"
-            className="mx-auto block h-auto w-full max-w-[1420px]"
+            className="pointer-events-none absolute left-1/2 top-0 w-[105%] max-w-none -translate-x-1/2"
             src={asset("/figma/case-scene.webp")}
           />
+          <div className="absolute inset-x-0 top-0 z-10">
+            <SiteHeader tone="case" />
+          </div>
         </section>
 
         <div className="mx-auto flex w-full max-w-[834px] flex-col px-4 pb-24 pt-10 sm:px-6 sm:pt-16">
