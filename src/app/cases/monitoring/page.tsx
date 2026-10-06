@@ -193,8 +193,7 @@ export default function MonitoringCasePage() {
           <div className={`${col} mt-12`}>
             <h1 className={h1}>Исследование</h1>
 
-            <h2 className={`${h2} mt-8`}>Кто такие инженеры мониторинга</h2>
-            <p className={`${body} mt-3`}>
+            <p className={`${body} mt-6`}>
               Первым делом я решила изучить, кто же такие инженеры центра мониторинга, из чего состоит их работа, с какими задачами они сталкиваются каждый день и какая информация нужна им, чтобы быстро понимать, что происходит с&nbsp;автомобилем
             </p>
           </div>
@@ -269,13 +268,7 @@ export default function MonitoringCasePage() {
 
           <div className={`${col} mt-12`}>
             <h2 className={h2}>Что я поняла</h2>
-            <p className={`${body} mt-3`}>
-              <strong className="font-semibold text-white">
-                В таких системах особенно важно быстро отделять нормальное состояние от проблемного.
-              </strong>{" "}
-              При большом количестве машин оператор не должен искать проблему — система сама должна подсказывать, куда смотреть в первую очередь
-            </p>
-            <div className="mt-6 rounded-[14px] bg-white/[0.06] px-5 py-4">
+            <div className="mt-3 rounded-[14px] bg-white/[0.06] px-5 py-4">
               <p className={body}>
                 <strong className="font-semibold text-white">Подробности — на втором уровне.</strong> Подробная информация нужна уже после того, как проблема найдена. На первом уровне достаточно самого важного: что произошло, с какой машиной и насколько это критично
               </p>
