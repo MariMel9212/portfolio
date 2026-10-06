@@ -57,6 +57,46 @@ function Takeaway({ title, children }: { title: string; children: ReactNode }) {
   );
 }
 
+function Draft() {
+  return (
+    <span className="ml-3 inline-block translate-y-[-4px] rounded-full bg-white/10 px-2.5 py-1 align-middle text-[11px] font-medium uppercase tracking-wide text-white/55">
+      Черновик
+    </span>
+  );
+}
+
+function Facts({ items }: { items: { k: string; v: string }[] }) {
+  return (
+    <dl className="grid gap-3 sm:grid-cols-3">
+      {items.map((it) => (
+        <div key={it.k} className="rounded-[14px] bg-white/[0.06] px-4 py-4">
+          <dt className="text-[12px] uppercase tracking-wide text-white/45">{it.k}</dt>
+          <dd className="mt-1.5 text-[15px] font-medium leading-snug text-white">{it.v}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
+function Rows({ head, rows }: { head: string[]; rows: string[][] }) {
+  return (
+    <div className="overflow-hidden rounded-[14px] border border-white/10 text-[14px] leading-[1.5]">
+      <div className="grid grid-cols-[1.1fr_2fr_1fr] gap-4 bg-white/[0.06] px-4 py-2.5 text-[12px] uppercase tracking-wide text-white/45">
+        {head.map((h) => (
+          <span key={h}>{h}</span>
+        ))}
+      </div>
+      {rows.map((r) => (
+        <div key={r[0]} className="grid grid-cols-[1.1fr_2fr_1fr] gap-4 border-t border-white/10 px-4 py-3 text-white/80">
+          <span className="font-medium text-white">{r[0]}</span>
+          <span>{r[1]}</span>
+          <span className="text-white/60">{r[2]}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 const sources = [
   {
     name: "Waymo",
@@ -237,6 +277,41 @@ export default function MonitoringCasePage() {
             <Takeaway title="Вывод.">[1–2 предложения: какие ограничения контекста влияют на дизайн.]</Takeaway>
           </div>
 
+          <div className={`${col} mt-12`}>
+            <h2 className={h2}>
+              Цели и метрики успеха <Draft />
+            </h2>
+            <p className={`${body} mt-3`}>
+              Перед дизайном договорилась с командой, что считаем успехом. Главное для центра мониторинга — быстрее замечать проблему и не пропускать критичное.
+            </p>
+          </div>
+          <div className={`${wide} mt-5`}>
+            <Facts
+              items={[
+                { k: "Время до реакции", v: "Цель: сократить время от сигнала до первого действия оператора" },
+                { k: "Пропущенные инциденты", v: "Цель: критичные случаи не теряются среди остальных" },
+                { k: "Нагрузка на оператора", v: "Цель: один оператор уверенно ведёт больший парк" },
+              ]}
+            />
+          </div>
+
+          <div className={`${col} mt-12`}>
+            <h2 className={h2}>
+              Участники и ограничения <Draft />
+            </h2>
+          </div>
+          <div className={`${wide} mt-4`}>
+            <Rows
+              head={["Кто", "Что важно для них", "Влияние на дизайн"]}
+              rows={[
+                ["Операторы", "Быстро понять, что происходит, без лишних кликов", "Первый уровень — только критичное"],
+                ["Руководитель смены", "Видеть нагрузку и очередь инцидентов", "Сводка по парку и статусам"],
+                ["Разработка", "Данные приходят с задержкой и неполные", "Состояния «нет связи» и «данные устарели»"],
+                ["Безопасность", "Каждое действие оператора фиксируется", "Подтверждение для необратимых действий"],
+              ]}
+            />
+          </div>
+
           <hr className="ml-[clamp(16px,24.027vw,346px)] mr-4 mt-12 h-px max-w-[834px] border-0 bg-white/15" />
 
           <div className={`${col} mt-12`}>
@@ -360,6 +435,44 @@ export default function MonitoringCasePage() {
           <hr className={`${hrCls} mt-14`} />
 
           <div className={`${col} mt-12`}>
+            <h1 className={h1}>
+              Гипотезы и приоритеты <Draft />
+            </h1>
+            <p className={`${body} mt-4`}>
+              Из исследования получилось несколько предположений. Каждое проверяли на макетах, а не на ощущениях.
+            </p>
+          </div>
+          <div className={`${wide} mt-5`}>
+            <Rows
+              head={["Гипотеза", "Если сделать…", "Как проверим"]}
+              rows={[
+                ["Сначала проблема", "Показывать проблемные машины выше нормальных — оператор реагирует быстрее", "Сравнить время поиска на макетах"],
+                ["Два уровня", "Детали только по клику — первый экран не перегружен", "Тест на понимание: что случилось?"],
+                ["Состояние в цвете", "Цвет и иконка статуса считываются без чтения текста", "Тест на скорость распознавания"],
+              ]}
+            />
+          </div>
+
+          <div className={`${col} mt-12`}>
+            <h2 className={h2}>
+              Приоритизация <Draft />
+            </h2>
+            <p className={`${body} mt-3`}>Разделила функции по ценности для оператора и стоимости реализации.</p>
+          </div>
+          <div className={`${wide} mt-5`}>
+            <Rows
+              head={["Приоритет", "Что входит", "Решение"]}
+              rows={[
+                ["Обязательно", "Список и карта машин, статус, детали инцидента, действия", "В первую версию"],
+                ["Важно", "Фильтры, очередь инцидентов, передача другому оператору", "Во вторую версию"],
+                ["Потом", "Аналитика смены, настраиваемые панели", "В бэклог"],
+              ]}
+            />
+          </div>
+
+          <hr className={`${hrCls} mt-14`} />
+
+          <div className={`${col} mt-12`}>
             <h1 className={h1}>Структура и сценарий</h1>
             <p className={`${body} mt-4`}>
               [Как из исследования получилась структура: какие разделы, что на первом уровне, что на втором.]
@@ -420,6 +533,60 @@ export default function MonitoringCasePage() {
           <hr className={`${hrCls} mt-14`} />
 
           <div className={`${col} mt-12`}>
+            <h1 className={h1}>
+              Итерации и проверка <Draft />
+            </h1>
+            <p className={`${body} mt-4`}>
+              Первая версия оказалась не такой, как финальная. Что менялось и почему.
+            </p>
+          </div>
+          <div className={`${wide} mt-6 space-y-10`}>
+            {[
+              {
+                v: "Версия 1",
+                title: "Всё на одном экране",
+                text: "Список, карта и детали одновременно. Оператор терялся: непонятно, куда смотреть в первую очередь.",
+              },
+              {
+                v: "Версия 2",
+                title: "Проблемы выше, детали по клику",
+                text: "Критичные машины поднялись наверх списка, детали раскрываются отдельной панелью. Ушло лишнее с первого уровня.",
+              },
+            ].map((x) => (
+              <div key={x.v} className="space-y-3">
+                <Slot label={`Макет: ${x.v}`} hint={x.title} ratio="834 / 470" />
+                <div>
+                  <h3 className="text-[16px] font-semibold text-white">
+                    {x.v}: {x.title}
+                  </h3>
+                  <p className={`${caption} mt-1`}>{x.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className={`${col} mt-12`}>
+            <h2 className={h2}>
+              Проверка на людях <Draft />
+            </h2>
+            <p className={`${body} mt-3`}>
+              Провела короткие тесты с дизайнерами и людьми из операционных ролей: давала сценарий «машина остановилась, что делаешь?» и смотрела, где они спотыкаются.
+            </p>
+          </div>
+          <div className={`${wide} mt-5`}>
+            <Rows
+              head={["Что нашли", "Что поменяла", "Результат"]}
+              rows={[
+                ["Не замечали смену статуса", "Усилила цвет и добавила иконку", "[проверить повторно]"],
+                ["Искали кнопку действия в списке", "Вынесла главное действие в карточку машины", "[проверить повторно]"],
+                ["Не понимали, что значит «нет связи»", "Подписала состояние и время последних данных", "[проверить повторно]"],
+              ]}
+            />
+          </div>
+
+          <hr className={`${hrCls} mt-14`} />
+
+          <div className={`${col} mt-12`}>
             <h1 className={h1}>Итог</h1>
             <p className={`${body} mt-4`}>
               [Что получилось, как проверяли (тест / обратная связь) и что бы сделала дальше.]
@@ -428,6 +595,36 @@ export default function MonitoringCasePage() {
           <div className={`${wide} mt-6`}>
             <Slot label="Финальный экран / сцена" hint="Эффектный кадр для финала кейса" ratio="834 / 470" />
           </div>
+          <div className={`${col} mt-12`}>
+            <h2 className={h2}>
+              Как поймём, что сработало <Draft />
+            </h2>
+            <p className={`${body} mt-3`}>
+              Цифр до запуска нет, поэтому зафиксировала, что будем мерить после релиза.
+            </p>
+          </div>
+          <div className={`${wide} mt-5`}>
+            <Rows
+              head={["Метрика", "Как измеряем", "Ориентир"]}
+              rows={[
+                ["Время до реакции", "От сигнала до первого действия", "[до / после]"],
+                ["Пропущенные инциденты", "Доля инцидентов без реакции в срок", "[до / после]"],
+                ["Ошибочные действия", "Откаты и повторные открытия", "[до / после]"],
+              ]}
+            />
+          </div>
+
+          <div className={`${col} mt-12`}>
+            <h2 className={h2}>
+              Что дальше <Draft />
+            </h2>
+            <ul className={`${body} mt-3 space-y-1`}>
+              <li>– Проверить сценарий на реальных операторах и сменах</li>
+              <li>– Добавить очередь инцидентов и передачу другому оператору</li>
+              <li>– Продумать работу при плохой связи и устаревших данных</li>
+            </ul>
+          </div>
+
           <hr className="ml-[clamp(16px,24.027vw,346px)] mr-4 mt-14 h-px max-w-[834px] border-0 bg-white/15" />
         </div>
       </div>
