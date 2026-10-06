@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const ARM = 70; // px of pull needed to "arm" the sensor
+const ARM = 32; // px of pull needed to "arm" the sensor
 
 type Phase = "idle" | "reboot" | "done";
 
@@ -52,16 +52,16 @@ export function PullLidar() {
       {/* lives in the gap that the rubber band reveals above the page */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 -top-[160px] flex h-[160px] flex-col items-center justify-end gap-3 pb-6"
-        style={{ opacity: Math.min(1, pull / 30) }}
+        className="pointer-events-none absolute inset-x-0 -top-[84px] flex h-[84px] flex-col items-center justify-end gap-1.5 pb-3"
+        style={{ opacity: Math.min(1, pull / 8) }}
       >
-        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" style={{ transform: `scale(${0.6 + 0.4 * k}) rotate(${pull * 4}deg)` }}>
+        <svg width="40" height="40" viewBox="0 0 56 56" fill="none" style={{ transform: `scale(${0.7 + 0.3 * k}) rotate(${pull * 8}deg)` }}>
           <circle cx="28" cy="28" r="26" stroke={ready ? "#3b9bff" : "rgba(255,255,255,0.25)"} strokeWidth="2" strokeDasharray="4 5" />
           <circle cx="28" cy="28" r="15" stroke={ready ? "#3b9bff" : "rgba(255,255,255,0.35)"} strokeWidth="2" />
           <path d="M28 28L28 6" stroke={ready ? "#3b9bff" : "rgba(255,255,255,0.5)"} strokeWidth="2" strokeLinecap="round" />
           <circle cx="28" cy="28" r="3" fill={ready ? "#3b9bff" : "#fff"} />
         </svg>
-        <span className="text-[13px] text-white/60">{ready ? "Отпусти — перезапущу LiDAR" : "Потяни ещё"}</span>
+        <span className="text-[12px] text-white/60">{ready ? "Отпусти — перезапущу LiDAR" : "Потяни ещё"}</span>
       </div>
 
       {/* after release the gap closes, so the result is shown as a toast */}
