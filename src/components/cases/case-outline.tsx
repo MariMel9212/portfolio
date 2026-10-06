@@ -47,7 +47,8 @@ function Bookmark({ on }: { on: boolean }) {
 }
 
 export function CaseOutline({ items }: { items: OutlineItem[] }) {
-  const [active, setActive] = useState(items[0]?.id);
+  const [visible, setVisible] = useState<string[]>([items[0]?.id]);
+  const [mouseY, setMouseY] = useState<number | null>(null);
   const [hover, setHover] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
   const [marks, setMarks] = useState<string[]>([]);
@@ -66,12 +67,16 @@ export function CaseOutline({ items }: { items: OutlineItem[] }) {
 
   useEffect(() => {
     const update = () => {
-      let current = items[0]?.id;
-      for (const it of items) {
-        const el = document.getElementById(it.id);
-        if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.35) current = it.id;
-      }
-      setActive(current);
+      const vh = window.innerHeight;
+      const tops = items.map((it) => document.getElementById(it.id)?.getBoundingClientRect().top ?? Infinity);
+      const docEnd = document.documentElement.scrollHeight - window.scrollY;
+      const vis: string[] = [];
+      items.forEach((it, i) => {
+        const start = tops[i];
+        const end = i + 1 < items.length ? tops[i + 1] : docEnd;
+        if (start < vh * 0.92 && end > vh * 0.08) vis.push(it.id);
+      });
+      setVisible(vis.length ? vis : [items[items.length - 1].id]);
     };
     update();
     window.addEventListener("scroll", update, { passive: true });
@@ -82,21 +87,39 @@ export function CaseOutline({ items }: { items: OutlineItem[] }) {
     };
   }, [items]);
 
-  const enterTick = useCallback((id: string) => {
-    window.clearTimeout(hideT.current);
-    setHover(id);
-    const b = tickRefs.current[id];
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  const onMove = (e: React.MouseEvent) => {
+    const track = trackRef.current;
     const nav = navRef.current;
-    if (b && nav) {
-      const nb = nav.getBoundingClientRect();
-      const bb = b.getBoundingClientRect();
-      setY(bb.top - nb.top + bb.height / 2);
+    if (!track || !nav) return;
+    const my = e.clientY;
+    setMouseY(my);
+    let best: string | null = null;
+    let bestD = Infinity;
+    let bestY = 0;
+    for (const it of items) {
+      const b = tickRefs.current[it.id];
+      if (!b) continue;
+      const r = b.getBoundingClientRect();
+      const c = r.top + r.height / 2;
+      const d = Math.abs(my - c);
+      if (d < bestD) {
+        bestD = d;
+        best = it.id;
+        bestY = c - nav.getBoundingClientRect().top;
+      }
     }
-    if (!open) {
-      window.clearTimeout(showT.current);
-      showT.current = window.setTimeout(() => setOpen(true), SHOW_DELAY);
+    if (best) {
+      window.clearTimeout(hideT.current);
+      setHover(best);
+      setY(bestY);
+      if (!open) {
+        window.clearTimeout(showT.current);
+        showT.current = window.setTimeout(() => setOpen(true), SHOW_DELAY);
+      }
     }
-  }, [open]);
+  };
 
   const enterArea = () => {
     window.clearTimeout(hideT.current);
@@ -105,6 +128,7 @@ export function CaseOutline({ items }: { items: OutlineItem[] }) {
   const leave = () => {
     window.clearTimeout(showT.current);
     window.clearTimeout(hideT.current);
+    setMouseY(null);
     hideT.current = window.setTimeout(() => {
       setOpen(false);
       setHover(null);
@@ -133,11 +157,24 @@ export function CaseOutline({ items }: { items: OutlineItem[] }) {
       onMouseLeave={leave}
       className="fixed right-4 top-1/2 z-30 hidden -translate-y-1/2 xl:block"
     >
-      <div className="flex flex-col items-end gap-[3px] py-4 pl-10 pr-1">
+      <div
+        ref={trackRef}
+        onMouseMove={onMove}
+        onMouseLeave={() => setMouseY(null)}
+        className="flex flex-col items-end py-4 pl-10 pr-1"
+      >
         {items.map((it) => {
-          const isActive = active === it.id;
-          const isHover = hover === it.id;
-          const w = isHover ? 36 : isActive ? 28 : 16;
+          const isVisible = visible.includes(it.id);
+          let f = 0;
+          const b = tickRefs.current[it.id];
+          if (mouseY !== null && b) {
+            const r = b.getBoundingClientRect();
+            const d = mouseY - (r.top + r.height / 2);
+            f = Math.exp(-Math.pow(d / 22, 2));
+          }
+          const w = 14 + 22 * f;
+          const base = isVisible ? 0.7 : 0.3;
+          const alpha = base + (1 - base) * f;
           return (
             <button
               key={it.id}
@@ -146,17 +183,21 @@ export function CaseOutline({ items }: { items: OutlineItem[] }) {
               }}
               type="button"
               aria-label={it.label}
-              onMouseEnter={() => enterTick(it.id)}
-              onFocus={() => enterTick(it.id)}
+              onFocus={() => {
+                const r = tickRefs.current[it.id]?.getBoundingClientRect();
+                if (r) onMove({ clientY: r.top + r.height / 2 } as React.MouseEvent);
+              }}
               onClick={() => scrollToId(it.id)}
-              className="group flex h-[10px] items-center justify-end"
+              className="flex h-[13px] items-center justify-end"
               style={{ width: 40 }}
             >
               <span
-                className={`block h-[2px] rounded-full transition-[width,background-color] duration-200 ease-out ${
-                  isActive || isHover ? "bg-white" : "bg-white/30"
-                }`}
-                style={{ width: w }}
+                className="block h-[2px] rounded-full bg-white"
+                style={{
+                  width: w,
+                  opacity: alpha,
+                  transition: "width 120ms ease-out, opacity 120ms ease-out",
+                }}
               />
             </button>
           );
