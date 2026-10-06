@@ -58,6 +58,15 @@ function Takeaway({ title, children }: { title: string; children: ReactNode }) {
   );
 }
 
+function Label({ children, draft }: { children: ReactNode; draft?: boolean }) {
+  return (
+    <p className="text-[12px] font-medium uppercase tracking-wide text-white/45">
+      {children}
+      {draft ? <span className="ml-2 rounded-full bg-white/10 px-2 py-0.5 text-[10px] normal-case tracking-normal text-white/50">черновик</span> : null}
+    </p>
+  );
+}
+
 function Draft() {
   return (
     <span className="ml-3 inline-block translate-y-[-4px] rounded-full bg-white/10 px-2.5 py-1 align-middle text-[11px] font-medium uppercase tracking-wide text-white/55">
@@ -330,6 +339,7 @@ export default function MonitoringCasePage() {
         </div>
 
         <div className="relative z-10 pb-[120px] pt-[max(520px,calc(var(--s)*0.68472))]">
+          {/* 1. Задача */}
           <div className={col}>
             <h1 className={h1}>Задача</h1>
             <p className={`${body} mt-4`}>
@@ -348,11 +358,11 @@ export default function MonitoringCasePage() {
             </div>
           </div>
 
-          <hr className="ml-[clamp(16px,24.027vw,346px)] mr-4 mt-12 h-px max-w-[834px] border-0 bg-white/15" />
+          <hr className={`${hrCls} mt-12`} />
 
+          {/* 2. Исследование */}
           <div className={`${col} mt-12`}>
             <h1 className={h1}>Исследование</h1>
-
             <p className={`${body} mt-6`}>
               Первым делом я решила изучить, кто же такие инженеры центра мониторинга, из чего состоит их работа, с какими задачами они сталкиваются каждый день и какая информация нужна им, чтобы быстро понимать, что происходит с&nbsp;автомобилем
             </p>
@@ -374,9 +384,9 @@ export default function MonitoringCasePage() {
             </p>
           </div>
 
+
           <div className={`${col} mt-12`}>
-            <h2 className={h2}>Бенчмарки</h2>
-            <p className={`${body} mt-3`}>
+            <p className={body}>
               Следующим шагом я посмотрела, как похожие задачи решают другие продукты, и собрала бенчмарки. Мне было важно понять, как в таких системах показывают большое количество данных, выделяют проблемные состояния и помогают пользователю быстро перейти от общей картины к конкретной ситуации
             </p>
           </div>
@@ -432,73 +442,52 @@ export default function MonitoringCasePage() {
             </DragCarousel>
           </div>
 
-          <div className={`${col} mt-12`}>
-            <div className="rounded-[14px] bg-white/[0.06] px-5 py-4">
-              <p className={body}>
-                <strong className="font-semibold text-white">Подробности — на втором уровне.</strong> Подробная информация нужна уже после того, как проблема найдена. На первом уровне достаточно самого важного: что произошло, с какой машиной и насколько это критично
-              </p>
-            </div>
-          </div>
 
-
-          <hr className={`${hrCls} mt-14`} />
-
-          <div className={`${col} mt-12`}>
-            <h1 className={h1}>Джобы пользователей</h1>
-            <p className={`${body} mt-4`}>
-              [Один абзац: на какие сегменты разделила инженеров и почему. Формулировки JTBD ниже.]
+          <div className={`${col} mt-10`}>
+            <p className={body}>
+              <strong className="font-semibold text-white">Подробности — на втором уровне.</strong> Подробная информация нужна уже после того, как проблема найдена. На первом уровне достаточно самого важного: что произошло, с какой машиной и насколько это критично
             </p>
           </div>
-          <div className={`${wide} mt-6`}>
+
+          <div className={`${col} mt-10`}>
+            <p className={body}>
+              [Один абзац: на какие два сегмента разделила инженеров и какие у них задачи.]
+            </p>
+          </div>
+          <div className={`${wide} mt-5`}>
             <Pair
-              left={
-                <Slot
-                  label="Сегмент 1"
-                  hint="Описание работы · основные задачи · что важно в моменте"
-                  ratio="400 / 330"
-                />
-              }
-              right={
-                <Slot
-                  label="Сегмент 2"
-                  hint="Описание работы · основные задачи · что важно в моменте"
-                  ratio="400 / 330"
-                />
-              }
+              left={<Slot label="Сегмент 1" hint="Описание работы · основные задачи" ratio="400 / 330" />}
+              right={<Slot label="Сегмент 2" hint="Описание работы · основные задачи" ratio="400 / 330" />}
             />
           </div>
 
           <hr className={`${hrCls} mt-14`} />
 
+          {/* 3. Проектирование */}
           <div className={`${col} mt-12`}>
-            <h2 className={h2}>
-              Цели и метрики успеха <Draft />
-            </h2>
-            <p className={`${body} mt-3`}>
-              Задание тестовое, поэтому критерии успеха сформулировала сама. Главное для центра мониторинга — быстрее замечать проблему и не пропускать критичное.
+            <h1 className={h1}>Проектирование</h1>
+            <p className={`${body} mt-4`}>
+              Из исследования получились цели и гипотезы, а из них структура и сценарий.
             </p>
           </div>
-          <div className={`${wide} mt-5`}>
+
+          <div className={`${col} mt-8`}>
+            <Label draft>Цели</Label>
+          </div>
+          <div className={`${wide} mt-3`}>
             <Facts
               items={[
-                { k: "Время до реакции", v: "Цель: сократить время от сигнала до первого действия оператора" },
-                { k: "Пропущенные инциденты", v: "Цель: критичные случаи не теряются среди остальных" },
-                { k: "Нагрузка на оператора", v: "Цель: один оператор уверенно ведёт больший парк" },
+                { k: "Время до реакции", v: "Сократить время от сигнала до первого действия оператора" },
+                { k: "Пропущенные инциденты", v: "Критичные случаи не теряются среди остальных" },
+                { k: "Нагрузка на оператора", v: "Один оператор уверенно ведёт больший парк" },
               ]}
             />
           </div>
 
-          <hr className={`${hrCls} mt-14`} />
-
-          <div className={`${col} mt-12`}>
-            <h1 className={h1}>
-              Гипотезы <Draft />
-            </h1>
-            <p className={`${body} mt-4`}>
-              Из исследования получилось несколько предположений. Каждое проверяли на макетах, а не на ощущениях.
-            </p>
+          <div className={`${col} mt-8`}>
+            <Label draft>Гипотезы</Label>
           </div>
-          <div className={`${wide} mt-5`}>
+          <div className={`${wide} mt-3`}>
             <Rows
               head={["Гипотеза", "Если сделать…", "Как проверим"]}
               rows={[
@@ -509,15 +498,7 @@ export default function MonitoringCasePage() {
             />
           </div>
 
-          <hr className={`${hrCls} mt-14`} />
-
           <div className={`${col} mt-12`}>
-            <h1 className={h1}>Структура и сценарий</h1>
-            <p className={`${body} mt-4`}>
-              [Как из исследования получилась структура: какие разделы, что на первом уровне, что на втором.]
-            </p>
-          </div>
-          <div className={`${col} mt-8`}>
             <h2 className={h2}>Информационная архитектура</h2>
             <p className={`${body} mt-3`}>
               Сервис работает с большим количеством данных: от заряда батареи до логов лидара. Прежде чем рисовать экраны, разложила всё по вложенности и по вопросам, которые оператор задаёт по порядку: что за машина, что с поездкой, что сломалось и что с этим сделать. Это помогло определить, что показывать сразу, а что убрать на второй уровень, и дало готовый порядок блоков в карточке машины. А когда в сценарии появлялась новая деталь, сразу было видно, к какой группе она относится.
@@ -527,8 +508,9 @@ export default function MonitoringCasePage() {
             <IATree />
           </div>
 
+
           <div className={`${col} mt-12`}>
-            <h2 className={h2}>User Flow: реакция на инцидент</h2>
+            <h2 className={h2}>User Flow</h2>
             <p className={`${body} mt-3`}>
               Сценарий помог найти места, где оператору нужно принимать решение: помогла ли перезагрузка, есть ли в машине пассажир, согласен ли он ждать другую машину. Из этих развилок получился набор действий в карточке машины: каждое появляется там, где оператор уже готов его выбрать.
             </p>
@@ -547,8 +529,10 @@ export default function MonitoringCasePage() {
             <p className={`${caption} mt-3`}>Схема широкая — потяни вправо, чтобы увидеть конец сценария</p>
           </div>
 
+
           <hr className={`${hrCls} mt-14`} />
 
+          {/* 4. Решение */}
           <div className={`${col} mt-12`}>
             <h1 className={h1}>Решение</h1>
             <p className={`${body} mt-4`}>
@@ -571,17 +555,10 @@ export default function MonitoringCasePage() {
             ))}
           </div>
 
-          <hr className={`${hrCls} mt-14`} />
-
           <div className={`${col} mt-12`}>
-            <h1 className={h1}>
-              Итерации <Draft />
-            </h1>
-            <p className={`${body} mt-4`}>
-              Первая версия оказалась не такой, как финальная. Что менялось и почему.
-            </p>
+            <Label draft>Как менялось решение</Label>
           </div>
-          <div className={`${wide} mt-6 space-y-10`}>
+          <div className={`${wide} mt-3 space-y-10`}>
             {[
               {
                 v: "Версия 1",
@@ -608,24 +585,21 @@ export default function MonitoringCasePage() {
 
           <hr className={`${hrCls} mt-14`} />
 
+          {/* 5. Итог */}
           <div className={`${col} mt-12`}>
             <h1 className={h1}>Итог</h1>
             <p className={`${body} mt-4`}>
-              [Что получилось, как проверяли (тест / обратная связь) и что бы сделала дальше.]
+              [Что получилось и что бы сделала дальше.]
             </p>
           </div>
           <div className={`${wide} mt-6`}>
             <Slot label="Финальный экран / сцена" hint="Эффектный кадр для финала кейса" ratio="834 / 470" />
           </div>
-          <div className={`${col} mt-12`}>
-            <h2 className={h2}>
-              Как поймём, что сработало <Draft />
-            </h2>
-            <p className={`${body} mt-3`}>
-              Цифр до запуска нет, поэтому зафиксировала, что будем мерить после релиза.
-            </p>
+
+          <div className={`${col} mt-10`}>
+            <Label draft>Что измерим после релиза</Label>
           </div>
-          <div className={`${wide} mt-5`}>
+          <div className={`${wide} mt-3`}>
             <Rows
               head={["Метрика", "Как измеряем", "Ориентир"]}
               rows={[
@@ -636,18 +610,14 @@ export default function MonitoringCasePage() {
             />
           </div>
 
-          <div className={`${col} mt-12`}>
-            <h2 className={h2}>
-              Что дальше <Draft />
-            </h2>
+          <div className={`${col} mt-10`}>
+            <Label draft>Что дальше</Label>
             <ul className={`${body} mt-3 space-y-1`}>
               <li>– Проверить сценарий на реальных операторах и сменах</li>
               <li>– Добавить очередь инцидентов и передачу другому оператору</li>
               <li>– Продумать работу при плохой связи и устаревших данных</li>
             </ul>
           </div>
-
-          <hr className="ml-[clamp(16px,24.027vw,346px)] mr-4 mt-14 h-px max-w-[834px] border-0 bg-white/15" />
         </div>
       </div>
     </div>
