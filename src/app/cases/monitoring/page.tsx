@@ -268,7 +268,7 @@ export default function MonitoringCasePage() {
     <>
     <style>{`html,body{background:#161616;overflow-x:clip;overscroll-behavior-x:none}`}</style>
     <div
-      className="relative min-h-screen overflow-x-clip bg-[#161616] text-[#fffbfb]"
+      className="relative min-h-screen overflow-x-clip bg-[#161616] text-[#fffbfb] max-md:[--up:calc(var(--s)*0.0336_-_56px)]!"
       style={{ ["--s" as string]: "100vw", ["--up" as string]: "calc(var(--s) * 0.0336)" }}
     >
       <PullLidar />
