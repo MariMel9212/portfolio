@@ -98,72 +98,86 @@ function Rows({ head, rows }: { head: string[]; rows: string[][] }) {
   );
 }
 
-const iaTree = [
-  {
-    title: "Автомобиль",
-    groups: [
-      { name: "Идентификация", items: ["ID", "Город", "Госномер"] },
-      { name: "Состояние", items: ["Заряд батареи", "Пробег", "Скорость", "Температура систем"] },
-      { name: "Сенсоры", items: ["Лидары"] },
-      { name: "Камеры", items: ["Stream", "Quality"] },
-      { name: "Навигация", items: ["GPS Signal"] },
-    ],
-  },
-  {
-    title: "Поездка",
-    groups: [
-      { name: "Пассажир", items: ["В салоне", "Тип клиента", "Тариф", "Контакт"] },
-      { name: "Маршрут", items: ["Точка А", "Точка Б", "ETA", "Статус"] },
-    ],
-  },
-  {
-    title: "Диагностика",
-    groups: [
-      { name: "Тип ошибки", items: ["Категория", "Severity", "Время возникновения"] },
-      { name: "Видео-поток", items: ["Front Camera", "LiDAR View"] },
-      { name: "Логи системы", items: ["Error Log", "Last Reboot"] },
-    ],
-  },
-  {
-    title: "Решение",
-    groups: [
-      {
-        name: "Удалённое управление",
-        items: ["Перезагрузить систему", "Разблокировать двери", "Включить сирену / свет"],
-      },
-      { name: "Логистика", items: ["Отправить замену", "Вызвать эвакуатор / механика"] },
-      { name: "Коммуникация", items: ["Включить связь с салоном", "Отправить Push"] },
-    ],
-  },
-] as const;
+type IANode = { label: string; children?: IANode[] };
+
+const leaf = (label: string): IANode => ({ label });
+
+const iaRoot: IANode = {
+  label: "Алерт",
+  children: [
+    {
+      label: "Автомобиль",
+      children: [
+        { label: "Идентификация", children: ["ID", "Город", "Госномер"].map(leaf) },
+        { label: "Состояние", children: ["Заряд батареи", "Пробег", "Скорость", "Температура систем"].map(leaf) },
+        { label: "Сенсоры", children: ["Лидары"].map(leaf) },
+        { label: "Камеры", children: ["Stream", "Quality"].map(leaf) },
+        { label: "Навигация", children: ["GPS Signal"].map(leaf) },
+      ],
+    },
+    {
+      label: "Поездка",
+      children: [
+        { label: "Пассажир", children: ["В салоне", "Тип клиента", "Тариф", "Контакт"].map(leaf) },
+        { label: "Маршрут", children: ["Точка А", "Точка Б", "ETA", "Статус"].map(leaf) },
+      ],
+    },
+    {
+      label: "Диагностика",
+      children: [
+        { label: "Тип ошибки", children: ["Категория", "Severity", "Время возникновения"].map(leaf) },
+        { label: "Видео-поток", children: ["Front Camera", "LiDAR View"].map(leaf) },
+        { label: "Логи системы", children: ["Error Log", "Last Reboot"].map(leaf) },
+      ],
+    },
+    {
+      label: "Решение",
+      children: [
+        {
+          label: "Удалённое управление",
+          children: ["Перезагрузить систему", "Разблокировать двери", "Включить сирену / свет"].map(leaf),
+        },
+        { label: "Логистика", children: ["Отправить замену", "Вызвать эвакуатор / механика"].map(leaf) },
+        { label: "Коммуникация", children: ["Включить связь с салоном", "Отправить Push"].map(leaf) },
+      ],
+    },
+  ],
+};
+
+const levelStyle = [
+  "bg-[#ff4d4d] px-4 py-2 text-[14px] font-semibold text-white",
+  "bg-white/15 px-3.5 py-1.5 text-[14px] font-semibold text-white",
+  "bg-white/10 px-3 py-1.5 text-[13px] font-medium text-white/85",
+  "bg-transparent px-0 py-0.5 text-[12.5px] text-white/60",
+];
+
+function IANodeView({ node, depth }: { node: IANode; depth: number }) {
+  const label = (
+    <span className={`inline-block whitespace-nowrap rounded-full ${levelStyle[Math.min(depth, 3)]}`}>
+      {node.label}
+    </span>
+  );
+  if (!node.children) return label;
+  return (
+    <div className="tree-row">
+      {label}
+      <span className="tree-link" />
+      <div className="tree-children">
+        {node.children.map((c) => (
+          <div key={c.label} className="tree-child">
+            <IANodeView node={c} depth={depth + 1} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function IATree() {
   return (
-    <div className="rounded-[22px] bg-white/[0.06] p-5 sm:p-6">
-      <div className="flex items-center gap-3">
-        <span className="rounded-full bg-[#ff4d4d] px-4 py-1.5 text-[14px] font-semibold text-white">Алерт</span>
-        <span className="text-[13px] text-white/45">точка входа — оператор открывает карточку</span>
-      </div>
-      <div className="mt-5 grid gap-4 sm:grid-cols-2">
-        {iaTree.map((col) => (
-          <div key={col.title} className="rounded-[16px] bg-white/[0.05] p-4">
-            <h3 className="text-[16px] font-semibold text-white">{col.title}</h3>
-            <div className="mt-3 space-y-3">
-              {col.groups.map((g) => (
-                <div key={g.name}>
-                  <p className="text-[13px] font-medium text-white/80">{g.name}</p>
-                  <div className="mt-1.5 flex flex-wrap gap-1.5">
-                    {g.items.map((it) => (
-                      <span key={it} className="rounded-full bg-white/10 px-2.5 py-1 text-[12px] leading-none text-white/70">
-                        {it}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
+    <div className="no-scrollbar overflow-x-auto rounded-[22px] bg-white/[0.06] p-6">
+      <div className="w-max">
+        <IANodeView node={iaRoot} depth={0} />
       </div>
     </div>
   );
@@ -506,7 +520,7 @@ export default function MonitoringCasePage() {
           <div className={`${col} mt-8`}>
             <h2 className={h2}>Информационная архитектура</h2>
             <p className={`${body} mt-3`}>
-              Точка входа — алерт. Из него оператор попадает в карточку машины, где информация разложена по четырём смыслам: что за автомобиль, что с поездкой, что сломалось и что можно сделать.
+              Сервис работает с большим количеством данных: от заряда батареи до логов лидара. Прежде чем рисовать экраны, разложила всё по вложенности и по вопросам, которые оператор задаёт по порядку: что за машина, что с поездкой, что сломалось и что с этим сделать. Это помогло определить, что показывать сразу, а что убрать на второй уровень, и дало готовый порядок блоков в карточке машины. А когда в сценарии появлялась новая деталь, сразу было видно, к какой группе она относится.
             </p>
           </div>
           <div className={`${wide} mt-5`}>
@@ -516,7 +530,7 @@ export default function MonitoringCasePage() {
           <div className={`${col} mt-12`}>
             <h2 className={h2}>User Flow: реакция на инцидент</h2>
             <p className={`${body} mt-3`}>
-              От красного алерта на дашборде до закрытия инцидента. Развилки показывают, как решение зависит от того, помогла ли перезагрузка и есть ли в машине пассажир.
+              Сценарий помог найти места, где оператору нужно принимать решение: помогла ли перезагрузка, есть ли в машине пассажир, согласен ли он ждать другую машину. Из этих развилок получился набор действий в карточке машины: каждое появляется там, где оператор уже готов его выбрать.
             </p>
           </div>
           <div className={`${wide} mt-5`}>

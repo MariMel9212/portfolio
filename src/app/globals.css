@@ -179,3 +179,56 @@
     transform: scale(1.18);
   }
 }
+/* Information architecture tree */
+.tree-row {
+  display: flex;
+  align-items: center;
+}
+
+.tree-link {
+  flex: none;
+  width: 22px;
+  border-top: 1px solid rgb(255 255 255 / 0.28);
+}
+
+.tree-children {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-left: 22px;
+}
+
+.tree-child {
+  position: relative;
+  padding: 3px 0;
+}
+
+.tree-child::before {
+  content: "";
+  position: absolute;
+  left: -22px;
+  top: 50%;
+  width: 22px;
+  border-top: 1px solid rgb(255 255 255 / 0.28);
+}
+
+.tree-child::after {
+  content: "";
+  position: absolute;
+  left: -22px;
+  top: 0;
+  bottom: 0;
+  border-left: 1px solid rgb(255 255 255 / 0.28);
+}
+
+.tree-child:first-child::after {
+  top: 50%;
+}
+
+.tree-child:last-child::after {
+  bottom: 50%;
+}
+
+.tree-child:only-child::after {
+  display: none;
+}
