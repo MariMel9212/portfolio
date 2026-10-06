@@ -40,7 +40,7 @@ export default function MonitoringCasePage() {
           <div
             className="absolute left-1/2 -translate-x-1/2"
             style={{
-              top: "11.435%",
+              top: "9.224%",
               width: "127.368%",
               height: "85.618%",
             }}
