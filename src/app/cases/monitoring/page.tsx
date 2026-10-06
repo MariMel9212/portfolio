@@ -273,7 +273,7 @@ export default function MonitoringCasePage() {
     >
       <PullLidar />
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 overflow-hidden"
+        className="pointer-events-none absolute inset-x-0 top-0 overflow-hidden max-md:origin-top max-md:scale-[1.4]"
         style={{ height: "calc(var(--s) * 0.9423)" }}
         aria-hidden
       >
@@ -295,7 +295,7 @@ export default function MonitoringCasePage() {
       </div>
       <div className="relative mx-auto w-full max-w-[1440px]">
         <section
-          className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 overflow-x-hidden"
+          className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 overflow-x-hidden max-md:scale-[1.4] max-md:[transform-origin:50%_var(--up)]"
           style={{ width: "var(--s)", aspectRatio: "1440 / 1356.84", top: "calc(var(--up) * -1)" }}
           aria-label="Обложка кейса"
         >
@@ -353,7 +353,7 @@ export default function MonitoringCasePage() {
           />
         </div>
 
-        <div className="relative z-10 pb-[120px] pt-[calc(max(520px,var(--s)*0.68472)-var(--up))]">
+        <div className="relative z-10 pb-[120px] pt-[calc(max(520px,var(--s)*0.68472)-var(--up))] max-md:pt-[calc(var(--s)*1.203+118px)]">
           {/* 1. Задача */}
           <div className={col}>
             <h1 id="task" className={h1+" w-fit scroll-mt-24"}>Задача</h1>
