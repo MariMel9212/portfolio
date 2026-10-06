@@ -27,7 +27,7 @@ const steps: Step[] = [
   { src: "/figma/case/screens/6-resolution.webp", h: 1541, cursor: [1171, 659], click: true, dur: 3000, title: "Активный процесс", sub: "Пошаговый протокол", text: "Чек-лист пройден, аудиосвязь активна. Кнопка «Перезапустить LiDAR» разблокирована только после проверки обстановки." },
   { src: "/figma/case/screens/7-confirmation.webp", h: 1541, cursor: [834, 654], click: true, dur: 3400, title: "Подтверждение действия", sub: "Предупреждение о последствиях", text: "Перед перезапуском сказано, что машина будет неподвижна около 15 секунд. Инженер осознаёт риск и простой." },
   { src: "/figma/case/screens/8-loading.webp", h: 1541, cursor: [1171, 620], dur: 3000, title: "Процесс", sub: "Обратная связь в реальном времени", text: "Статус «Перезагрузка…» с ожиданием 12–20 секунд снижает тревожность: оператор видит, что команда принята." },
-  { src: "/figma/case/screens/9-success.webp", h: 1541, scroll: 480, cursor: [1183, 983], click: true, dur: 3600, title: "Успех", sub: "Восстановление и закрытие", text: "Датчик вернулся в сеть, главное действие меняется на «Закрыть инцидент». Сценарий завершён." },
+  { src: "/figma/case/screens/9-success.webp", h: 1541, cursor: [1183, 983], click: true, dur: 3600, title: "Успех", sub: "Восстановление и закрытие", text: "Датчик вернулся в сеть, главное действие меняется на «Закрыть инцидент». Сценарий завершён." },
 ];
 
 export function IncidentDemo() {
@@ -53,7 +53,6 @@ export function IncidentDemo() {
   }, [idx, playing, inView, reduce]);
 
   const s = steps[idx];
-  const scroll = s.scroll ?? 0;
   const [cx, cy] = s.cursor;
 
   return (
@@ -64,23 +63,52 @@ export function IncidentDemo() {
       >
         {steps.map((st, i) => {
           const active = i === idx;
-          const ty = active && st.scroll ? -(st.scroll / st.h) * 100 : 0;
+          const fade = { opacity: active ? 1 : 0, zIndex: active ? 2 : 1 };
+          const fadeT = "opacity 450ms ease-out";
+          if (!st.scroll) {
+            return (
+              <img
+                key={st.src}
+                alt={st.title}
+                src={asset(st.src)}
+                draggable={false}
+                className="absolute left-0 top-0 w-full select-none"
+                style={{ ...fade, transition: fadeT }}
+              />
+            );
+          }
+          // fixed chrome (sidebar, top bar, right panel) stays; only the middle column scrolls
+          const L = 117;
+          const R = 928;
+          const T = 78;
+          const winW = R - L;
+          const ty = active ? -((T + st.scroll) / st.h) * 100 : -(T / st.h) * 100;
           return (
-            <img
-              key={st.src}
-              alt={st.title}
-              src={asset(st.src)}
-              draggable={false}
-              className="absolute left-0 top-0 w-full select-none"
-              style={{
-                opacity: active ? 1 : 0,
-                transform: `translateY(${ty}%)`,
-                transition: active
-                  ? "opacity 450ms ease-out, transform 1600ms cubic-bezier(0.45,0,0.2,1) 700ms"
-                  : "opacity 450ms ease-out",
-                zIndex: active ? 2 : 1,
-              }}
-            />
+            <div key={st.src} className="absolute inset-0" style={{ ...fade, transition: fadeT }}>
+              <img alt={st.title} src={asset(st.src)} draggable={false} className="absolute left-0 top-0 w-full select-none" />
+              <div
+                className="absolute overflow-hidden"
+                style={{
+                  left: `${(L / W) * 100}%`,
+                  width: `${(winW / W) * 100}%`,
+                  top: `${(T / VIEW_H) * 100}%`,
+                  height: `${((VIEW_H - T) / VIEW_H) * 100}%`,
+                }}
+              >
+                <img
+                  alt=""
+                  src={asset(st.src)}
+                  draggable={false}
+                  className="absolute top-0 max-w-none select-none"
+                  style={{
+                    left: `-${(L / winW) * 100}%`,
+                    width: `${(W / winW) * 100}%`,
+                    transform: `translateY(${ty}%)`,
+                    transition: active ? "transform 1600ms cubic-bezier(0.45,0,0.2,1) 700ms" : "none",
+                  }}
+                />
+              </div>
+            </div>
           );
         })}
 
@@ -90,7 +118,7 @@ export function IncidentDemo() {
           className="pointer-events-none absolute z-10"
           style={{
             left: `${(cx / W) * 100}%`,
-            top: `${((cy - scroll) / VIEW_H) * 100}%`,
+            top: `${(cy / VIEW_H) * 100}%`,
             transition: "left 900ms cubic-bezier(0.45,0,0.2,1) 200ms, top 900ms cubic-bezier(0.45,0,0.2,1) 200ms",
           }}
         >
