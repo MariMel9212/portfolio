@@ -400,12 +400,8 @@ export function IncidentDemo() {
 
       <div className="mt-5 flex items-start justify-between gap-6">
         <div key={idx} className="outline-fade min-w-0 flex-1">
-          <div className="text-[12px] tabular-nums text-white/40">
-            {String(idx + 1).padStart(2, "0")} / {String(steps.length).padStart(2, "0")}
-          </div>
-          <div className="mt-1 text-[18px] font-semibold text-white">{s.title}</div>
+          <div className="text-[18px] font-semibold text-white">{s.title}</div>
           <div className="mt-0.5 text-[13px] text-white/50">{s.sub}</div>
-          <p className="mt-2 max-w-[640px] text-[15px] leading-[1.6] text-white/75">{s.text}</p>
         </div>
         <button
           type="button"
