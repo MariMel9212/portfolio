@@ -273,8 +273,7 @@ export default function MonitoringCasePage() {
           </div>
 
           <div className={`${col} mt-12`}>
-            <h2 className={h2}>Что я поняла</h2>
-            <div className="mt-3 rounded-[14px] bg-white/[0.06] px-5 py-4">
+            <div className="rounded-[14px] bg-white/[0.06] px-5 py-4">
               <p className={body}>
                 <strong className="font-semibold text-white">Подробности — на втором уровне.</strong> Подробная информация нужна уже после того, как проблема найдена. На первом уровне достаточно самого важного: что произошло, с какой машиной и насколько это критично
               </p>
