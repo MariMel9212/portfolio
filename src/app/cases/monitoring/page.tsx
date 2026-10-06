@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/site-header";
 import { asset } from "@/lib/asset";
 import { DragCarousel } from "@/components/cases/drag-carousel";
 import { CaseOutline } from "@/components/cases/case-outline";
+import { PullLidar } from "@/components/cases/pull-lidar";
 import { IncidentDemo } from "@/components/cases/incident-demo";
 import { DragPan } from "@/components/cases/drag-pan";
 
@@ -270,6 +271,7 @@ export default function MonitoringCasePage() {
       className="relative min-h-screen overflow-x-clip bg-[#161616] text-[#fffbfb]"
       style={{ ["--s" as string]: "100vw" }}
     >
+      <PullLidar />
       <div
         className="pointer-events-none absolute inset-x-0 top-0 overflow-hidden"
         style={{ height: "calc(var(--s) * 0.9423)" }}
