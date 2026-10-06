@@ -41,14 +41,6 @@ function Slot({ label, hint, ratio = "834 / 396" }: { label: string; hint?: stri
   );
 }
 
-function DecisionRow({ img, alt }: { img: string; alt: string }) {
-  return (
-    <div className="overflow-hidden rounded-[18px] bg-white">
-      <img alt={alt} loading="lazy" src={asset(img)} className="block w-full" />
-    </div>
-  );
-}
-
 function Pair({ left, right }: { left: ReactNode; right: ReactNode }) {
   return (
     <div className="grid gap-4 sm:grid-cols-2">
@@ -532,33 +524,6 @@ export default function MonitoringCasePage() {
             <IncidentDemo />
           </div>
 
-          <div className={`${wide} mt-16 space-y-14`}>
-            <DecisionRow
-              img="/figma/case/solution/alert.webp"
-              alt="Список активных инцидентов с алертом Critical"
-            />
-            <DecisionRow
-              img="/figma/case/solution/quick.webp"
-              alt="Боковая панель с кратким контекстом инцидента"
-            />
-            <DecisionRow
-              img="/figma/case/solution/diag.webp"
-              alt="Камеры, локация и телеметрия машины"
-            />
-
-            <div className="grid gap-x-5 gap-y-5 sm:grid-cols-2">
-              {[
-                ["safe", "Подтверждение безопасности"],
-                ["risk", "Предупреждение о последствиях"],
-                ["proc", "Обратная связь"],
-                ["done", "Закрытие инцидента"],
-              ].map(([k, t]) => (
-                <div key={k} className="overflow-hidden rounded-[16px] bg-white">
-                  <img alt={t} loading="lazy" src={asset(`/figma/case/solution/${k}.webp`)} className="block w-full" />
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
     </div>
