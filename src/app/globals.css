@@ -258,5 +258,14 @@
   border-radius: 9999px;
   background: rgb(51 144 255 / 0.55);
   opacity: 0;
-  animation: demo-ripple 650ms ease-out 1150ms both;
+  animation: demo-ripple 650ms ease-out 1450ms both;
 }
+
+@keyframes demo-state {
+  0% { opacity: 0; background: transparent; transform: scale(1); }
+  30% { opacity: 1; background: var(--h-bg); transform: scale(1); }
+  60% { opacity: 1; background: var(--h-bg); transform: scale(1); }
+  75% { opacity: 1; background: var(--p-bg); transform: scale(0.985); }
+  100% { opacity: 1; background: var(--h-bg); transform: scale(1); }
+}
+.demo-state { animation: demo-state 1000ms ease-out 850ms both; }
