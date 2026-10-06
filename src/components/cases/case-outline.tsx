@@ -6,7 +6,6 @@ export type OutlineItem = { id: string; label: string; desc: string; level: 1 | 
 
 const SHOW_DELAY = 100;
 const HIDE_DELAY = 200;
-const STORAGE_KEY = "case-outline-bookmarks";
 
 function scrollToId(id: string) {
   const el = document.getElementById(id);
@@ -38,32 +37,16 @@ function scrollToId(id: string) {
   requestAnimationFrame(step);
 }
 
-function Bookmark({ on }: { on: boolean }) {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill={on ? "currentColor" : "none"} stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round">
-      <path d="M7 4h10a1 1 0 0 1 1 1v15l-6-4-6 4V5a1 1 0 0 1 1-1z" />
-    </svg>
-  );
-}
-
 export function CaseOutline({ items }: { items: OutlineItem[] }) {
   const [visible, setVisible] = useState<string[]>([items[0]?.id]);
   const [mouseY, setMouseY] = useState<number | null>(null);
   const [hover, setHover] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
-  const [marks, setMarks] = useState<string[]>([]);
-  const [pop, setPop] = useState<string | null>(null);
   const tickRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const navRef = useRef<HTMLElement>(null);
   const [y, setY] = useState(0);
   const showT = useRef<number | undefined>(undefined);
   const hideT = useRef<number | undefined>(undefined);
-
-  useEffect(() => {
-    try {
-      setMarks(JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"));
-    } catch {}
-  }, []);
 
   useEffect(() => {
     const update = () => {
@@ -135,18 +118,6 @@ export function CaseOutline({ items }: { items: OutlineItem[] }) {
     }, HIDE_DELAY);
   };
 
-  const toggleMark = (id: string) => {
-    setMarks((prev) => {
-      const next = prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id];
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
-      } catch {}
-      return next;
-    });
-    setPop(id);
-    window.setTimeout(() => setPop(null), 220);
-  };
-
   const shown = items.find((i) => i.id === hover);
 
   return (
@@ -215,30 +186,15 @@ export function CaseOutline({ items }: { items: OutlineItem[] }) {
       >
         <div className="w-[300px] rounded-[20px] bg-[#262626] px-5 py-4 shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
           {shown && (
-            <div key={shown.id} className="outline-fade flex items-start gap-3">
-              <button
-                type="button"
-                onClick={() => scrollToId(shown.id)}
-                className="min-w-0 flex-1 text-left"
-              >
-                <div className="truncate text-[15px] font-medium text-white">{shown.label}</div>
-                <div className="mt-1.5 line-clamp-3 text-[14px] leading-[1.5] text-white/50">{shown.desc}</div>
-              </button>
-              <button
-                type="button"
-                aria-label={marks.includes(shown.id) ? "Убрать закладку" : "Добавить закладку"}
-                aria-pressed={marks.includes(shown.id)}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  toggleMark(shown.id);
-                }}
-                className={`mt-0.5 shrink-0 transition-[transform,color] duration-200 ${
-                  marks.includes(shown.id) ? "text-white" : "text-white/50 hover:text-white"
-                } ${pop === shown.id ? "scale-125" : "scale-100"}`}
-              >
-                <Bookmark on={marks.includes(shown.id)} />
-              </button>
-            </div>
+            <button
+              key={shown.id}
+              type="button"
+              onClick={() => scrollToId(shown.id)}
+              className="outline-fade block w-full text-left"
+            >
+              <div className="truncate text-[15px] font-medium text-white">{shown.label}</div>
+              <div className="mt-1.5 line-clamp-3 text-[14px] leading-[1.5] text-white/50">{shown.desc}</div>
+            </button>
           )}
         </div>
       </div>
