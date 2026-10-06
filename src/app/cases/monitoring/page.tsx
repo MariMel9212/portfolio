@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { SiteHeader } from "@/components/site-header";
 import { asset } from "@/lib/asset";
+import { DragCarousel } from "@/components/cases/drag-carousel";
 
 export const metadata: Metadata = {
   title: "Мониторинг беспилотного автопарка — Мария Мельничук",
@@ -107,11 +108,35 @@ function MixedBoard() {
 
 export default function MonitoringCasePage() {
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#161616] text-[#fffbfb]">
-      <main className="relative mx-auto w-full max-w-[1440px]">
+    <div
+      className="relative min-h-screen overflow-x-hidden bg-[#161616] text-[#fffbfb]"
+      style={{ ["--s" as string]: "100vw" }}
+    >
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 overflow-hidden"
+        style={{ height: "calc(var(--s) * 0.9423)" }}
+        aria-hidden
+      >
+        <div
+          className="absolute left-1/2 -translate-x-1/2 overflow-hidden"
+          style={{
+            top: "calc(var(--s) * 0.51836)",
+            width: "calc(var(--s) * 1.27368)",
+            height: "calc(var(--s) * 0.37535)",
+          }}
+        >
+          <img
+            alt=""
+            src={asset("/figma/case-desk.webp")}
+            className="pointer-events-none absolute max-w-none"
+            style={{ height: "191.07%", width: "100.05%", left: "-0.02%", top: "-49.54%" }}
+          />
+        </div>
+      </div>
+      <div className="relative mx-auto w-full max-w-[1440px]">
         <section
-          className="pointer-events-none absolute inset-x-0 top-0 overflow-x-hidden"
-          style={{ aspectRatio: "1440 / 1356.84" }}
+          className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 overflow-x-hidden"
+          style={{ width: "var(--s)", aspectRatio: "1440 / 1356.84" }}
           aria-label="Обложка кейса"
         >
           <div
@@ -122,17 +147,6 @@ export default function MonitoringCasePage() {
               height: "85.618%",
             }}
           >
-            <div
-              className="absolute left-0 overflow-hidden"
-              style={{ top: "53.475%", width: "100%", height: "46.525%" }}
-            >
-              <img
-                alt=""
-                src={asset("/figma/case-desk.webp")}
-                className="pointer-events-none absolute max-w-none"
-                style={{ height: "191.07%", width: "100.05%", left: "-0.02%", top: "-49.54%" }}
-              />
-            </div>
             <div
               className="absolute"
               style={{
@@ -170,7 +184,7 @@ export default function MonitoringCasePage() {
           <SiteHeader tone="case" />
         </div>
 
-        <div className="relative z-10 pb-[120px] pt-[clamp(520px,68.472vw,986px)]">
+        <div className="relative z-10 pb-[120px] pt-[max(520px,calc(var(--s)*0.68472))]">
           <div className="flex w-full flex-col pl-[clamp(16px,24.027vw,346px)] pr-4">
             <div className="w-full max-w-[694px]">
               <h1 className="font-display text-[54px] leading-[0.77] tracking-[0.02em]">Задача</h1>
@@ -226,8 +240,9 @@ export default function MonitoringCasePage() {
             </p>
           </div>
 
-          <div className="mt-[26px] w-full overflow-x-auto pl-[clamp(16px,24.027vw,346px)] [scrollbar-width:thin]">
-            <div className="flex w-max gap-[25px] pr-8">
+          <div className="mt-[26px]" style={{ marginInline: "calc(50% - 50vw)" }}>
+            <DragCarousel>
+            <div className="flex w-max gap-[25px] pl-[max(16px,calc((100vw-1440px)/2+346px),24.027vw)] pr-8 [&>*]:snap-start">
               <img
                 alt="Логотипы Tesla, Samsara, ГдеМои, Waymo, Zoox и Cruise"
                 className="h-[min(396px,27.5vw)] min-h-[220px] w-[min(834px,calc(100vw-48px))] shrink-0 rounded-[22px] object-cover"
@@ -243,6 +258,7 @@ export default function MonitoringCasePage() {
               </Board>
               <MixedBoard />
             </div>
+            </DragCarousel>
           </div>
           <p className="mt-[16px] max-w-[834px] pl-[clamp(16px,24.027vw,346px)] pr-4 text-[12px] font-medium leading-snug opacity-60">
             При поиске смотрела не только на конкретные системы мониторинга
@@ -259,7 +275,7 @@ export default function MonitoringCasePage() {
 
           <hr className="mx-auto mt-10 h-px w-[min(1248px,calc(100%-32px))] border-0 bg-white/20" />
         </div>
-      </main>
+      </div>
     </div>
   );
 }

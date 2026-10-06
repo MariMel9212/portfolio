@@ -132,6 +132,14 @@
   }
 }
 
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 .font-bracket {
   font-family: var(--font-bracket);
 }
