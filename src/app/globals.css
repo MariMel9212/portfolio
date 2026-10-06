@@ -269,3 +269,16 @@
   100% { opacity: 1; background: var(--h-bg); transform: scale(1); }
 }
 .demo-state { animation: demo-state 1000ms ease-out 850ms both; }
+
+.demo-state.demo-fast { animation-duration: 700ms; animation-delay: 300ms; }
+.demo-ripple.demo-fast { animation-delay: 800ms; }
+@keyframes demo-check-in {
+  from { opacity: 0; transform: scale(0.5); }
+  to { opacity: 1; transform: scale(1); }
+}
+.demo-check {
+  background: #3b9bff;
+  border-radius: 4px;
+  opacity: 0;
+  animation: demo-check-in 200ms ease-out both;
+}

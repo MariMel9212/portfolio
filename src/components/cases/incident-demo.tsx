@@ -3,13 +3,17 @@
 import { useEffect, useRef, useState } from "react";
 import { asset } from "@/lib/asset";
 
+type Target = { x: number; y: number; w: number; h: number; r: number; kind: "card" | "btn" | "check" };
+type Act = { cursor: [number, number]; target?: Target; check?: [number, number] };
+
 type Step = {
+  acts?: Act[];
   src: string;
   h: number; // page height in 1440px space
   scroll?: number; // if set: scroll the middle column to the end, back, then move the cursor
   cursor: [number, number]; // target in 1440px space
   click?: boolean;
-  target?: { x: number; y: number; w: number; h: number; r: number; kind: "card" | "btn" | "check" };
+  target?: Target;
   dur: number;
   title: string;
   sub: string;
@@ -23,13 +27,37 @@ const STATE_VARS = {
 } as const;
 
 const W = 1440;
+const SCROLL_START = 4300;
+const SLOW = 1900;
+const FAST = 1300;
+
+function actsOf(st: Step): Act[] {
+  if (st.acts) return st.acts;
+  return [{ cursor: st.cursor, target: st.click ? st.target : undefined }];
+}
 const VIEW_H = 1024;
 
 const steps: Step[] = [
   { src: "/figma/case/screens/1-dashboard.webp", h: 1024, cursor: [760, 560], dur: 2600, title: "Сводная панель", sub: "Мониторинг парка в реальном времени", text: "Оператор видит общую картину: сколько машин в работе, сколько на зарядке. Список инцидентов пуст — всё в штатном режиме." },
   { src: "/figma/case/screens/2-trigger.webp", h: 1024, cursor: [1194, 300], click: true, target: { x: 989, y: 221, w: 410, h: 157, r: 14, kind: "card" }, dur: 3200, title: "Событие", sub: "Мгновенное оповещение об инциденте", text: "Система зафиксировала сбой LiDAR. Алерт появляется в списке справа с приоритетом Critical и привлекает внимание цветом." },
   { src: "/figma/case/screens/3-quickview.webp", h: 1024, cursor: [1192, 904], click: true, target: { x: 987, y: 882, w: 412, h: 45, r: 8, kind: "btn" }, dur: 3400, title: "Быстрый контекст", sub: "Детализация без потери фокуса", text: "По клику открывается боковая панель: фото машины, локация и суть проблемы. Инженер не уходит с карты и может сразу принять решение." },
-  { src: "/figma/case/screens/4-alert.webp", h: 1541, scroll: 1, cursor: [996, 305], click: true, target: { x: 984, y: 293, w: 24, h: 26, r: 6, kind: "check" }, dur: 6800, title: "Детализация инцидента", sub: "Единый контекст для принятия решений", text: "Видеопотоки, телеметрия и хронология в одном окне. Инженер проходит чек-лист обстановки и ничего не пропускает." },
+  {
+    src: "/figma/case/screens/4-alert.webp",
+    h: 1541,
+    scroll: 1,
+    cursor: [1171, 521],
+    click: true,
+    dur: 10600,
+    acts: [
+      { cursor: [996, 306], target: { x: 984, y: 293, w: 24, h: 26, r: 6, kind: "check" }, check: [996, 306] },
+      { cursor: [996, 340], target: { x: 984, y: 327, w: 24, h: 26, r: 6, kind: "check" }, check: [996, 340] },
+      { cursor: [996, 372], target: { x: 984, y: 359, w: 24, h: 26, r: 6, kind: "check" }, check: [996, 372] },
+      { cursor: [1171, 521], target: { x: 989, y: 500, w: 365, h: 42, r: 10, kind: "btn" } },
+    ],
+    title: "Детализация инцидента",
+    sub: "Единый контекст для принятия решений",
+    text: "Видеопотоки, телеметрия и хронология в одном окне. Инженер проходит чек-лист обстановки и ничего не пропускает.",
+  },
   { src: "/figma/case/screens/5-modal.webp", h: 1541, cursor: [832, 634], click: true, target: { x: 757, y: 611, w: 155, h: 45, r: 10, kind: "btn" }, dur: 3400, title: "Подтверждение безопасности", sub: "Защита от случайных действий", text: "Перед подключением к салону система спрашивает согласие: оператор не должен слышать пассажира без явного решения." },
   { src: "/figma/case/screens/6-resolution.webp", h: 1541, cursor: [1171, 659], click: true, target: { x: 989, y: 638, w: 365, h: 44, r: 10, kind: "btn" }, dur: 3000, title: "Активный процесс", sub: "Пошаговый протокол", text: "Чек-лист пройден, аудиосвязь активна. Кнопка «Перезапустить LiDAR» разблокирована только после проверки обстановки." },
   { src: "/figma/case/screens/7-confirmation.webp", h: 1541, cursor: [834, 654], click: true, target: { x: 755, y: 632, w: 157, h: 45, r: 10, kind: "btn" }, dur: 3400, title: "Подтверждение действия", sub: "Предупреждение о последствиях", text: "Перед перезапуском сказано, что машина будет неподвижна около 15 секунд. Инженер осознаёт риск и простой." },
@@ -43,6 +71,7 @@ export function IncidentDemo() {
   const [inView, setInView] = useState(false);
   const [reduce, setReduce] = useState(false);
   const [phase, setPhase] = useState(0);
+  const [a, setA] = useState(-1);
   const rootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -60,21 +89,33 @@ export function IncidentDemo() {
     return () => window.clearTimeout(t);
   }, [idx, playing, inView, reduce]);
 
-  // phases for the scrolling step: 0 wait, 1 scroll down, 2 scroll back up, 3 cursor
+  // phases for the scrolling step: 0 wait, 1 scroll down, 2 scroll back up; then the cursor acts run in order
   useEffect(() => {
     setPhase(0);
-    if (!steps[idx].scroll) return;
-    const ts = [
-      window.setTimeout(() => setPhase(1), 400),
-      window.setTimeout(() => setPhase(2), 2700),
-      window.setTimeout(() => setPhase(3), 4300),
-    ];
+    setA(-1);
+    const st = steps[idx];
+    const ts: number[] = [];
+    let t = 0;
+    if (st.scroll) {
+      ts.push(window.setTimeout(() => setPhase(1), 400));
+      ts.push(window.setTimeout(() => setPhase(2), 2700));
+      t = SCROLL_START;
+    }
+    actsOf(st).forEach((_, k) => {
+      const at = t;
+      ts.push(window.setTimeout(() => setA(k), at));
+      t += k === 0 ? SLOW : FAST;
+    });
     return () => ts.forEach(window.clearTimeout);
   }, [idx]);
 
   const s = steps[idx];
-  const cursorReady = !s.scroll || phase >= 3;
-  const [cx, cy] = cursorReady ? s.cursor : steps[(idx + steps.length - 1) % steps.length].cursor;
+  const acts = actsOf(s);
+  const started = a >= 0;
+  const prevActs = actsOf(steps[(idx + steps.length - 1) % steps.length]);
+  const [cx, cy] = started ? acts[Math.min(a, acts.length - 1)].cursor : prevActs[prevActs.length - 1].cursor;
+  const fast = a > 0;
+  const curAct = started ? acts[Math.min(a, acts.length - 1)] : undefined;
 
   return (
     <div ref={rootRef}>
@@ -135,19 +176,41 @@ export function IncidentDemo() {
           );
         })}
 
-        {s.target && s.click && cursorReady && (
+        {/* ticked checkboxes (step 4) */}
+        {s.acts?.map((ac, k) =>
+          ac.check && a >= k ? (
+            <span
+              key={`chk-${idx}-${k}`}
+              aria-hidden
+              className="demo-check pointer-events-none absolute z-[4] flex items-center justify-center"
+              style={{
+                left: `${((ac.check[0] - 9) / W) * 100}%`,
+                top: `${((ac.check[1] - 9) / VIEW_H) * 100}%`,
+                width: `${(18 / W) * 100}%`,
+                height: `${(18 / VIEW_H) * 100}%`,
+                animationDelay: k === 0 ? "1450ms" : "800ms",
+              }}
+            >
+              <svg viewBox="0 0 12 12" width="70%" height="70%" fill="none" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M2.5 6.3l2.4 2.4 4.6-5" />
+              </svg>
+            </span>
+          ) : null
+        )}
+
+        {curAct?.target && (
           <div
-            key={`t-${idx}-${phase}`}
+            key={`t-${idx}-${a}`}
             aria-hidden
-            className="demo-state pointer-events-none absolute z-[5]"
+            className={`demo-state pointer-events-none absolute z-[5] ${fast ? "demo-fast" : ""}`}
             style={
               {
-                left: `${(s.target.x / W) * 100}%`,
-                top: `${(s.target.y / VIEW_H) * 100}%`,
-                width: `${(s.target.w / W) * 100}%`,
-                height: `${(s.target.h / VIEW_H) * 100}%`,
-                borderRadius: `${(s.target.r / W) * 100}cqw`,
-                ...STATE_VARS[s.target.kind],
+                left: `${(curAct.target.x / W) * 100}%`,
+                top: `${(curAct.target.y / VIEW_H) * 100}%`,
+                width: `${(curAct.target.w / W) * 100}%`,
+                height: `${(curAct.target.h / VIEW_H) * 100}%`,
+                borderRadius: `${(curAct.target.r / W) * 100}cqw`,
+                ...STATE_VARS[curAct.target.kind],
               } as React.CSSProperties
             }
           />
@@ -160,10 +223,12 @@ export function IncidentDemo() {
           style={{
             left: `${(cx / W) * 100}%`,
             top: `${(cy / VIEW_H) * 100}%`,
-            transition: "left 900ms cubic-bezier(0.45,0,0.2,1) 200ms, top 900ms cubic-bezier(0.45,0,0.2,1) 200ms",
+            transition: fast
+              ? "left 500ms cubic-bezier(0.45,0,0.2,1), top 500ms cubic-bezier(0.45,0,0.2,1)"
+              : "left 900ms cubic-bezier(0.45,0,0.2,1) 200ms, top 900ms cubic-bezier(0.45,0,0.2,1) 200ms",
           }}
         >
-          {s.click && cursorReady && <span key={`${idx}-${phase}`} className="demo-ripple" />}
+          {curAct?.target && <span key={`r-${idx}-${a}`} className={`demo-ripple ${fast ? "demo-fast" : ""}`} />}
           <svg width="22" height="22" viewBox="0 0 24 24" className="relative drop-shadow-[0_2px_4px_rgba(0,0,0,0.35)]">
             <path d="M5 3l14 8-6.2 1.6L9.6 19 5 3z" fill="#111" stroke="#fff" strokeWidth="1.6" strokeLinejoin="round" />
           </svg>
