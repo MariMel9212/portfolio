@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { SiteHeader } from "@/components/site-header";
 import { asset } from "@/lib/asset";
 
@@ -7,20 +8,6 @@ export const metadata: Metadata = {
   description: "Кейс: сервис мониторинга беспилотного транспорта для инженеров центра мониторинга.",
 };
 
-function Bracket({ side, className }: { side: "left" | "right"; className?: string }) {
-  return (
-    <svg viewBox="0 0 42 173" preserveAspectRatio="none" className={className} aria-hidden="true">
-      <path
-        d={side === "left" ? "M34 8C10 36 8 70 10 86c2 18 4 52 24 80" : "M8 8C32 36 34 70 32 86c-2 18-4 52-24 80"}
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="3"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
 const duties = [
   "Отслеживать состояние автомобилей",
   "Выявлять проблемы",
@@ -28,12 +15,102 @@ const duties = [
   "Принимать решение о дальнейших действиях",
 ];
 
+const mixedLinks = [
+  {
+    name: "Waymo",
+    href: "https://medium.com/@michael.wishart1990/waymo-operations-center-3ac5862688d4",
+    src: "/figma/case/mixed-e5dda.webp",
+    style: { left: "10.12%", top: "4.29%", width: "15.34%", height: "42.63%" },
+    imgStyle: { height: "93.3%" },
+    overlay: true,
+  },
+  {
+    name: "Tesla",
+    href: "https://www.tesla.com/fsd/safety",
+    src: "/figma/case/mixed-640d3.webp",
+    style: { left: "28.35%", top: "4.29%", width: "14.93%", height: "42.63%" },
+    imgStyle: { height: "95.3%" },
+    overlay: true,
+  },
+  {
+    name: "Cruise",
+    href: "https://medium.com/@sanidhyacomnetinfo/what-digital-security-precautions-has-cruise-implemented-for-their-remote-access-software-caef1cddcb76",
+    src: "/figma/case/mixed-cad7e.webp",
+    style: { left: "10.07%", top: "52.77%", width: "15.27%", height: "42.78%" },
+    imgStyle: { height: "92.3%" },
+    overlay: false,
+  },
+  {
+    name: "Zoox",
+    href: "https://webbingsolutions.com/scaling-robotaxis-requires-more-than-autonomy/",
+    src: "/figma/case/mixed-5334f.webp",
+    style: { left: "28.35%", top: "52.77%", width: "15.3%", height: "42.3%" },
+    imgStyle: { height: "90.1%" },
+    overlay: true,
+  },
+] as const;
+
+const mixedOverflow = [
+  { src: "/figma/case/mixed-18ad6.webp", style: { left: "57.55%", top: "-34.34%", width: "25.54%", height: "38.64%" } },
+  { src: "/figma/case/mixed-8672f.webp", style: { left: "57.07%", top: "6.82%", width: "26.02%", height: "35.1%" } },
+  { src: "/figma/case/mixed-8f848.webp", style: { left: "84.29%", top: "-1.52%", width: "15.95%", height: "20.71%" } },
+  { src: "/figma/case/mixed-d064a.webp", style: { left: "84.29%", top: "21.72%", width: "29.38%", height: "38.64%" } },
+  { src: "/figma/case/mixed-4c3de.webp", style: { left: "61.75%", top: "44.44%", width: "21.34%", height: "28.03%" } },
+  { src: "/figma/case/mixed-0e57f.webp", style: { left: "84.53%", top: "62.88%", width: "19.3%", height: "21.72%" } },
+  { src: "/figma/case/mixed-a3b8b.webp", style: { left: "59.71%", top: "75%", width: "23.62%", height: "31.82%" } },
+  { src: "/figma/case/mixed-18ad6.webp", style: { left: "84.53%", top: "87.12%", width: "24.58%", height: "37.37%" } },
+] as const;
+
+function Board({ children, className }: { children?: ReactNode; className?: string }) {
+  return (
+    <div
+      className={`relative h-[min(396px,27.5vw)] min-h-[220px] w-[min(834px,100%)] shrink-0 overflow-hidden rounded-[22px] bg-white/8 ${className ?? ""}`}
+    >
+      {children}
+    </div>
+  );
+}
+
+function MixedBoard() {
+  return (
+    <Board>
+      {mixedOverflow.map((item, i) => (
+        <img
+          key={`${item.src}-${i}`}
+          alt=""
+          src={asset(item.src)}
+          className="pointer-events-none absolute max-w-none object-cover"
+          style={item.style}
+        />
+      ))}
+      {mixedLinks.map((item) => (
+        <a
+          key={item.name}
+          href={item.href}
+          target="_blank"
+          rel="noreferrer"
+          className="absolute flex flex-col"
+          style={item.style}
+        >
+          <span className="relative block min-h-0 flex-1 overflow-hidden" style={item.imgStyle}>
+            <img alt="" src={asset(item.src)} className="absolute inset-0 size-full object-cover" />
+            {item.overlay ? <span className="absolute inset-0 bg-black/27" /> : null}
+          </span>
+          <span className="mt-auto pt-1 text-[7.5px] leading-none tracking-[0.075px] text-[#0682da] underline">
+            Подробнее
+          </span>
+        </a>
+      ))}
+    </Board>
+  );
+}
+
 export default function MonitoringCasePage() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-[#161616] text-[#fffbfb]">
-      <main>
+      <main className="relative mx-auto w-full max-w-[1440px]">
         <section
-          className="relative w-full overflow-x-hidden bg-[#161616]"
+          className="pointer-events-none absolute inset-x-0 top-0 overflow-x-hidden"
           style={{ aspectRatio: "1440 / 1356.84" }}
           aria-label="Обложка кейса"
         >
@@ -87,49 +164,100 @@ export default function MonitoringCasePage() {
               </div>
             </div>
           </div>
-          <div className="absolute inset-x-0 top-0 z-10">
-            <SiteHeader tone="case" />
-          </div>
         </section>
 
-        <div className="mx-auto flex w-full max-w-[834px] flex-col px-4 pb-24 pt-10 sm:px-6 sm:pt-16">
-          <h1 className="font-display text-[40px] leading-[0.77] tracking-[0.02em] sm:text-[54px]">Задача</h1>
-          <p className="mt-6 max-w-[694px] text-[16px] font-medium leading-snug opacity-95 sm:text-[18px]">
-            Спроектировать сервис мониторинга беспилотного транспорта для инженеров центра мониторинга
-          </p>
+        <div className="absolute inset-x-0 top-0 z-20">
+          <SiteHeader tone="case" />
+        </div>
 
-          <div className="relative mt-12 max-w-[434px] sm:mt-16">
-            <Bracket side="left" className="absolute top-1/2 -left-14 hidden h-[118%] w-9 -translate-y-1/2 text-white/25 sm:block" />
-            <Bracket side="right" className="absolute top-1/2 -right-16 hidden h-[118%] w-9 -translate-y-1/2 text-white/25 sm:block" />
-            <h2 className="font-display text-[28px] leading-[0.77] tracking-[0.02em] sm:text-[34px]">Сервис должен помогать:</h2>
-            <ul className="mt-5 space-y-1 text-[16px] font-medium leading-snug opacity-95 sm:text-[18px]">
-              {duties.map((item) => (
-                <li key={item}>– {item}</li>
-              ))}
-            </ul>
+        <div className="relative z-10 pb-[120px] pt-[clamp(520px,68.472vw,986px)]">
+          <div className="flex w-full flex-col pl-[clamp(16px,24.027vw,346px)] pr-4">
+            <div className="w-full max-w-[694px]">
+              <h1 className="font-display text-[54px] leading-[0.77] tracking-[0.02em]">Задача</h1>
+              <p className="mt-6 text-[18px] font-medium leading-snug tracking-[-0.108px] opacity-[0.96]">
+                Спроектировать сервис мониторинга беспилотного транспорта для инженеров центра мониторинга
+              </p>
+            </div>
+
+            <div className="relative mt-8 flex h-[173px] w-[min(632px,100%)] items-center gap-[57px] max-[700px]:h-auto max-[700px]:flex-col max-[700px]:gap-4 min-[701px]:-ml-[99px]">
+              <div className="relative hidden h-[173px] w-[42px] shrink-0 min-[701px]:block" aria-hidden>
+                <p className="font-bracket absolute top-[-34px] left-[-10px] text-[158.733px] leading-none tracking-[3.17px] text-[#fffbfb] opacity-[0.06]">
+                  (
+                </p>
+              </div>
+              <div className="flex w-full max-w-[434px] flex-col gap-6">
+                <h2 className="font-display text-[34px] leading-[0.77] tracking-[0.02em]">
+                  Сервис должен помогать:
+                </h2>
+                <ul className="text-[18px] font-medium leading-normal tracking-[-0.108px] opacity-[0.96]">
+                  {duties.map((item) => (
+                    <li key={item}>– {item}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="relative hidden h-[173px] w-[42px] shrink-0 min-[701px]:block" aria-hidden>
+                <p className="font-bracket absolute top-[-34px] left-0 text-[158.733px] leading-none tracking-[3.17px] text-[#fffbfb] opacity-[0.06]">
+                  )
+                </p>
+              </div>
+            </div>
           </div>
 
-          <hr className="mt-16 border-0 border-t border-white/20 sm:mt-20" />
+          <hr className="mx-auto mt-8 h-px w-[min(1248px,calc(100%-32px))] border-0 bg-white/20" />
 
-          <p className="mt-12 text-[16px] font-medium leading-snug opacity-95 sm:mt-14 sm:text-[18px]">
-            Первым делом я решила изучить, кто же такие инженеры центра мониторинга, из чего состоит их работа, с какими задачами они сталкиваются каждый день и какая информация нужна им, чтобы быстро понимать, что происходит с&nbsp;автомобилем
+          <div className="mt-9 flex w-full flex-col pl-[clamp(16px,24.027vw,346px)]">
+            <h2 className="max-w-[694px] font-display text-[54px] leading-[0.77] tracking-[0.02em]">
+              Исследование
+            </h2>
+            <p className="mt-[31px] max-w-[834px] pr-4 text-[18px] font-medium leading-snug tracking-[-0.108px] opacity-[0.96]">
+              Первым делом я решила изучить, кто же такие инженеры центра мониторинга, из чего состоит их работа, с какими задачами они сталкиваются каждый день и какая информация нужна им, чтобы быстро понимать, что происходит с&nbsp;автомобилем
+            </p>
+            <img
+              alt="Вакансии и описания специальности инженера мониторинга"
+              className="mt-6 h-[min(396px,27.5vw)] min-h-[220px] w-[min(834px,calc(100%-16px))] rounded-[22px] object-cover"
+              src={asset("/figma/case/jobs.webp")}
+            />
+            <p className="mt-[18px] max-w-[834px] pr-4 text-[12px] font-medium leading-snug opacity-60">
+              Пообщаться с реальными специалистами не удалось, поэтому я изучала целевых пользователей через вакансии и&nbsp;описания профильных специальностей в вузах и колледжах
+            </p>
+
+            <p className="mt-8 max-w-[834px] pr-4 text-[18px] font-medium leading-snug tracking-[-0.108px] opacity-[0.96]">
+              Следующим шагом я посмотрела, как похожие задачи решают другие продукты, и собрала бенчмарки. Мне было важно понять, как в таких системах показывают большое количество данных, выделяют проблемные состояния и помогают пользователю быстро перейти от общей картины к конкретной ситуации
+            </p>
+          </div>
+
+          <div className="mt-[26px] w-full overflow-x-auto pl-[clamp(16px,24.027vw,346px)] [scrollbar-width:thin]">
+            <div className="flex w-max gap-[25px] pr-8">
+              <img
+                alt="Логотипы Tesla, Samsara, ГдеМои, Waymo, Zoox и Cruise"
+                className="h-[min(396px,27.5vw)] min-h-[220px] w-[min(834px,calc(100vw-48px))] shrink-0 rounded-[22px] object-cover"
+                src={asset("/figma/case/logos.webp")}
+              />
+              <Board>
+                <img
+                  alt="Интерфейс разметки сцены для автономного автомобиля"
+                  src={asset("/figma/case/ui.webp")}
+                  className="absolute object-cover"
+                  style={{ left: "8.15%", top: "0.5%", width: "83.69%", height: "99.24%" }}
+                />
+              </Board>
+              <MixedBoard />
+            </div>
+          </div>
+          <p className="mt-[16px] max-w-[834px] pl-[clamp(16px,24.027vw,346px)] pr-4 text-[12px] font-medium leading-snug opacity-60">
+            При поиске смотрела не только на конкретные системы мониторинга
           </p>
 
-          <img
-            alt="Вакансии и описания специальности инженера мониторинга"
-            className="mt-8 w-full rounded-[22px]"
-            src={asset("/figma/case-jobs.webp")}
-          />
-          <p className="mt-4 text-[12px] font-medium leading-snug opacity-60">
-            Пообщаться с реальными специалистами не удалось, поэтому я изучала целевых пользователей через вакансии и&nbsp;описания профильных специальностей в вузах и колледжах
-          </p>
+          <div className="mt-8 flex max-w-[834px] flex-col gap-6 pl-[clamp(16px,24.027vw,346px)] pr-4 text-[18px] font-medium leading-snug tracking-[-0.108px] opacity-[0.96]">
+            <p>
+              После просмотра стало понятно, что в таких системах особенно важно быстро отделять нормальное состояние от проблемного. При большом количестве машин оператор не должен искать проблему — система сама должна подсказывать, куда смотреть в первую очередь
+            </p>
+            <p>
+              Ещё я обратила внимание, что подробная информация нужна уже после того, как проблема найдена. На первом уровне достаточно самого важного: что произошло, с какой машиной и насколько это критично
+            </p>
+          </div>
 
-          <h2 className="mt-16 font-display text-[28px] leading-[0.77] tracking-[0.02em] sm:mt-20 sm:text-[34px]">Основные</h2>
-          <ul className="mt-5 space-y-1 text-[16px] font-medium leading-snug opacity-95 sm:text-[18px]">
-            {duties.map((item) => (
-              <li key={`main-${item}`}>– {item}</li>
-            ))}
-          </ul>
+          <hr className="mx-auto mt-10 h-px w-[min(1248px,calc(100%-32px))] border-0 bg-white/20" />
         </div>
       </main>
     </div>

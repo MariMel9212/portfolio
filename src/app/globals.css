@@ -10,6 +10,7 @@
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-heading: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-homenaje), ui-sans-serif, sans-serif;
+  --font-bracket: var(--font-inika), ui-serif, Georgia, serif;
   --font-label: var(--font-inter), ui-sans-serif, sans-serif;
   --font-sf: -apple-system, BlinkMacSystemFont, "SF Pro Text", var(--font-inter), sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
@@ -129,6 +130,10 @@
   html {
     @apply font-sans scroll-smooth;
   }
+}
+
+.font-bracket {
+  font-family: var(--font-bracket);
 }
 
 .case-card {
