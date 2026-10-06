@@ -3,6 +3,7 @@ import type { CSSProperties, ReactNode } from "react";
 import { SiteHeader } from "@/components/site-header";
 import { asset } from "@/lib/asset";
 import { DragCarousel } from "@/components/cases/drag-carousel";
+import { CaseOutline } from "@/components/cases/case-outline";
 import { DragPan } from "@/components/cases/drag-pan";
 
 export const metadata: Metadata = {
@@ -336,12 +337,22 @@ export default function MonitoringCasePage() {
 
         <div className="absolute inset-x-0 top-0 z-20">
           <SiteHeader tone="case" />
+          <CaseOutline
+            items={[
+              { id: "task", label: "Задача", level: 1 },
+              { id: "research", label: "Исследование", level: 1 },
+              { id: "design", label: "Проектирование", level: 1 },
+              { id: "hypotheses", label: "Гипотезы", level: 2 },
+              { id: "solution", label: "Решение", level: 1 },
+              { id: "result", label: "Итог", level: 1 },
+            ]}
+          />
         </div>
 
         <div className="relative z-10 pb-[120px] pt-[max(520px,calc(var(--s)*0.68472))]">
           {/* 1. Задача */}
           <div className={col}>
-            <h1 className={h1}>Задача</h1>
+            <h1 id="task" className={h1+" scroll-mt-24"}>Задача</h1>
             <p className={`${body} mt-4`}>
               Спроектировать сервис мониторинга беспилотного транспорта для инженеров центра мониторинга
             </p>
@@ -362,7 +373,7 @@ export default function MonitoringCasePage() {
 
           {/* 2. Исследование */}
           <div className={`${col} mt-12`}>
-            <h1 className={h1}>Исследование</h1>
+            <h1 id="research" className={h1+" scroll-mt-24"}>Исследование</h1>
             <p className={`${body} mt-6`}>
               Первым делом я решила изучить, кто же такие инженеры центра мониторинга, из чего состоит их работа, с какими задачами они сталкиваются каждый день и какая информация нужна им, чтобы быстро понимать, что происходит с&nbsp;автомобилем
             </p>
@@ -453,11 +464,11 @@ export default function MonitoringCasePage() {
 
           {/* 3. Проектирование */}
           <div className={`${col} mt-12`}>
-            <h1 className={h1}>Проектирование</h1>
+            <h1 id="design" className={h1+" scroll-mt-24"}>Проектирование</h1>
           </div>
 
           <div className={`${col} mt-8`}>
-            <h2 className={h2}>Гипотезы</h2>
+            <h2 id="hypotheses" className={h2+" scroll-mt-24"}>Гипотезы</h2>
           </div>
           <div className={`${wide} mt-4 grid gap-4 sm:grid-cols-2`}>
             {[
@@ -504,7 +515,7 @@ export default function MonitoringCasePage() {
 
           {/* 4. Решение */}
           <div className={`${col} mt-12`}>
-            <h1 className={h1}>Решение</h1>
+            <h1 id="solution" className={h1+" scroll-mt-24"}>Решение</h1>
             <p className={`${body} mt-4`}>
               Сценарий в экранах: от общей картины парка до закрытого инцидента.
             </p>
@@ -568,7 +579,7 @@ export default function MonitoringCasePage() {
 
           {/* 5. Итог */}
           <div className={`${col} mt-12`}>
-            <h1 className={h1}>Итог</h1>
+            <h1 id="result" className={h1+" scroll-mt-24"}>Итог</h1>
             <p className={`${body} mt-4`}>
               [Что получилось и что бы сделала дальше.]
             </p>
