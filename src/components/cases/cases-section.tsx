@@ -57,7 +57,7 @@ function MobileTaxiCard() {
 
 function MobileYulaCard() {
   return (
-    <article className="case-card flex flex-col gap-6">
+    <Link href="/cases/safe-deal" className="case-card flex flex-col gap-6">
       <div className="overflow-hidden rounded-2xl">
         <img
           alt="Улучшение сценария Безопасной сделки"
@@ -84,7 +84,7 @@ function MobileYulaCard() {
           src={asset("/figma/youla-mark.png")}
         />
       </div>
-    </article>
+    </Link>
   );
 }
 
@@ -175,7 +175,8 @@ function TaxiCard() {
 
 function YulaCard() {
   return (
-    <article
+    <Link
+      href="/cases/safe-deal"
       className="case-card absolute flex items-start"
       style={{
         left: u(42),
@@ -214,7 +215,7 @@ function YulaCard() {
           />
         </div>
       </div>
-    </article>
+    </Link>
   );
 }
 
