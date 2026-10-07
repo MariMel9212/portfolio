@@ -199,7 +199,7 @@ function YulaCard() {
             <h3 className="opacity-90" style={{ width: u(426), fontSize: u(36), lineHeight: u(44), letterSpacing: u(-0.36) }}>
               Улучшение сценария Безопасной сделки
             </h3>
-            <p className="w-full opacity-60" style={{ fontSize: u(22), lineHeight: u(29), letterSpacing: u(-0.22) }}>
+            <p className="w-full opacity-60" style={{ fontSize: u(18), lineHeight: "normal", letterSpacing: u(-0.18) }}>
               Тут тоже будет текст, дополнительно описание
             </p>
           </div>
@@ -220,7 +220,7 @@ function YulaCard() {
 
 function Meta() {
   return (
-    <div className="flex flex-col whitespace-nowrap opacity-60" style={{ width: u(234), gap: u(12), fontSize: u(22), lineHeight: u(29), letterSpacing: u(-0.22) }}>
+    <div className="flex flex-col whitespace-nowrap opacity-60" style={{ width: u(234), gap: u(8), fontSize: u(18), lineHeight: "normal", letterSpacing: u(-0.18) }}>
       <div className="flex items-center" style={{ gap: u(8) }}>
         <p>Дата</p>
         <p>2025</p>
