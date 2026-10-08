@@ -68,7 +68,7 @@ export function AboutBoard() {
 
   return (
     <div
-      className="@container relative w-full overflow-hidden border border-black/[0.06] bg-[#fcfcfc] text-[#161616]"
+      className="@container relative w-full overflow-hidden bg-[#fcfcfc] text-[#161616]"
       style={{
         aspectRatio: `${W} / ${H}`,
         borderRadius: u(56),
