@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { asset } from "@/lib/asset";
+import { ClosedCase } from "./closed-case";
 
 const FRAME_W = 1420;
 const FRAME_H = 1747;
@@ -57,7 +58,7 @@ function MobileTaxiCard() {
 
 function MobileYulaCard() {
   return (
-    <Link href="/cases/safe-deal" className="case-card flex flex-col gap-6">
+    <ClosedCase className="case-card flex flex-col gap-6">
       <div className="overflow-hidden rounded-2xl">
         <img
           alt="Улучшение сценария Безопасной сделки"
@@ -84,7 +85,7 @@ function MobileYulaCard() {
           src={asset("/figma/youla-mark.png")}
         />
       </div>
-    </Link>
+    </ClosedCase>
   );
 }
 
@@ -175,8 +176,7 @@ function TaxiCard() {
 
 function YulaCard() {
   return (
-    <Link
-      href="/cases/safe-deal"
+    <ClosedCase
       className="case-card absolute flex items-start"
       style={{
         left: u(42),
@@ -215,7 +215,7 @@ function YulaCard() {
           />
         </div>
       </div>
-    </Link>
+    </ClosedCase>
   );
 }
 

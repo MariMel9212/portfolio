@@ -5,6 +5,7 @@ import { asset } from "@/lib/asset";
 import { CaseOutline } from "@/components/cases/case-outline";
 
 export const metadata: Metadata = {
+  robots: { index: false, follow: false },
   title: "Улучшение сценария Безопасной сделки — Мария Мельничук",
   description: "Кейс: как повысить доверие к сделкам на C2C-маркетплейсе и довести покупку до конца внутри приложения.",
 };
