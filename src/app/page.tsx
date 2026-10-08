@@ -14,7 +14,7 @@ export default function Home() {
         <section
           id="about"
           aria-label="Обо мне"
-          className="-mt-[130px] hidden scroll-mt-6 pb-[24px] pt-[130px] lg:block"
+          className="-mt-[130px] hidden overflow-hidden scroll-mt-6 pb-[24px] pt-[130px] lg:block"
           style={{
             backgroundImage: "radial-gradient(rgba(0,0,0,0.14) 1.3px, transparent 1.3px)",
             backgroundSize: "26px 26px",
