@@ -1,5 +1,5 @@
 export const site = {
   telegramUrl: "https://t.me/komi_roots",
-  email: "hello@example.com",
+  email: "marimel9212@icloud.com",
   cvUrl: "/resume.pdf",
 };
