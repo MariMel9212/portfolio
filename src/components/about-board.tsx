@@ -160,11 +160,11 @@ export function AboutBoard() {
     >
       <h2
         className="absolute font-medium tracking-[-0.01em] text-[#161616]/90"
-        style={{ left: u(70), top: u(56), fontSize: u(28), lineHeight: u(34) }}
+        style={{ left: u(70), top: u(16), fontSize: u(28), lineHeight: u(34) }}
       >
         Пару фактов обо мне
       </h2>
-      <p className="absolute text-[#161616]/40" style={{ right: u(70), top: u(66), fontSize: u(12), lineHeight: u(16) }}>
+      <p className="absolute text-[#161616]/40" style={{ right: u(70), bottom: u(20), fontSize: u(12), lineHeight: u(16) }}>
         Наведи или нажми на карточки
       </p>
 
@@ -172,10 +172,6 @@ export function AboutBoard() {
         const open = active === g.id;
         const dim = active !== null && !open;
         const ordered = [...g.cards].sort((a, b) => (a.id === g.cover ? -1 : b.id === g.cover ? 1 : 0));
-        const cover = g.cards.find((c) => c.id === g.cover)!;
-        const cs = SIZE[cover.o];
-        const hidden = g.cards.length - 1;
-
         return (
           <div
             key={g.id}
@@ -216,22 +212,6 @@ export function AboutBoard() {
                   <CardView card={c} g={g} open={open} order={i} />
                 </div>
               ))}
-
-              {/* значок «внутри ещё фото» */}
-              <span
-                aria-hidden
-                className="absolute rounded-full bg-white font-medium text-[#161616]/70 shadow-[0_2px_8px_rgba(0,0,0,0.18)] transition-opacity duration-200"
-                style={{
-                  left: u(g.w / 2 + cs.w / 2 - 44),
-                  top: u(g.h / 2 + cs.h / 2 - 34),
-                  padding: `${u(3)} ${u(9)}`,
-                  fontSize: u(13),
-                  zIndex: 30,
-                  opacity: open ? 0 : 1,
-                }}
-              >
-                +{hidden}
-              </span>
             </div>
 
             {/* записка с текстом */}
