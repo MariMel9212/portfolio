@@ -160,7 +160,7 @@ export function AboutBoard() {
     >
       <h2
         className="absolute font-medium tracking-[-0.01em] text-[#161616]/90"
-        style={{ left: u(70), top: u(16), fontSize: u(28), lineHeight: u(34) }}
+        style={{ left: u(70), top: u(0), fontSize: u(28), lineHeight: u(34) }}
       >
         Пару фактов обо мне
       </h2>
