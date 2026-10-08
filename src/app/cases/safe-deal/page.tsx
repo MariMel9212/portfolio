@@ -64,7 +64,7 @@ export default function SafeDealCasePage() {
             <dl className="mt-6 flex flex-col gap-1 text-[15px] text-white/60">
               <div className="flex gap-3">
                 <dt>Дата</dt>
-                <dd>2025</dd>
+                <dd>2026</dd>
               </div>
               <div className="flex gap-3">
                 <dt>Роль</dt>

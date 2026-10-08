@@ -72,7 +72,7 @@ function MobileYulaCard() {
             Улучшение сценария Безопасной сделки
           </h3>
           <p className="text-[15px] leading-[22px] tracking-[-0.15px] opacity-60 sm:text-base sm:leading-6">
-            Тут тоже будет текст, дополнительно описание
+            Сценарий покупки на C2C-маркетплейсе, который объясняет, как устроена безопасная сделка, снижает страх обмана и&nbsp;помогает довести покупку до конца
           </p>
         </div>
         <MobileMeta />
@@ -94,7 +94,7 @@ function MobileMeta() {
     <div className="flex flex-col gap-2 text-[15px] leading-5 tracking-[-0.15px] opacity-60">
       <div className="flex items-center gap-2">
         <p>Дата</p>
-        <p>2025</p>
+        <p>2026</p>
       </div>
       <div className="flex items-center gap-2">
         <p>Роль</p>
@@ -142,7 +142,7 @@ function TaxiCard() {
           <div className="flex flex-col whitespace-nowrap opacity-60" style={{ width: u(234), gap: u(8), fontSize: u(18), lineHeight: "normal", letterSpacing: u(-0.18) }}>
             <div className="flex items-center" style={{ gap: u(8) }}>
               <p>Дата</p>
-              <p>2025</p>
+              <p>2026</p>
             </div>
             <div className="flex items-center" style={{ gap: u(8) }}>
               <p>Роль</p>
@@ -201,7 +201,7 @@ function YulaCard() {
               Улучшение сценария Безопасной сделки
             </h3>
             <p className="w-full opacity-60" style={{ fontSize: u(18), lineHeight: "normal", letterSpacing: u(-0.18) }}>
-              Тут тоже будет текст, дополнительно описание
+              Сценарий покупки на C2C-маркетплейсе, который объясняет, как устроена безопасная сделка, снижает страх обмана и&nbsp;помогает довести покупку до конца
             </p>
           </div>
           <Meta />
@@ -224,7 +224,7 @@ function Meta() {
     <div className="flex flex-col whitespace-nowrap opacity-60" style={{ width: u(234), gap: u(8), fontSize: u(18), lineHeight: "normal", letterSpacing: u(-0.18) }}>
       <div className="flex items-center" style={{ gap: u(8) }}>
         <p>Дата</p>
-        <p>2025</p>
+        <p>2026</p>
       </div>
       <div className="flex items-center" style={{ gap: u(8) }}>
         <p>Роль</p>
