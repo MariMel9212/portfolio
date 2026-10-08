@@ -9,6 +9,8 @@ export default function Home() {
       <main className="flex w-full flex-col">
         <ProfileCard />
         <CasesSection />
+        {/* место под блок «Обо мне» (только десктоп) */}
+        <div aria-hidden className="hidden h-[620px] lg:block" />
       </main>
     </>
   );
