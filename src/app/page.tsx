@@ -10,8 +10,19 @@ export default function Home() {
       <main className="flex w-full flex-col">
         <ProfileCard />
         <CasesSection />
-        <section id="about" aria-label="Обо мне" className="mx-[6px] mb-[130px] hidden scroll-mt-6 lg:block">
-          <AboutBoard />
+        {/* точечная сетка начинается сразу под чёрным блоком кейсов и тянется до конца страницы */}
+        <section
+          id="about"
+          aria-label="Обо мне"
+          className="-mt-[130px] hidden scroll-mt-6 pb-[130px] pt-[130px] lg:block"
+          style={{
+            backgroundImage: "radial-gradient(rgba(0,0,0,0.14) 1.3px, transparent 1.3px)",
+            backgroundSize: "26px 26px",
+          }}
+        >
+          <div className="mx-[6px]">
+            <AboutBoard />
+          </div>
         </section>
       </main>
     </>

@@ -68,13 +68,8 @@ export function AboutBoard() {
 
   return (
     <div
-      className="@container relative w-full overflow-hidden bg-[#fcfcfc] text-[#161616]"
-      style={{
-        aspectRatio: `${W} / ${H}`,
-        borderRadius: u(56),
-        backgroundImage: "radial-gradient(rgba(0,0,0,0.13) 1.3px, transparent 1.3px)",
-        backgroundSize: "26px 26px",
-      }}
+      className="@container relative w-full text-[#161616]"
+      style={{ aspectRatio: `${W} / ${H}` }}
       onClick={() => setPinned(null)}
     >
       <h2 className="absolute font-medium tracking-[-0.01em] text-[#161616]/90" style={{ left: u(70), top: u(64), fontSize: u(36), lineHeight: u(44) }}>
