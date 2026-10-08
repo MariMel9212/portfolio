@@ -60,9 +60,9 @@ const PURPLE = "#b8a8f4";
 const groups: Group[] = [
   {
     id: "dogs",
-    x: 70,
-    y: 205,
-    k: 0.86,
+    x: 250,
+    y: 420,
+    k: 0.8,
     w: 500,
     h: 484,
     cover: "d-3274",
@@ -91,9 +91,9 @@ const groups: Group[] = [
   },
   {
     id: "f1",
-    x: 610,
-    y: 75,
-    k: 0.85,
+    x: 710,
+    y: 420,
+    k: 0.8,
     w: 458.2,
     h: 443.5,
     cover: "f-3280",
@@ -128,9 +128,9 @@ const groups: Group[] = [
   },
   {
     id: "tlou",
-    x: 985,
-    y: 150,
-    k: 0.72,
+    x: 1170,
+    y: 420,
+    k: 0.8,
     w: 532.3,
     h: 509.6,
     cover: "t-3288",
@@ -178,12 +178,15 @@ function CardView({ card, g, open, order }: { card: Card; g: Group; open: boolea
 
   // Положение «в стопке»: центр карточки уезжает в центр обложки.
   const deck = DECK[order] ?? DECK[DECK.length - 1];
-  const dx = cover.l + cover.w / 2 - (card.l + card.w / 2) + deck.dx;
-  const dy = cover.t + cover.h / 2 - (card.t + card.h / 2) + deck.dy;
+  // стопка стоит по центру рамки группы
+  const gx = g.w / 2 - (card.l + card.w / 2);
+  const gy = g.h / 2 - (card.t + card.h / 2);
+  const dx = gx + deck.dx;
+  const dy = gy + deck.dy;
   const s = Math.min(1.1, Math.max(0.55, Math.min(cover.w / card.w, cover.h / card.h))) * 0.98;
 
   const rest = isCover
-    ? "translate(0,0)"
+    ? `translate(${e(gx)}, ${e(gy)})`
     : `translate(${e(dx)}, ${e(dy)}) rotate(${deck.r}deg) scale(${s})`;
 
   const p = card.photo;
@@ -209,7 +212,7 @@ function CardView({ card, g, open, order }: { card: Card; g: Group; open: boolea
         transform: open ? "translate(0,0) rotate(0deg) scale(1)" : rest,
         transition: "transform 520ms cubic-bezier(0.22, 1.2, 0.36, 1)",
         transitionDelay: open ? `${order * 35}ms` : "0ms",
-        zIndex: isCover ? 10 : 10 - order,
+        zIndex: open ? g.cards.findIndex((c) => c.id === card.id) + 1 : isCover ? 10 : 10 - order,
         filter: "drop-shadow(0 6px 12px rgba(0,0,0,0.14))",
       }}
     >
@@ -289,8 +292,8 @@ export function AboutBoard() {
             key={g.id}
             className="pointer-events-none absolute transition-opacity duration-300"
             style={{
-              left: u(g.x),
-              top: u(g.y),
+              left: u(g.x - (g.w * g.k) / 2),
+              top: u(g.y - (g.h * g.k) / 2),
               width: `${g.w * g.k}em`,
               height: `${g.h * g.k}em`,
               zIndex: open ? 20 : 1,
@@ -347,9 +350,9 @@ export function AboutBoard() {
               aria-hidden={!open}
               className="pointer-events-none absolute transition duration-300 ease-out"
               style={{
-                left: u(10),
-                top: `calc(100% + ${u(14)})`,
-                width: u(Math.max(300, Math.min(g.w * g.k, 360))),
+                left: `calc(50% - ${u(140)})`,
+                top: `calc(100% + ${u(10)})`,
+                width: u(280),
                 opacity: open ? 1 : 0,
                 transform: open ? "translateY(0) rotate(-1deg)" : "translateY(-8px) rotate(-1deg)",
                 zIndex: 30,
@@ -359,14 +362,14 @@ export function AboutBoard() {
                 className="bg-[#fff6a8] text-[#161616]"
                 style={{
                   borderRadius: u(14),
-                  padding: `${u(18)} ${u(22)}`,
+                  padding: `${u(14)} ${u(18)}`,
                   boxShadow: "0 12px 28px rgba(0,0,0,0.16)",
                 }}
               >
-                <p className="uppercase tracking-[0.04em] text-[#161616]/45" style={{ fontSize: u(12), lineHeight: u(16) }}>
+                <p className="uppercase tracking-[0.04em] text-[#161616]/45" style={{ fontSize: u(11), lineHeight: u(14) }}>
                   {g.title}
                 </p>
-                <p className="font-medium" style={{ marginTop: u(6), fontSize: u(21), lineHeight: u(28), letterSpacing: u(-0.2) }}>
+                <p className="font-medium" style={{ marginTop: u(4), fontSize: u(16), lineHeight: u(21), letterSpacing: u(-0.1) }}>
                   {g.text}
                 </p>
               </div>
