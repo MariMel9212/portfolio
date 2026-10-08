@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { asset } from "@/lib/asset";
 
 const W = 1420;
-const H = 780;
+const H = 720;
 const u = (px: number) => `${(px / W) * 100}cqw`;
 
 /** Фото внутри карточки (координаты как в макете Figma). */
@@ -60,9 +60,9 @@ const PURPLE = "#b8a8f4";
 const groups: Group[] = [
   {
     id: "dogs",
-    x: 250,
-    y: 420,
-    k: 0.8,
+    x: 285,
+    y: 370,
+    k: 0.95,
     w: 500,
     h: 484,
     cover: "d-3274",
@@ -91,9 +91,9 @@ const groups: Group[] = [
   },
   {
     id: "f1",
-    x: 710,
-    y: 420,
-    k: 0.8,
+    x: 705,
+    y: 370,
+    k: 0.95,
     w: 458.2,
     h: 443.5,
     cover: "f-3280",
@@ -128,9 +128,9 @@ const groups: Group[] = [
   },
   {
     id: "tlou",
-    x: 1170,
-    y: 420,
-    k: 0.8,
+    x: 1135,
+    y: 370,
+    k: 0.95,
     w: 532.3,
     h: 509.6,
     cover: "t-3288",
@@ -272,11 +272,11 @@ export function AboutBoard() {
     >
       <h2
         className="absolute font-medium tracking-[-0.01em] text-[#161616]/90"
-        style={{ left: u(70), top: u(64), fontSize: u(36), lineHeight: u(44) }}
+        style={{ left: u(70), top: u(56), fontSize: u(28), lineHeight: u(34) }}
       >
         Пару фактов обо мне
       </h2>
-      <p className="absolute text-[#161616]/40" style={{ right: u(60), bottom: u(36), fontSize: u(16) }}>
+      <p className="absolute text-[#161616]/40" style={{ right: u(60), bottom: u(24), fontSize: u(12) }}>
         Наведи или нажми на карточки
       </p>
 
