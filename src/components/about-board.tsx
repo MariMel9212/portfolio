@@ -222,8 +222,8 @@ export function AboutBoard() {
                 aria-hidden
                 className="absolute rounded-full bg-white font-medium text-[#161616]/70 shadow-[0_2px_8px_rgba(0,0,0,0.18)] transition-opacity duration-200"
                 style={{
-                  left: `${g.w / 2 + cs.w / 2 - 44}em`,
-                  top: `${g.h / 2 + cs.h / 2 - 34}em`,
+                  left: u(g.w / 2 + cs.w / 2 - 44),
+                  top: u(g.h / 2 + cs.h / 2 - 34),
                   padding: `${u(3)} ${u(9)}`,
                   fontSize: u(13),
                   zIndex: 30,
