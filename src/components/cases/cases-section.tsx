@@ -3,7 +3,7 @@ import { asset } from "@/lib/asset";
 import { ClosedCase } from "./closed-case";
 
 const FRAME_W = 1420;
-const FRAME_H = 1747;
+const FRAME_H = 1580;
 
 function u(px: number) {
   return `${(px / FRAME_W) * 100}cqw`;
