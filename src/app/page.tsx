@@ -10,7 +10,7 @@ export default function Home() {
         <ProfileCard />
         <CasesSection />
         {/* место под блок «Обо мне» (только десктоп) */}
-        <div aria-hidden className="hidden h-[620px] lg:block" />
+        <section id="about" aria-label="Обо мне" className="hidden h-[620px] scroll-mt-6 lg:block" />
       </main>
     </>
   );

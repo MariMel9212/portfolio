@@ -21,15 +21,15 @@ export function SiteHeader({ tone = "home" }: { tone?: "home" | "case" }) {
           На главную
         </a>
         <nav aria-label="Разделы" className="flex items-center gap-1.5 max-md:hidden">
-          <a href="/#cases" className={caseNav}>
+          <a href={asset("/#cases")} className={caseNav}>
             Кейсы
           </a>
-          <a href="/#about" className={caseNav}>
+          <a href={asset("/#about")} className={caseNav}>
             Обо мне
           </a>
         </nav>
         <div className="flex items-center gap-[7px]">
-          <a href={site.cvUrl} className={`${caseNav} sm:px-8 max-md:hidden`}>
+          <a href={asset(site.cvUrl)} target="_blank" rel="noreferrer" className={`${caseNav} sm:px-8 max-md:hidden`}>
             Резюме
           </a>
           <a
@@ -58,16 +58,16 @@ export function SiteHeader({ tone = "home" }: { tone?: "home" | "case" }) {
   return (
     <header className="@container mx-auto flex w-full max-w-[1308px] items-center justify-between gap-1 px-2.5 pt-6 min-[360px]:gap-1.5 min-[360px]:px-3 min-[430px]:px-4 sm:gap-[10px] sm:px-6 md:pt-[80px]">
       <nav aria-label="Разделы" className="flex items-center gap-1 @min-[360px]:gap-[6px] @min-[640px]:gap-[10px]">
-        <Button render={<a href="/#cases" />} nativeButton={false} className={lightPill}>
+        <Button render={<a href={asset("/#cases")} />} nativeButton={false} className={lightPill}>
           Кейсы
         </Button>
-        <Button render={<a href="/#about" />} nativeButton={false} className={lightPill}>
+        <Button render={<a href={asset("/#about")} />} nativeButton={false} className={lightPill}>
           Обо мне
         </Button>
       </nav>
       <div className="flex items-center gap-1 @min-[360px]:gap-[6px] @min-[640px]:gap-[10px]">
         <Button
-          render={<a href={site.cvUrl} />}
+          render={<a href={asset(site.cvUrl)} target="_blank" rel="noreferrer" />}
           nativeButton={false}
           className={cn(lightPill, "@min-[640px]:px-8")}
         >

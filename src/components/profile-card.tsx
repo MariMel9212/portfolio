@@ -111,7 +111,7 @@ function DesktopCard() {
 
 export function ProfileCard() {
   return (
-    <section id="about" aria-label="Обо мне" className="scroll-mt-6">
+    <section id="profile" aria-label="Профиль" className="scroll-mt-6">
       <div className="px-4 lg:hidden">
         <div className="@container mx-auto mt-10 w-full max-w-[720px]">
           <div className="flex flex-col gap-[2.79cqw] overflow-clip rounded-[5.03cqw] bg-white px-[3.35cqw] pt-[4.47cqw] pb-[3.35cqw]">
